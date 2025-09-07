@@ -1,7 +1,7 @@
 export const projectsData = [{
   id: 1,
   title: "Industrial Training Sims",
-  description: "Contributed to high-fidelity training simulations for clients like Tata Steel, integrating input devices like Logitech G29/G27 via WebSockets.",
+  description: "Engineered high-fidelity industrial simulations in Unity, integrating physical Logitech hardware for a realistic training experience. Architected a backend with Node.js and WebSockets, enabling instructors to monitor trainee performance in real-time and provide instant feedback.",
   image: "/Images/T45.png",
   company: "Tecknotrove",
   technologies: ["Unity 3D", "Editor Scripting", "Node.js", "MongoDB", "WebSockets"],
@@ -10,7 +10,7 @@ export const projectsData = [{
 {
   id: 2,
   title: "Racecade (Blockchain Game)",
-  description: "Developed a 2D blockchain racing game with an in-game inventory system, dynamic car selection, and procedural level generation.",
+  description: "Spearheaded the development of a 2D blockchain racing game, building a dynamic inventory system for player-owned assets (NFTs). Implemented a procedural level generation algorithm in C# to ensure infinite replayability and a unique gameplay experience every session.",
   image: "/Images/RaceCade.jpg",
   company: "Coincade Studio",
   technologies: ["Unity", "C#", "Editor Scripting", "Node.js", "MongoDB"],
@@ -19,7 +19,7 @@ export const projectsData = [{
 {
   id: 3,
   title: "Hypercasual Mobile Games",
-  description: "Contributed to 3+ games (Runner Pusher 3D, Perfect Hit 3D) achieving over 100,000 installs each by developing unique features.",
+  description: "Played a key role in developing 3+ games (e.g., 'Runner Pusher 3D') that collectively amassed over 300,000+ downloads. My contributions included prototyping core 3D gameplay mechanics and implementing features that directly boosted user retention.",
   image: "/Images/hyper-casual.png",
   company: "AAC Studio",
   technologies: ["Unity", "C#", "Editor Scripting", "3D Mechanics"],
@@ -28,7 +28,7 @@ export const projectsData = [{
 {
   id: 4,
   title: "Trustopay",
-  description: "Built a secure payment processing platform with advanced transaction management.",
+  description: "Architected and developed a secure, full-stack payment processing platform. Engineered the robust backend API using Node.js and integrated major payment gateways, while building an interactive transaction management dashboard with React.",
   image: "/Images/Trustopay.png",
   company: "Trustopay Innovations PVT LTD",
   technologies: ["React", "Node.js", "Payment APIs", "MongoDB"],
@@ -37,7 +37,7 @@ export const projectsData = [{
 {
   id: 5,
   title: "Class And Class",
-  description: "Developed a comprehensive class management system for educational institutions.",
+  description: "Developed a comprehensive, full-stack class management system to streamline academic operations. Built an intuitive React UI for teachers to manage records and attendance, supported by a reliable Node.js and MongoDB backend for centralized data.",
   image: "/Images/ClassAndClass.jpg",
   company: "Find And Analyze Pvt Ltd",
   technologies: ["React", "Node.js", "MongoDB"],

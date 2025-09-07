@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AboutSection = () => {
-  const skills = ["Unity 3D (2D/3D)", "C#", "Node.js", "MongoDB", "RESTful APIs", "Editor Scripting", "Git", "Agile/Scrum"];
+  const skills = ["Unity 3D (2D/3D)", "C#", "Node.js", "MongoDB", "RESTful APIs", "Editor Scripting", "Process & Tools: Git, Agile/Scrum, Team Collaboration, WebSockets"];
 
   return (
     <section id="about" className="py-20 md:py-32">
@@ -9,8 +9,7 @@ const AboutSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-12 scroll-reveal">
           <div className="lg:w-1/2">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">About <span className="neon-accent">Me</span></h2>
-            <p className="text-gray-400 text-lg mb-4">I'm a highly motivated and results-oriented Game Developer with a proven track record in the design, development, and optimization of game mechanics, levels, and user experiences. I thrive in collaborative environments and am passionate about bringing creative ideas to life.</p>
-            <p className="text-gray-400 text-lg">From building blockchain games with complex backend systems to creating high-fidelity industrial simulations, I enjoy tackling challenges and pushing the boundaries of interactive entertainment.</p>
+            <p className="text-gray-400 text-lg">A highly skilled Full-Stack Game Developer specializing in building complete interactive experiences, from engaging front-end gameplay in Unity/C# to the robust backend services that power them. My experience architecting secure, scalable systems with Node.js as a CTO for a fintech platform gives me a unique advantage in developing the online features essential for modern games, such as player accounts, inventories, and real-time data services. With a portfolio of shipped titles including blockchain games and mobile hits with 300,000+ downloads, I am eager to apply my deep technical expertise to a hands-on development role and build the next generation of immersive games.</p>
           </div>
           <div className="lg:w-1/2">
             <h3 className="text-3xl font-bold mb-6">Core <span className="neon-accent">Competencies</span></h3>
