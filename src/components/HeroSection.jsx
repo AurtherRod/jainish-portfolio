@@ -6,7 +6,7 @@ const HeroSection = () => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const texts = ['Game Developer', 'Backend Engineer', 'Technical Co-Founder'];
+    const texts = ['Game Developer', 'Backend Engineer', 'Founder'];
     const timeout = setTimeout(() => {
       const current = texts[currentIndex];
 
@@ -28,13 +28,35 @@ const HeroSection = () => {
   }, [currentText, isDeleting, currentIndex]);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center bg-cover bg-center">
-      <div className="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
+    <section id="hero" className="min-h-screen flex items-center relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-indigo-900/20"></div>
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      </div>
       <div className="container mx-auto px-6 text-center relative z-10">
-        <h1 className="text-5xl md:text-7xl font-black uppercase tracking-widest scroll-reveal">Jainish Gupta</h1>
-        <p className="mt-4 text-xl md:text-2xl text-gray-300 scroll-reveal" style={{ transitionDelay: '200ms' }}> <span className="neon-accent font-bold">{currentText}<span className="animate-pulse">|</span></span></p>
-        <p className="mt-2 text-lg max-w-2xl mx-auto text-gray-400 scroll-reveal" style={{ transitionDelay: '400ms' }}>Specializing in Unity 3D, C#, Node.js, and MongoDB to build immersive games and high-fidelity simulations.</p>
-        <a href="#projects" className="mt-8 inline-block bg-green-500 text-gray-900 font-bold px-8 py-4 rounded-lg uppercase tracking-wider hover:bg-green-400 transition-transform transform hover:scale-105 hover:shadow-lg neon-shadow scroll-reveal" style={{ transitionDelay: '600ms' }}>View My Work</a>
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 bg-clip-text text-transparent mb-6 scroll-reveal">
+            Jainish Gupta
+          </h1>
+          <div className="mb-8 scroll-reveal" style={{ transitionDelay: '200ms' }}>
+            <p className="text-2xl md:text-3xl text-gray-300 mb-2">I'm a</p>
+            <p className="text-3xl md:text-4xl font-bold">
+              <span className="neon-accent">{currentText}<span className="animate-pulse text-blue-400">|</span></span>
+            </p>
+          </div>
+          <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed mb-12 scroll-reveal" style={{ transitionDelay: '400ms' }}>
+            Crafting immersive digital experiences through game development, backend engineering, and innovative solutions.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center scroll-reveal" style={{ transitionDelay: '600ms' }}>
+            <a href="#projects" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-10 py-4 rounded-full uppercase tracking-wider hover:from-blue-500 hover:to-purple-500 transition-all transform hover:scale-105 neon-shadow">
+              View My Work
+            </a>
+            <a href="#contact" className="border-2 border-blue-400 text-blue-400 font-bold px-10 py-4 rounded-full uppercase tracking-wider hover:bg-blue-400 hover:text-gray-900 transition-all transform hover:scale-105">
+              Get In Touch
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

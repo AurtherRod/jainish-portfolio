@@ -16,7 +16,7 @@ const AboutSection = () => {
             <h3 className="text-3xl font-bold mb-6">Core <span className="neon-accent">Competencies</span></h3>
             <div className="flex flex-wrap gap-4">
               {skills.map((skill, index) => (
-                <span key={index} className="bg-gray-800 border neon-border text-green-400 text-base font-semibold px-4 py-2 rounded-lg">{skill}</span>
+                <span key={index} className="tech-tag text-blue-300 text-base font-semibold px-4 py-2 rounded-lg">{skill}</span>
               ))}
             </div>
           </div>

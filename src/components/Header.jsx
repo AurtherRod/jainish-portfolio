@@ -45,20 +45,25 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
   return (
     <header ref={(el) => { navbarRef.current = el; headerRef.current = el; }} className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-effect" id="navbar">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#hero" className="text-2xl font-bold tracking-wider hover:text-green-400 transition-colors">Jainish Gupta</a>
+        <a href="#hero" className="text-2xl font-bold tracking-wider hover:text-blue-400 transition-colors">Jainish Gupta</a>
         <nav className="hidden md:flex space-x-8">
-          <a href="#hero" className="text-gray-300 hover:text-green-400 transition-colors">Home</a>
-          <a href="#projects" className="text-gray-300 hover:text-green-400 transition-colors">Projects</a>
-          <a href="#experience" className="text-gray-300 hover:text-green-400 transition-colors">Experience</a>
-          <a href="#about" className="text-gray-300 hover:text-green-400 transition-colors">About</a>
-          <a href="#contact" className="text-gray-300 hover:text-green-400 transition-colors">Contact</a>
+          <a href="#hero" className="text-gray-300 hover:text-blue-400 transition-colors">Home</a>
+          <a href="#projects" className="text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
+          <a href="#experience" className="text-gray-300 hover:text-blue-400 transition-colors">Experience</a>
+          <a href="#about" className="text-gray-300 hover:text-blue-400 transition-colors">About</a>
+          <a href="#contact" className="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
         </nav>
-        <a href="https://github.com/jainish-username" target="_blank" rel="noreferrer" className="hidden md:block border neon-border text-green-400 px-4 py-2 rounded-lg hover:bg-green-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow">
-          GitHub
-        </a>
+        <div className="hidden md:flex space-x-4">
+          <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow">
+            LinkedIn
+          </a>
+          <a href="https://github.com/jainish-username" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow">
+            GitHub
+          </a>
+        </div>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-gray-300 focus:outline-none p-2 hover:text-green-400 transition-colors"
+          className="md:hidden text-gray-300 focus:outline-none p-2 hover:text-blue-400 transition-colors"
           aria-label="Toggle mobile menu"
         >
           <div className="w-6 h-6 flex flex-col justify-center items-center">
@@ -68,15 +73,20 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           </div>
         </button>
       </div>
-      <div className={`${isMobileMenuOpen ? 'block animate-fade-in' : 'hidden'} md:hidden px-6 pb-4 text-center bg-gray-900 bg-opacity-95 backdrop-blur-sm`}>
-        <a href="#hero" onClick={handleMobileMenuClick} className="block py-2 text-gray-300 hover:text-green-400">Home</a>
-        <a href="#projects" onClick={handleMobileMenuClick} className="block py-2 text-gray-300 hover:text-green-400">Projects</a>
-        <a href="#experience" onClick={handleMobileMenuClick} className="block py-2 text-gray-300 hover:text-green-400">Experience</a>
-        <a href="#about" onClick={handleMobileMenuClick} className="block py-2 text-gray-300 hover:text-green-400">About</a>
-        <a href="#contact" onClick={handleMobileMenuClick} className="block py-2 text-gray-300 hover:text-green-400">Contact</a>
-        <a href="https://github.com/jainish-username" target="_blank" rel="noreferrer" className="block mt-2 border neon-border text-green-400 px-4 py-2 rounded-lg hover:bg-green-400 hover:text-gray-900 transition-all text-center">
-          GitHub
-        </a>
+      <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden px-6 pb-6 text-center glass-effect border-t border-blue-400/20`}>
+        <a href="#hero" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Home</a>
+        <a href="#projects" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Projects</a>
+        <a href="#experience" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Experience</a>
+        <a href="#about" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">About</a>
+        <a href="#contact" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Contact</a>
+        <div className="flex gap-2 mt-4">
+          <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="flex-1 border neon-border text-blue-400 px-4 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium">
+            LinkedIn
+          </a>
+          <a href="https://github.com/jainish-username" target="_blank" rel="noreferrer" className="flex-1 border neon-border text-blue-400 px-4 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium">
+            GitHub
+          </a>
+        </div>
       </div>
     </header>
   );
