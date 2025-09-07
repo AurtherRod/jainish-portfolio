@@ -30,7 +30,7 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
     window.addEventListener('scroll', handleScroll);
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('keydown', handleEscapeKey);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('mousedown', handleClickOutside);
@@ -57,7 +57,7 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow">
             LinkedIn
           </a>
-          <a href="https://github.com/jainish-username" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow">
+          <a href="https://github.com/AurtherRod" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow">
             GitHub
           </a>
         </div>
@@ -83,7 +83,7 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="flex-1 border neon-border text-blue-400 px-4 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium">
             LinkedIn
           </a>
-          <a href="https://github.com/jainish-username" target="_blank" rel="noreferrer" className="flex-1 border neon-border text-blue-400 px-4 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium">
+          <a href="https://github.com/AurtherRod" target="_blank" rel="noreferrer" className="flex-1 border neon-border text-blue-400 px-4 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium">
             GitHub
           </a>
         </div>

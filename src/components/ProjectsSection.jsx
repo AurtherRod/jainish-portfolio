@@ -1,5 +1,6 @@
 import React from 'react';
 import { projectsData } from '../data/projects';
+import OptimizedImage from './OptimizedImage';
 
 const ProjectsSection = () => {
   return (
@@ -14,7 +15,13 @@ const ProjectsSection = () => {
           {projectsData.map((project) => (
             <div key={project.id} className="card-hover rounded-2xl overflow-hidden scroll-reveal group" style={{transitionDelay: project.delay}}>
               <div className="relative overflow-hidden">
-                <img src={project.image} alt={project.title} className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" />
+                <OptimizedImage
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  width={400}
+                  height={256}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <div className="p-4 w-full">
                     <span className="inline-block bg-blue-500/30 backdrop-blur-sm border border-blue-400/50 text-blue-200 px-4 py-2 rounded-full text-sm font-medium">
