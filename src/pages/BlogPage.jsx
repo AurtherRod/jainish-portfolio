@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { blogsData } from '../data/blogs';
-import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const BlogPage = () => {
-  useScrollReveal();
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -14,7 +12,7 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen pt-20">
       <div className="container mx-auto px-6 py-20">
-        <div className="text-center mb-16 scroll-reveal">
+        <div className="text-center mb-16">
           <Link to="/" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-8 transition-colors">
             ← Back to Portfolio
           </Link>
@@ -24,7 +22,7 @@ const BlogPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogsData.map((blog) => (
-            <article key={blog.id} className="card-hover rounded-2xl overflow-hidden scroll-reveal group" style={{transitionDelay: blog.delay}}>
+            <Link key={blog.id} to={`/blog/${blog.id}`} className="card-hover rounded-2xl overflow-hidden group block">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="inline-block bg-blue-500/30 backdrop-blur-sm border border-blue-400/50 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">
@@ -51,7 +49,7 @@ const BlogPage = () => {
                   ))}
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
