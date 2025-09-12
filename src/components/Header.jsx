@@ -1,8 +1,21 @@
 import React, { useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
   const navbarRef = useRef(null);
   const headerRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleSectionClick = (e, sectionId) => {
+    if (location.pathname !== '/') {
+      e.preventDefault();
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,11 +60,12 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <a href="#hero" className="text-2xl font-bold tracking-wider hover:text-blue-400 transition-colors">Jainish Gupta</a>
         <nav className="hidden md:flex space-x-8">
-          <a href="#hero" className="text-gray-300 hover:text-blue-400 transition-colors">Home</a>
-          <a href="#projects" className="text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
-          <a href="#experience" className="text-gray-300 hover:text-blue-400 transition-colors">Experience</a>
-          <a href="#about" className="text-gray-300 hover:text-blue-400 transition-colors">About</a>
-          <a href="#contact" className="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+          <Link to="/" className="text-gray-300 hover:text-blue-400 transition-colors">Home</Link>
+          <a href="#projects" onClick={(e) => handleSectionClick(e, 'projects')} className="text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
+          <a href="#experience" onClick={(e) => handleSectionClick(e, 'experience')} className="text-gray-300 hover:text-blue-400 transition-colors">Experience</a>
+          <Link to="/blog" className="text-gray-300 hover:text-blue-400 transition-colors">Blog</Link>
+          <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="text-gray-300 hover:text-blue-400 transition-colors">About</a>
+          <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')} className="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
         </nav>
         <div className="hidden md:flex space-x-4">
           <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow">
@@ -74,11 +88,12 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
         </button>
       </div>
       <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden px-6 pb-6 text-center glass-effect border-t border-blue-400/20`}>
-        <a href="#hero" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Home</a>
-        <a href="#projects" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Projects</a>
-        <a href="#experience" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Experience</a>
-        <a href="#about" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">About</a>
-        <a href="#contact" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Contact</a>
+        <Link to="/" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Home</Link>
+        <a href="#projects" onClick={(e) => { handleSectionClick(e, 'projects'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Projects</a>
+        <a href="#experience" onClick={(e) => { handleSectionClick(e, 'experience'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Experience</a>
+        <Link to="/blog" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Blog</Link>
+        <a href="#about" onClick={(e) => { handleSectionClick(e, 'about'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">About</a>
+        <a href="#contact" onClick={(e) => { handleSectionClick(e, 'contact'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Contact</a>
         <div className="flex gap-2 mt-4">
           <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="flex-1 border neon-border text-blue-400 px-4 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium">
             LinkedIn
