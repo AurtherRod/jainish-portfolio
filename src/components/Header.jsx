@@ -61,9 +61,8 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
         <a href="#hero" className="text-2xl font-bold tracking-wider hover:text-blue-400 transition-colors">Jainish Gupta</a>
         <nav className="hidden md:flex space-x-8">
           <Link to="/" className="text-gray-300 hover:text-blue-400 transition-colors">Home</Link>
-          <a href="#projects" onClick={(e) => handleSectionClick(e, 'projects')} className="text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
-          <a href="#experience" onClick={(e) => handleSectionClick(e, 'experience')} className="text-gray-300 hover:text-blue-400 transition-colors">Experience</a>
           <Link to="/blog" className="text-gray-300 hover:text-blue-400 transition-colors">Blog</Link>
+
           <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="text-gray-300 hover:text-blue-400 transition-colors">About</a>
           <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')} className="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
         </nav>

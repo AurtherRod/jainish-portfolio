@@ -321,7 +321,7 @@ The decision to use Node.js as a versatile backend and Flutter for mobile develo
         "readTime": "16 min read",
         "category": "Game Development",
         "tags": ["Unity", "C#", "Node.js", "MongoDB", "Full-Stack", "Game Design"],
-        "delay": "2200ms",
+        "delay": "400ms",
         "content": `
 An inventory system is the heart of many games, from RPGs to shooters. It’s where players store their hard-earned loot, customize their characters, and engage with the game's economy. However, building an inventory that is both user-friendly and secure is a significant challenge. When I developed "Racecade," a 2D blockchain game, I constructed the entire backend, including the in-game inventory system, using Node.js and MongoDB. This experience taught me the importance of a robust server-side architecture.
 
@@ -499,7 +499,7 @@ for your players. This approach not only enhances gameplay but also simplifies f
         "readTime": "14 min read",
         "category": "Game Development",
         "tags": ["Unity", "C#", "Editor Scripting", "Tools", "Level Design", "Workflow"],
-        "delay": "2400ms",
+        "delay": "500ms",
         "content": `
 As game developers, we spend countless hours inside the Unity Editor. But what if you could make the editor work for *you*? Repetitive tasks like placing objects, configuring prefabs, and setting up levels can slow down development and introduce human error. The solution is Unity Editor Scripting.
 
@@ -639,6 +639,238 @@ After adding this script, you'll find a new **Tools > Level Generator** option i
 ## Conclusion
 
 Editor scripting is an essential skill for any serious Unity developer. By investing a small amount of time into building custom tools, you can automate repetitive tasks, reduce human error, and accelerate your entire development process. Whether you're managing complex procedural systems or just simplifying object placement, custom editor tools are a game-changer for productivity.
+`
+    },
+    {
+        "id": 6,
+        "title": "A Deep Dive into My Custom Unity Vehicle Script (with G29/G27 Support)",
+        "description": "A detailed breakdown of my custom C# vehicle controller for Unity, explaining the architecture, physics, and advanced input handling required to build a high-fidelity driving simulation from the ground up.",
+        "date": "2025-09-14",
+        "readTime": "25 min read",
+        "category": "Game Development",
+        "tags": ["Unity", "C#", "Vehicle Physics", "ScriptableObjects", "Logitech", "G29", "Simulation", "Architecture"],
+        "delay": "600ms",
+        "content": `
+Creating realistic vehicle physics in Unity is one of the most rewarding challenges a developer can face. While Unity's **WheelCollider** component provides an excellent physics-based foundation, a truly immersive driving experience requires a custom-built engine to simulate the complex interplay of the engine, powertrain, and nuanced inputs from a professional racing wheel.
+
+This blog post is a comprehensive breakdown of a **VehicleScript** I wrote to power realistic car behaviors. This isn't just about making a car move; it's about simulating the *feel* of driving. [cite_start]This is the level of detail required for the **high-fidelity industrial training simulations** I've helped develop, where precise and authentic control is paramount[cite: 23].
+
+***
+
+## Part 1: The Blueprint - A Data-Oriented Vehicle Setup
+
+A robust controller needs a flexible and intuitive setup. The best practice for this is a **data-oriented design**, where your logic script (VehicleScript) is separate from your configuration data (CarSettings).
+
+### The Power of ScriptableObjects (CarSettings)
+
+Hard-coding values like gear ratios or brake force inside your main script is inefficient and hard to manage. The solution is to use **ScriptableObjects**. This allows you to create, tweak, and save different vehicle performance profiles as assets right inside your Unity project. You can have a "Drift Car," a "Truck," and a "Racer" all using the same **VehicleScript** but with different **CarSettings** assets.
+
+Here is the complete **CarSettings.cs** script:
+\`\`\`csharp
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "New Car Settings", menuName = "Vehicle/Car Settings")]
+public class CarSettings : ScriptableObject
+{
+    [Header("Vehicle Configuration")]
+    public InputType inputType = InputType.Keyboard;
+    public SteeringWheelType steeringWheelType = SteeringWheelType.G29;
+    public DriveStyle driveType = DriveStyle.AllWheelDrive;
+
+    [Header("Transmission")]
+    public float[] gearRatio = { -2.5f, 0f, 3.5f, 2.8f, 2.1f, 1.6f, 1.2f, 0.9f };
+    public float[] maxRPM = { 4000f, 800f, 6000f, 6000f, 6000f, 6000f, 6000f, 6000f };
+    public AnimationCurve acceleratorCurve = AnimationCurve.Linear(0, 0, 1, 1);
+
+    [Header("Engine")]
+    public float slopeAngle = 15f;
+    public float idleRPM = 800f;
+    public float engineInertiaSpeed = 1500f;
+    public float engineDecelerationSpeed = 3000f;
+
+    [Header("Gear Speed Limits")]
+    public float[] gearMaxSpeeds = { 25f, 0f, 45f, 75f, 105f, 135f, 165f, 200f };
+
+    [Header("Physics")]
+    public float downForceMultiplier = 1f;
+    public float brakeForce = 5000f;
+    public float maxSteerAngle = 45f;
+    public float steerSpeed = 15f;
+}
+\`\`\`
+The **[CreateAssetMenu]** attribute at the top is what allows you to create new car profiles from the **Assets > Create > Vehicle** menu in Unity.
+
+### Organizing Wheels with **AxleInfo**
+
+A car isn't just four wheels; it's a system of axles. My script uses a simple **[Serializable]** class called **AxleInfo** to group wheel colliders and define their roles: **Motor**, **Steering**, or **Braking**. This makes it trivial to configure different drive types like FWD, RWD, and AWD directly from the **CarSettings** asset.
+
+### The Center of Gravity: Your Key to Stability
+
+The single most important factor in making a **WheelCollider**-based car stable is the **Center of Gravity (COG)**. My script uses a public **Transform** that can be visually placed lower down in the vehicle's chassis to create a more realistic and stable driving feel.
+
+***
+
+## Part 2: The Heart of the Machine - Simulating the Powertrain
+
+With the foundation laid, we can simulate the engine and gearbox, pulling all configuration data from our **CarSettings** asset.
+
+### Breathing Life into the Engine: Realistic RPM
+
+In the **DataGenerator** function, the engine's **RPM** isn't a fake value. It's a calculated simulation. When the player accelerates, the RPM climbs at a rate defined by **engineInertiaSpeed** from our **CarSettings**. The target RPM itself is calculated from the real-time rotational speed of the wheels and the current **gearRatio**.
+
+### From RPM to Raw Power: Dynamic Torque Calculation
+
+The **WheelTorqueCalculator** is where the magic happens. The final torque applied to the wheels is a dynamic value calculated from multiple factors to mimic a real engine's performance curve.
+
+1.  **Base Torque**: Determined by the current gear's **gearRatio**.
+2.  **Player Input**: The accelerator pedal's input is passed through the **acceleratorCurve** from **CarSettings**, allowing for non-linear throttle response.
+3.  **RPM Limiting**: As the engine RPM approaches its **maxRPM** for that gear, a multiplier reduces available torque, forcing a gear shift.
+4.  **Terrain Multiplier**: The script detects the car's slope and applies a torque multiplier in lower gears to help the car climb.
+
+***
+
+## Part 3: Bridging Man and Machine - Advanced Input Handling
+
+[cite_start]This script was built to support professional hardware, reflecting my experience **integrating devices like the Logitech G29/G27**[cite: 24].
+
+### The Real Deal: Simulating a G29/G27 H-Pattern Shifter
+
+The **GearManager** checks the **steeringWheelType** from our **CarSettings** and calls a specific handler. Inside, the code listens for the exact **joystick button** press that corresponds to each position on the physical H-pattern shifter.
+
+### Don't Forget the Clutch!
+
+To add another layer of realism, the **SetGear** function will only execute if it detects that the clutch is being pressed. This small detail is what separates a simple arcade racer from a compelling simulation.
+
+***
+
+## Part 4: Making It Look Right - Visuals and Polish
+
+A common mistake is to rotate the visible wheel meshes directly. The correct approach is to have the **WheelCollider's** do all the physics work on invisible GameObjects, and then sync the visual meshes to them each frame using **GetWorldPose**.
+
+***
+
+## Conclusion
+
+Building a great vehicle controller is an exercise in layering details. By starting with a clean, data-oriented architecture using ScriptableObjects and then systematically adding a simulated powertrain and nuanced handling for advanced controllers, you can create an incredibly immersive and realistic driving experience.
+`
+    },
+    {
+        "id": 7,
+        "title": "A Masterclass in Creating a Custom Unity Vehicle Script (with G29/G27 Support)",
+        "description": "The ultimate guide to my custom C# vehicle controller for Unity. This detailed masterclass breaks down the data-oriented architecture, powertrain simulation, advanced physics, and professional racing wheel integration needed for a high-fidelity driving experience.",
+        "date": "2025-09-14",
+        "readTime": "30 min read",
+        "category": "Game Development",
+        "tags": ["Unity", "C#", "Vehicle Physics", "ScriptableObjects", "Logitech", "G29", "Simulation", "Architecture"],
+        "delay": "700ms",
+        "content": `
+Creating truly realistic vehicle physics in Unity is the final frontier for many developers. It's a deep and rewarding challenge that goes far beyond moving a box with keyboard inputs. A genuinely immersive driving experience requires a custom-built engine simulating the complex, interconnected systems of a real car: the engine's power curve, the transmission's gear ratios, the nuanced feedback from a professional racing wheel, and the fundamental physics of stability and grip.
+
+This blog post is a comprehensive masterclass, breaking down a complete **VehicleScript** I wrote from the ground up. This is the level of detail and architectural planning that goes into the **high-fidelity industrial training simulations** I've helped build, where precise and authentic control isn't just a feature—it's the entire point.
+
+***
+
+## Part 1: The Architectural Blueprint - A Data-Oriented Design
+
+Before writing a single line of physics code, we must establish a clean architecture. A common pitfall is mixing your logic (the *how*) with your data (the *what*). My approach uses a **data-oriented design** to keep these separate, making the entire system flexible, scalable, and easy for designers to tweak.
+
+
+
+### The Data Hub: A Deep Dive into **CarSettings.cs**
+
+All of our car's tuning parameters are stored in a **ScriptableObject**. This is a Unity asset file that holds data, completely separate from our MonoBehaviour scripts. This means we can create dozens of different car profiles (e.g., "Truck," "Racer," "Drift Car") that all share the same **VehicleScript** logic but feel completely different to drive.
+
+The **[CreateAssetMenu]** attribute makes it easy to create new profiles right from the Unity editor menu.
+
+\`\`\`csharp
+// CarSettings.cs
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "New Car Settings", menuName = "Vehicle/Car Settings")]
+public class CarSettings : ScriptableObject
+{
+    [Header("Vehicle Configuration")]
+    public InputType inputType = InputType.Keyboard;
+    public SteeringWheelType steeringWheelType = SteeringWheelType.G29;
+    public DriveStyle driveType = DriveStyle.AllWheelDrive;
+
+    [Header("Transmission")]
+    public float[] gearRatio = { -2.5f, 0f, 3.5f, 2.8f, 2.1f, 1.6f, 1.2f, 0.9f };
+    public float[] maxRPM = { 4000f, 800f, 6000f, 6000f, 6000f, 6000f, 6000f, 6000f };
+    public AnimationCurve acceleratorCurve = AnimationCurve.Linear(0, 0, 1, 1);
+
+    [Header("Engine")]
+    public float idleRPM = 800f;
+    public float engineInertiaSpeed = 1500f;
+    public float engineDecelerationSpeed = 3000f;
+    // ... and many more settings
+}
+\`\`\`
+
+### The Physics Setup: **AxleInfo** and the All-Important Center of Gravity
+
+The **VehicleScript** uses a serializable **AxleInfo** class to organize the **WheelCollider** components in the inspector. This allows us to define which axles handle **Motor**, **Steering**, or **Braking**. The most critical setup step, however, is setting the **Center of Gravity (COG)**. A default Rigidbody COG is often too high, making the car unstable. We use a simple **Transform** to visually place the COG low and central in the chassis, which is the key to preventing the car from flipping unrealistically during turns.
+
+***
+
+## Part 2: The Powertrain Masterclass - Simulating a Real Engine
+
+This is the heart of the simulation. We're not just applying force; we're modeling an entire powertrain.
+
+### The Journey of Torque: From Pedal to Pavement
+
+The **WheelTorqueCalculator** function is where the car's personality is defined. The final torque value is a result of a multi-stage calculation that mimics a real engine:
+
+
+1.  **Player Input**: The raw accelerator input (0-1) is first evaluated against the **acceleratorCurve** from our **CarSettings**. This allows a designer to create a non-linear throttle response (e.g., more sensitive at the start).
+2.  **Gear Ratio**: The result is multiplied by the current **gearRatio**. Lower gears have higher ratios, multiplying the torque for greater acceleration.
+3.  **RPM Multiplier**: To simulate an engine's power band, a multiplier reduces the available torque as the engine approaches its **maxRPM** for that gear. This makes shifting at the right time crucial for peak performance.
+4.  **Terrain Multiplier**: The script calculates the steepness of the terrain. When driving uphill, it provides a torque boost in lower gears, simulating the driver "digging deep" to make the climb.
+
+### The Gearbox Logic: Ratios and Speed Limits
+
+The **gearRatio** array in **CarSettings** is the soul of the transmission. The first two values are for Reverse and Neutral, followed by the forward gears. These values are direct multipliers on the engine's torque. The script also uses a **gearMaxSpeeds** array as a simple but effective hard limiter, preventing the car from exceeding a realistic top speed for each gear.
+
+***
+
+## Part 3: The Human Connection - Advanced Input Handling
+
+A great simulation needs to respect great hardware. This script was built from the ground up to support professional racing wheels, a skill I honed while **integrating Logitech G29/G27 devices** for professional training simulators.
+
+### A Love Letter to the H-Pattern: G29/G27 Shifter Logic
+
+The script doesn't just look for a generic "shift up" button. The **HandleG29GearInput** and **HandleG27GearInput** functions listen for the **specific joystick button IDs** that correspond to each of the six gear positions (plus reverse) on the physical H-pattern shifter.
+
+### The Skill of the Clutch
+
+To achieve true realism, you can't shift gears without a clutch. The **SetGear** function is wrapped in a crucial condition: **if (clutch > 0)**. This checks if the player is pressing the clutch pedal. If they are not, the gear will not change. This simple check adds a deep layer of skill and immersion to the driving experience.
+
+\`\`\`csharp
+// This function is called every time a gear button is pressed on the wheel
+void SetGear(float gear, int arrayIndex)
+{
+    // The gear change will ONLY happen if the clutch pedal is depressed.
+    if (clutch > 0 || Input.GetKey(KeyCode.Keypad0))
+    {
+        CurrentGear = gear;
+        GearString = gear == -1 ? "R" : gear == 0 ? "N" : gear.ToString();
+        CurrentGearRatioVal = carSettings.gearRatio[arrayIndex];
+        CurrentMaxRPM = carSettings.maxRPM[arrayIndex];
+    }
+}
+\`\`\`
+
+***
+
+## Part 4: The Final Polish - Syncing Visuals 
+
+A final but vital detail is separating the physics **WheelCollider** from the visible wheel mesh. The colliders are invisible and handle all the physics calculations. The **VisualWheel** function then uses **GetWorldPose** to perfectly copy the position and rotation of the invisible collider to the visible 3D model of the wheel each frame.
+
+***
+
+## Conclusion
+
+Creating a high-fidelity vehicle simulation is a journey of layering interconnected systems. It starts with a clean, data-oriented architecture, builds upon it with a detailed powertrain and physics model, and is completed with nuanced handling for professional-grade inputs. Each piece, from the **ScriptableObject** to the clutch logic, adds a layer of depth that, when combined, creates an experience that feels authentic, challenging, and deeply immersive.
 `
     }
 ];
