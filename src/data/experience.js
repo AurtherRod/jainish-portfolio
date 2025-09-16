@@ -3,7 +3,7 @@ export const experienceData = [
     id: 1,
     title: "Co-Founder & CTO",
     company: "Trustopay Innovations Pvt. Ltd.",
-    period: "February 2024 - Present (Current Time in Vadodara, India)",
+    period: "February 2024 - Present",
     description: "• Defined the end-to-end technology strategy and led the architectural design of a secure fintech platform from concept to launch.\n• Engineered the core backend for financial operations, implementing robust APIs and secure transaction processing workflows.\n• Optimized and scaled the MongoDB database architecture, ensuring high availability, performance, and complete data integrity for sensitive financial records.\n• Led and mentored the engineering team, fostering a collaborative environment to meet aggressive product development deadlines."
   },
   {
