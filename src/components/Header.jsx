@@ -88,8 +88,6 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
       </div>
       <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden px-6 pb-6 text-center glass-effect border-t border-blue-400/20`}>
         <Link to="/" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Home</Link>
-        <a href="#projects" onClick={(e) => { handleSectionClick(e, 'projects'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Projects</a>
-        <a href="#experience" onClick={(e) => { handleSectionClick(e, 'experience'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Experience</a>
         <Link to="/blog" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Blog</Link>
         <a href="#about" onClick={(e) => { handleSectionClick(e, 'about'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">About</a>
         <a href="#contact" onClick={(e) => { handleSectionClick(e, 'contact'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Contact</a>
