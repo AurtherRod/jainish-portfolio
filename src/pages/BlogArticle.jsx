@@ -74,7 +74,7 @@ const BlogArticle = () => {
 
       if (line.startsWith('```')) {
         // Handle code blocks
-        const language = line.substring(3);
+        const language = line.substring(3).trim();
         i++;
         const codeLines = [];
 
@@ -83,14 +83,35 @@ const BlogArticle = () => {
           i++;
         }
 
+        const getLanguageColor = (lang) => {
+          switch(lang.toLowerCase()) {
+            case 'bash': return 'text-yellow-400';
+            case 'nginx': return 'text-purple-400';
+            case 'javascript': case 'js': return 'text-yellow-300';
+            case 'csharp': case 'c#': return 'text-green-400';
+            default: return 'text-green-400';
+          }
+        };
+
+        const isExecutable = ['bash', 'nginx'].includes(language.toLowerCase());
+        const codeContent = codeLines.join('\n');
+        
         elements.push(
           <div key={i} className="my-6">
             <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden">
-              <div className="bg-gray-800 px-4 py-2 text-sm text-gray-400 border-b border-gray-700">
-                {language || 'code'}
+              <div className="bg-gray-800 px-4 py-2 text-sm text-gray-400 border-b border-gray-700 flex justify-between items-center">
+                <span>{language || 'code'}</span>
+                {isExecutable && (
+                  <button 
+                    onClick={() => navigator.clipboard.writeText(codeContent)}
+                    className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                  >
+                    Copy
+                  </button>
+                )}
               </div>
               <pre className="p-4 overflow-x-auto">
-                <code className="text-green-400 text-sm">{codeLines.join('\n')}</code>
+                <code className={`${getLanguageColor(language)} text-sm ${isExecutable ? 'font-mono' : ''}`}>{codeContent}</code>
               </pre>
             </div>
           </div>

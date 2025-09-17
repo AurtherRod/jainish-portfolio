@@ -27,6 +27,7 @@ It's a client-server model based on HTTP requests and responses. The client (you
 * [cite_start]**Inventory Management:** Saving or loading a player's inventory[cite: 17].
 
 **Example: Fetching Player Data with C#**
+
 \`\`\`csharp
 using UnityEngine;
 using UnityEngine.Networking;
@@ -72,6 +73,7 @@ It provides a persistent, bidirectional communication channel. Once connected, b
 
 **Conceptual Example: Connecting with C#**
 *(Note: This requires a third-party library like websocket-sharp)*
+
 \`\`\`csharp
 using WebSocketSharp;
 
@@ -518,6 +520,7 @@ Editor scripting is the practice of writing C# code that extends the Unity Edito
 A custom inspector allows you to change how a component's properties are displayed in the Inspector window. You can add buttons, sliders, and custom visualizations to make configuring your game objects easier and more intuitive.
 
 **1. The Component Script (LevelManager.cs):**
+
 \`\`\`csharp
 using UnityEngine;
 
@@ -546,6 +549,7 @@ public class LevelManager : MonoBehaviour
 \`\`\`
 
 **2. The Custom Editor Script (LevelManagerEditor.cs, in an "Editor" folder):**
+
 \`\`\`csharp
 using UnityEngine;
 using UnityEditor;
@@ -666,6 +670,7 @@ A robust controller needs a flexible and intuitive setup. The best practice for 
 Hard-coding values like gear ratios or brake force inside your main script is inefficient and hard to manage. The solution is to use **ScriptableObjects**. This allows you to create, tweak, and save different vehicle performance profiles as assets right inside your Unity project. You can have a "Drift Car," a "Truck," and a "Racer" all using the same **VehicleScript** but with different **CarSettings** assets.
 
 Here is the complete **CarSettings.cs** script:
+
 \`\`\`csharp
 using UnityEngine;
 
@@ -881,13 +886,13 @@ Creating a high-fidelity vehicle simulation is a journey of layering interconnec
         "readTime": "28 min read",
         "category": "DevOps",
         "tags": ["Node.js", "AWS", "Nginx", "MongoDB", "DevOps", "Deployment", "Tutorial", "EC2"],
-        "delay": "3400ms",
+        "delay": "800ms",
         "content": `
 Building a powerful application with Node.js and MongoDB is a great accomplishment, but the real test is deploying it for the world to see. Moving from the comfort of **localhost** to a live production server involves several critical steps to ensure your application is secure, scalable, and reliable.
 
 In my **3 years of experience with AWS and Node.js**, I've refined a deployment process that is both robust and straightforward. This guide is a detailed, hands-on tutorial that will walk you through every command and configuration file needed to get your app live.
 
-### **Prerequisites**
+## Prerequisites
 * A working Node.js application (with a **package.json** file).
 * Your code pushed to a Git repository (like GitHub).
 * An AWS account.
@@ -915,48 +920,28 @@ Our EC2 instance is the virtual server that will host our entire application.
 
 Now, we'll connect to our new server and install all the necessary software.
 
-1.  **Connect via SSH**: Open your terminal and run the following command, replacing the paths and IP with your own:
-    \`\`\`bash
-    # Make your key file read-only
-    chmod 400 /path/to/your-key.pem
-    
-    # Connect to the instance (use 'ubuntu' for Ubuntu, 'ec2-user' for Amazon Linux)
-    ssh -i /path/to/your-key.pem ubuntu@YOUR_INSTANCE_PUBLIC_IP
-    \`\`\`
+1.  **Connect via SSH**: Open your terminal and run the following commands, replacing the paths and IP with your own:
+    - Make your key file read-only: \`chmod 400 /path/to/your-key.pem\`
+    - Connect to the instance: \`ssh -i /path/to/your-key.pem ubuntu@YOUR_INSTANCE_PUBLIC_IP\`
 
-2.  **Update the Server**:
-    \`\`\`bash
-    sudo apt update
-    sudo apt upgrade -y
-    \`\`\`
+2.  **Update the Server**: Run \`sudo apt update\` and then \`sudo apt upgrade -y\`
 
 3.  **Install Node.js (via nvm)**: Using Node Version Manager (nvm) is the best way to manage Node.js versions.
-    \`\`\`bash
-    # Download and install nvm
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-    
-    # Activate nvm
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    
-    # Install the latest LTS version of Node.js
-    nvm install --lts
-    \`\`\`
+    - Download and install nvm: \`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash\`
+    - Activate nvm: \`export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh"\`
+    - Install the latest LTS version: \`nvm install --lts\`
 
-4.  **Install Nginx**:
-    \`\`\`bash
-    sudo apt install nginx -y
-    sudo systemctl start nginx
-    sudo systemctl enable nginx # Start Nginx on server boot
-    \`\`\`
+4.  **Install Nginx**: Run these commands:
+    - \`sudo apt install nginx -y\`
+    - \`sudo systemctl start nginx\`
+    - \`sudo systemctl enable nginx\`
+    
     *You can now visit your server's public IP in a browser and should see the default Nginx welcome page.*
 
-5.  **Clone Your Project**:
-    \`\`\`bash
-    git clone https://github.com/your-username/your-repo.git
-    cd your-repo
-    npm install
-    \`\`\`
+5.  **Clone Your Project**: Execute these commands:
+    - \`git clone https://github.com/your-username/your-repo.git\`
+    - \`cd your-repo\`
+    - \`npm install\`
 
 ***
 
@@ -964,23 +949,14 @@ Now, we'll connect to our new server and install all the necessary software.
 
 Never run a production app with **node app.js**. If it crashes, it stays down. PM2 is a process manager that acts as a guardian for our app.
 
-1.  **Install PM2 Globally**:
-    \`\`\`bash
-    npm install pm2 -g
-    \`\`\`
+1.  **Install PM2 Globally**: Run \`npm install pm2 -g\`
 
-2.  **Start Your App**:
-    \`\`\`bash
-    # Start the app and give it a name
-    pm2 start your-main-app-file.js --name "my-api"
-    \`\`\`
+2.  **Start Your App**: Execute \`pm2 start your-main-app-file.js --name "my-api"\`
 
 3.  **Configure for Auto-Restart**: We want PM2 to restart our app automatically if the server ever reboots.
-    \`\`\`bash
-    pm2 startup
-    # PM2 will give you a command to run, copy and paste it.
-    pm2 save
-    \`\`\`
+    - Run \`pm2 startup\` (PM2 will give you a command to run, copy and paste it)
+    - Then run \`pm2 save\`
+    
     *Your app is now running! However, it's on a local port (e.g., 3000) and not yet accessible to the public.*
 
 ***
@@ -989,38 +965,31 @@ Never run a production app with **node app.js**. If it crashes, it stays down. P
 
 This is the final and most crucial step. We will tell Nginx to forward all public traffic from port 80 to our app's local port (e.g., 3000).
 
-1.  **Edit the Nginx Configuration**:
-    \`\`\`bash
-    sudo nano /etc/nginx/sites-available/default
-    \`\`\`
+1.  **Edit the Nginx Configuration**: Run \`sudo nano /etc/nginx/sites-available/default\`
 
 2.  **Replace the file content** with this configuration. Change **3000** if your app uses a different port.
-    \`\`\`nginx
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
 
-        # This block is the key part
-        location / {
-            # Forward requests to your app running on port 3000
-            proxy_pass http://localhost:3000;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
+\`\`\`nginx
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    # This block is the key part
+    location / {
+        # Forward requests to your app running on port 3000
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
     }
-    \`\`\`
+}
+\`\`\`
 
 3.  **Test and Restart Nginx**:
-    \`\`\`bash
-    # Check for syntax errors
-    sudo nginx -t
-    
-    # If the test is successful, restart Nginx to apply the changes
-    sudo systemctl restart nginx
-    \`\`\`
+    - Check for syntax errors: \`sudo nginx -t\`
+    - If the test is successful, restart Nginx: \`sudo systemctl restart nginx\`
 
 ***
 
