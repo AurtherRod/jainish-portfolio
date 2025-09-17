@@ -872,5 +872,163 @@ A final but vital detail is separating the physics **WheelCollider** from the vi
 
 Creating a high-fidelity vehicle simulation is a journey of layering interconnected systems. It starts with a clean, data-oriented architecture, builds upon it with a detailed powertrain and physics model, and is completed with nuanced handling for professional-grade inputs. Each piece, from the **ScriptableObject** to the clutch logic, adds a layer of depth that, when combined, creates an experience that feels authentic, challenging, and deeply immersive.
 `
+    },
+    {
+        "id": 8,
+        "title": "A Step-by-Step Guide to Deploying a Node.js App on AWS with Nginx",
+        "description": "A full, detailed tutorial on deploying a production-ready Node.js and MongoDB application on AWS. This hands-on guide covers EC2 setup, environment configuration, running the app with PM2, and routing with Nginx.",
+        "date": "2025-09-16",
+        "readTime": "28 min read",
+        "category": "DevOps",
+        "tags": ["Node.js", "AWS", "Nginx", "MongoDB", "DevOps", "Deployment", "Tutorial", "EC2"],
+        "delay": "3400ms",
+        "content": `
+Building a powerful application with Node.js and MongoDB is a great accomplishment, but the real test is deploying it for the world to see. Moving from the comfort of **localhost** to a live production server involves several critical steps to ensure your application is secure, scalable, and reliable.
+
+In my **3 years of experience with AWS and Node.js**, I've refined a deployment process that is both robust and straightforward. This guide is a detailed, hands-on tutorial that will walk you through every command and configuration file needed to get your app live.
+
+### **Prerequisites**
+* A working Node.js application (with a **package.json** file).
+* Your code pushed to a Git repository (like GitHub).
+* An AWS account.
+* An SSH client (Terminal on Mac/Linux, PuTTY or WSL on Windows).
+
+***
+
+## Step 1: Launch and Configure an AWS EC2 Instance ☁️
+
+Our EC2 instance is the virtual server that will host our entire application.
+
+1.  **Navigate to the EC2 Dashboard** in your AWS Console and click "Launch instances".
+2.  **Choose an AMI**: Select an "Amazon Machine Image". **Ubuntu Server** (the latest LTS version) is an excellent and common choice.
+3.  **Choose an Instance Type**: For a small project or for learning, the **t2.micro** is eligible for the AWS Free Tier.
+4.  **Create a Key Pair**: This is your SSH key to access the server. Give it a name, select **.pem** format, and click "Create key pair". **Your browser will download this file. Keep it safe; you cannot download it again.**
+5.  **Configure Security Group**: This is your server's firewall. Click "Edit" in the Network settings and configure these "Inbound security group rules":
+    * **Rule 1**: Type **SSH**, Source **My IP**. (This lets you connect securely from your current IP address).
+    * **Rule 2**: Type **HTTP**, Source **Anywhere**. (This allows public web traffic on port 80).
+    * **Rule 3**: Type **HTTPS**, Source **Anywhere**. (This allows secure web traffic on port 443).
+6.  **Launch Instance**: Click "Launch instance" and wait for it to initialize. Once it's running, find its **Public IPv4 address** on the dashboard.
+
+***
+
+## Step 2: Set Up the Server Environment 🛠️
+
+Now, we'll connect to our new server and install all the necessary software.
+
+1.  **Connect via SSH**: Open your terminal and run the following command, replacing the paths and IP with your own:
+    \`\`\`bash
+    # Make your key file read-only
+    chmod 400 /path/to/your-key.pem
+    
+    # Connect to the instance (use 'ubuntu' for Ubuntu, 'ec2-user' for Amazon Linux)
+    ssh -i /path/to/your-key.pem ubuntu@YOUR_INSTANCE_PUBLIC_IP
+    \`\`\`
+
+2.  **Update the Server**:
+    \`\`\`bash
+    sudo apt update
+    sudo apt upgrade -y
+    \`\`\`
+
+3.  **Install Node.js (via nvm)**: Using Node Version Manager (nvm) is the best way to manage Node.js versions.
+    \`\`\`bash
+    # Download and install nvm
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    
+    # Activate nvm
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    
+    # Install the latest LTS version of Node.js
+    nvm install --lts
+    \`\`\`
+
+4.  **Install Nginx**:
+    \`\`\`bash
+    sudo apt install nginx -y
+    sudo systemctl start nginx
+    sudo systemctl enable nginx # Start Nginx on server boot
+    \`\`\`
+    *You can now visit your server's public IP in a browser and should see the default Nginx welcome page.*
+
+5.  **Clone Your Project**:
+    \`\`\`bash
+    git clone https://github.com/your-username/your-repo.git
+    cd your-repo
+    npm install
+    \`\`\`
+
+***
+
+## Step 3: Run Your App with PM2 (Process Manager) 🚀
+
+Never run a production app with **node app.js**. If it crashes, it stays down. PM2 is a process manager that acts as a guardian for our app.
+
+1.  **Install PM2 Globally**:
+    \`\`\`bash
+    npm install pm2 -g
+    \`\`\`
+
+2.  **Start Your App**:
+    \`\`\`bash
+    # Start the app and give it a name
+    pm2 start your-main-app-file.js --name "my-api"
+    \`\`\`
+
+3.  **Configure for Auto-Restart**: We want PM2 to restart our app automatically if the server ever reboots.
+    \`\`\`bash
+    pm2 startup
+    # PM2 will give you a command to run, copy and paste it.
+    pm2 save
+    \`\`\`
+    *Your app is now running! However, it's on a local port (e.g., 3000) and not yet accessible to the public.*
+
+***
+
+## Step 4: Configure Nginx as a Reverse Proxy 🔄
+
+This is the final and most crucial step. We will tell Nginx to forward all public traffic from port 80 to our app's local port (e.g., 3000).
+
+1.  **Edit the Nginx Configuration**:
+    \`\`\`bash
+    sudo nano /etc/nginx/sites-available/default
+    \`\`\`
+
+2.  **Replace the file content** with this configuration. Change **3000** if your app uses a different port.
+    \`\`\`nginx
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        # This block is the key part
+        location / {
+            # Forward requests to your app running on port 3000
+            proxy_pass http://localhost:3000;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+    }
+    \`\`\`
+
+3.  **Test and Restart Nginx**:
+    \`\`\`bash
+    # Check for syntax errors
+    sudo nginx -t
+    
+    # If the test is successful, restart Nginx to apply the changes
+    sudo systemctl restart nginx
+    \`\`\`
+
+***
+
+## Conclusion: You're Live! ✅
+
+Congratulations! You should now be able to visit your EC2 instance's public IP address in your browser and see your Node.js application running live.
+
+You have successfully deployed a production-ready application using a modern, scalable architecture. This stack—**AWS** for infrastructure, **Nginx** for routing, and **PM2** for process management—is the industry standard and will serve you well as your application grows.
+`
     }
 ];

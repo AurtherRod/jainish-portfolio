@@ -58,9 +58,9 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
   return (
     <header ref={(el) => { navbarRef.current = el; headerRef.current = el; }} className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-effect" id="navbar">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#hero" className="text-2xl font-bold tracking-wider hover:text-blue-400 transition-colors">Jainish Gupta</a>
+        <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="text-2xl font-bold tracking-wider hover:text-blue-400 transition-colors">Jainish Gupta</a>
         <nav className="hidden md:flex space-x-8">
-          <Link to="/" className="text-gray-300 hover:text-blue-400 transition-colors">Home</Link>
+          <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="text-gray-300 hover:text-blue-400 transition-colors">Home</a>
           <Link to="/blog" className="text-gray-300 hover:text-blue-400 transition-colors">Blog</Link>
 
           <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="text-gray-300 hover:text-blue-400 transition-colors">About</a>
