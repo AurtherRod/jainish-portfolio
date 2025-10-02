@@ -13,9 +13,12 @@ const App = () => {
   return (
     <Router>
       <div className="antialiased">
+        <a href="#main-content" className="skip-to-main">
+          Skip to main content
+        </a>
         <Header isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
         
-        <main>
+        <main id="main-content" role="main">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/blog" element={<BlogPage />} />

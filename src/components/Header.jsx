@@ -61,17 +61,19 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
         <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="text-2xl font-bold tracking-wider hover:text-blue-400 transition-colors">Jainish Gupta</a>
         <nav className="hidden md:flex space-x-8">
           <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="text-gray-300 hover:text-blue-400 transition-colors">Home</a>
-          <Link to="/blog" className="text-gray-300 hover:text-blue-400 transition-colors">Blog</Link>
-
+          <Link to="/blog" className="text-blue-400 font-semibold hover:text-blue-300 transition-colors">Blog</Link>
           <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="text-gray-300 hover:text-blue-400 transition-colors">About</a>
           <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')} className="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
         </nav>
-        <div className="hidden md:flex space-x-4">
-          <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow">
+        <div className="hidden md:flex space-x-3">
+          <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-3 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow text-sm">
             LinkedIn
           </a>
-          <a href="https://github.com/AurtherRod" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow">
+          <a href="https://github.com/AurtherRod" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-3 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow text-sm">
             GitHub
+          </a>
+          <a href="mailto:jainishgupta2000@gmail.com" className="border neon-border text-blue-400 px-3 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow text-sm">
+            Email
           </a>
         </div>
         <button
@@ -88,15 +90,18 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
       </div>
       <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden px-6 pb-6 text-center glass-effect border-t border-blue-400/20`}>
         <Link to="/" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Home</Link>
-        <Link to="/blog" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Blog</Link>
+        <Link to="/blog" onClick={handleMobileMenuClick} className="block py-3 text-blue-400 font-semibold hover:text-blue-300 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Blog</Link>
         <a href="#about" onClick={(e) => { handleSectionClick(e, 'about'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">About</a>
         <a href="#contact" onClick={(e) => { handleSectionClick(e, 'contact'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Contact</a>
-        <div className="flex gap-2 mt-4">
-          <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="flex-1 border neon-border text-blue-400 px-4 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium">
+        <div className="grid grid-cols-3 gap-2 mt-4">
+          <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-3 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium text-sm">
             LinkedIn
           </a>
-          <a href="https://github.com/AurtherRod" target="_blank" rel="noreferrer" className="flex-1 border neon-border text-blue-400 px-4 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium">
+          <a href="https://github.com/AurtherRod" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-3 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium text-sm">
             GitHub
+          </a>
+          <a href="mailto:jainishgupta2000@gmail.com" className="border neon-border text-blue-400 px-3 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium text-sm">
+            Email
           </a>
         </div>
       </div>

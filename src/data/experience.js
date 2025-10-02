@@ -4,21 +4,21 @@ export const experienceData = [
     title: "Co-Founder & CTO",
     company: "Trustopay Innovations Pvt. Ltd.",
     period: "February 2024 - Present",
-    description: "• Defined the end-to-end technology strategy and led the architectural design of a secure fintech platform from concept to launch.\n• Engineered the core backend for financial operations, implementing robust APIs and secure transaction processing workflows.\n• Optimized and scaled the MongoDB database architecture, ensuring high availability, performance, and complete data integrity for sensitive financial records.\n• Led and mentored the engineering team, fostering a collaborative environment to meet aggressive product development deadlines."
+    description: "• Defined the end-to-end technology strategy and led the architectural design of a secure fintech platform from concept to launch.\n• Engineered the core backend for financial operations, implementing robust APIs processing 1000+ transactions per day with 99.9% uptime.\n• Optimized and scaled the MongoDB database architecture, ensuring high availability, performance, and complete data integrity for sensitive financial records.\n• Led and mentored a team of 5 engineers, fostering a collaborative environment to meet aggressive product development deadlines."
   },
   {
     id: 2,
     title: "Game Developer",
     company: "Coincade Studio",
     period: "August 2023 - August 2024",
-    description: "• Led the full-stack development of \"Racecade,\" a 2D blockchain racing game, from initial concept to deployment.\n• Built and deployed the game's backend services using Node.js and MongoDB to manage player data, inventory, and in-game assets (NFTs).\n• Implemented key gameplay features including dynamic car selection and a procedural level generator to maximize replayability.\n• Utilized Unity Editor Scripting to create custom tools, automating asset pipelines and accelerating the team's development workflow."
+    description: "• Led the full-stack development of \"Racecade,\" a 2D blockchain racing game, from initial concept to deployment.\n• Built and deployed scalable backend services using Node.js and MongoDB, supporting 10,000+ concurrent users and managing player data, inventory, and in-game assets (NFTs).\n• Implemented key gameplay features including dynamic car selection and a procedural level generator to maximize replayability.\n• Utilized Unity Editor Scripting to create custom tools, automating asset pipelines and accelerating the team's development workflow."
   },
   {
     id: 3,
     title: "Junior Game Developer",
     company: "Tecknotrove Pvt. Ltd",
     period: "November 2022 - July 2023",
-    description: "• Developed core features for high-fidelity industrial training simulators used for heavy machinery operation.\n• Implemented the real-time data transmission layer using WebSockets, allowing instructors to instantly monitor trainee performance and vital metrics.\n• Wrote C# scripts to integrate physical hardware (Logitech G29/G27 steering wheels) with the Unity engine, creating an immersive and responsive training environment."
+    description: "• Developed core features for high-fidelity industrial training simulators used for heavy machinery operation.\n• Implemented the real-time data transmission layer using WebSockets, processing 500+ concurrent connections and allowing instructors to instantly monitor trainee performance and vital metrics.\n• Wrote C# scripts to integrate physical hardware (Logitech G29/G27 steering wheels) with the Unity engine, creating an immersive and responsive training environment."
   },
   {
     id: 4,
@@ -32,6 +32,6 @@ export const experienceData = [
     title: "Co-Founder & CTO",
     company: "Find and Analyze Pvt. Ltd.",
     period: "October 2020 - August 2022",
-    description: "• Scaled the \"Class and Class\" ed-tech platform to successfully onboard and support over 500 educational institutions, demonstrating significant product-market fit.\n• Led all technology operations, directing a team of 4 developers in the full-stack development of a Node.js backend and a cross-platform Flutter mobile app.\n• Architected the initial product from the ground up, establishing the technical foundation, development pipelines, and deployment strategies for the company."
+    description: "• Scaled the \"Class and Class\" ed-tech platform to successfully onboard and support over 500 educational institutions with 99.5% uptime, demonstrating significant product-market fit.\n• Led all technology operations, directing a team of 4 developers in the full-stack development of a Node.js backend handling 50,000+ daily API requests and a cross-platform Flutter mobile app.\n• Architected the initial product from the ground up, establishing the technical foundation, development pipelines, and deployment strategies for the company."
   }
 ];

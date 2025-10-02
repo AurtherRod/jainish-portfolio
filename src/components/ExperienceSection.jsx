@@ -3,11 +3,14 @@ import { experienceData } from '../data/experience';
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-20 md:py-32">
+    <section id="experience" className="py-20 md:py-32 border-t-2 border-indigo-400/20 bg-gradient-to-b from-transparent to-indigo-900/10">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 scroll-reveal">
-          <h2 className="text-4xl md:text-5xl font-bold">Work <span className="neon-accent">Experience</span></h2>
-          <p className="text-lg text-gray-400 mt-2">My professional journey as a developer and founder.</p>
+          <div className="inline-block bg-indigo-500/10 px-4 py-1 rounded-full mb-4">
+            <span className="text-indigo-400 text-sm font-semibold uppercase tracking-wider">Career Journey</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Work <span className="neon-accent">Experience</span></h2>
+          <p className="text-lg text-gray-300 mt-2 max-w-2xl mx-auto">My professional journey as a backend developer, CTO, and technical founder.</p>
         </div>
         <div className="relative max-w-3xl mx-auto">
           <div className="absolute left-0 h-full border-l-2 border-gray-700 ml-2"></div>

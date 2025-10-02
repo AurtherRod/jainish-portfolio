@@ -2,7 +2,7 @@ export const blogsData = [
     {
         id: 1,
         title: "WebSockets vs. REST APIs: Choosing the Right Tool for Your Unity Game",
-        description: "A practical comparison between WebSockets and REST APIs for game developers. Learn when to use each for features like leaderboards, real-time multiplayer, and data streaming in Unity, based on real-world project experience.",
+        description: "Choosing the right communication protocol for your backend can make or break your application's performance. This guide compares WebSockets vs REST APIs with real implementation examples from production systems.",
         date: "2025-05-15",
         readTime: "12 min read",
         category: "Game Development",
@@ -131,7 +131,7 @@ By understanding the strengths of each tool, you can build more responsive, effi
     {
         "id": 2,
         "title": "Building a Scalable Game Backend with Node.js and MongoDB",
-        "description": "A developer's guide to designing a cheat-resistant and scalable game backend using Node.js and MongoDB, focusing on an event-driven architecture to ensure fair and verifiable scoring.",
+        "description": "Building secure backends that prevent cheating requires more than just validation. Learn how to architect event-driven systems with Node.js and MongoDB that scale to thousands of concurrent users while maintaining data integrity.",
         "date": "2025-06-12",
         "readTime": "15 min read",
         "category": "Backend",
@@ -262,7 +262,7 @@ By shifting from a trust-based model to an event-driven, verifiable one, you cre
     {
         "id": 3,
         "title": "Why I Chose Flutter and Node.js for My Startups",
-        "description": "An inside look at the crucial technology stack decisions made as a Co-Founder & CTO, detailing the use of Node.js for a secure Fintech backend and Flutter for a mobile Ed-Tech app.",
+        "description": "As CTO of two startups, I made critical technology decisions that determined our success. Here's why I chose Node.js for fintech backends processing 1000+ daily transactions and Flutter for mobile apps serving 500+ institutions.",
         "date": "2025-07-12",
         "readTime": "15 min read",
         "category": "Architecture",
@@ -318,7 +318,7 @@ The decision to use Node.js as a versatile backend and Flutter for mobile develo
     {
         "id": 4,
         "title": "How to Build a Custom In-Game Inventory System from Scratch",
-        "description": "A full-stack guide to creating a secure, persistent in-game inventory system using Unity, C#, Node.js, and MongoDB, based on my experience developing the backend for the blockchain game 'Racecade'.",
+        "description": "Server-side inventory systems prevent cheating and ensure data persistence. Learn how to build secure, scalable inventory APIs with Node.js and MongoDB that handle thousands of concurrent players.",
         "date": "2025-09-12",
         "readTime": "16 min read",
         "category": "Game Development",
@@ -496,7 +496,7 @@ for your players. This approach not only enhances gameplay but also simplifies f
     {
         "id": 5,
         "title": "How to Build Custom Editors and Level Generators in Unity",
-        "description": "A practical guide to Unity Editor Scripting. Learn how to create custom inspectors and standalone editor windows to build powerful level generators and workflow tools, based on my experience developing 'Racecade'.",
+        "description": "Automate repetitive development tasks and boost productivity with Unity Editor Scripting. Build custom tools, level generators, and workflow automation that saves hours of manual work.",
         "date": "2025-08-13",
         "readTime": "14 min read",
         "category": "Game Development",
@@ -648,7 +648,7 @@ Editor scripting is an essential skill for any serious Unity developer. By inves
     {
         "id": 6,
         "title": "A Deep Dive into My Custom Unity Vehicle Script (with G29/G27 Support)",
-        "description": "A detailed breakdown of my custom C# vehicle controller for Unity, explaining the architecture, physics, and advanced input handling required to build a high-fidelity driving simulation from the ground up.",
+        "description": "Building realistic vehicle physics requires understanding complex systems integration. This deep dive covers data-oriented architecture, powertrain simulation, and professional hardware integration for training simulators.",
         "date": "2025-08-14",
         "readTime": "25 min read",
         "category": "Game Development",
@@ -762,7 +762,7 @@ Building a great vehicle controller is an exercise in layering details. By start
     {
         "id": 7,
         "title": "A Masterclass in Creating a Custom Unity Vehicle Script (with G29/G27 Support)",
-        "description": "The ultimate guide to my custom C# vehicle controller for Unity. This detailed masterclass breaks down the data-oriented architecture, powertrain simulation, advanced physics, and professional racing wheel integration needed for a high-fidelity driving experience.",
+        "description": "Master the art of vehicle simulation with this comprehensive guide covering ScriptableObject architecture, realistic physics modeling, and professional racing wheel integration used in industrial training systems.",
         "date": "2025-09-10",
         "readTime": "30 min read",
         "category": "Game Development",
@@ -881,7 +881,7 @@ Creating a high-fidelity vehicle simulation is a journey of layering interconnec
     {
         "id": 8,
         "title": "A Step-by-Step Guide to Deploying a Node.js App on AWS with Nginx",
-        "description": "A full, detailed tutorial on deploying a production-ready Node.js and MongoDB application on AWS. This hands-on guide covers EC2 setup, environment configuration, running the app with PM2, and routing with Nginx.",
+        "description": "Deploy production-ready Node.js applications on AWS with confidence. This step-by-step guide covers EC2 setup, PM2 process management, Nginx configuration, and security best practices for scalable backends.",
         "date": "2025-09-16",
         "readTime": "28 min read",
         "category": "DevOps",
