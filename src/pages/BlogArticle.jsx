@@ -3,8 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { blogsData } from '../data/blogs';
 
 const BlogArticle = () => {
-  const { id } = useParams();
-  const blog = blogsData.find(b => b.id === parseInt(id));
+  const { slug } = useParams();
+  const blog = blogsData.find(b => b.slug === slug);
 
   if (!blog) {
     return (

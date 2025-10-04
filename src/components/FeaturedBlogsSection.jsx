@@ -23,7 +23,7 @@ const FeaturedBlogsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {featuredBlogs.map((blog) => (
-            <Link key={blog.id} to={`/blog/${blog.id}`} className="card-hover rounded-2xl overflow-hidden group block scroll-reveal" style={{transitionDelay: blog.delay}}>
+            <Link key={blog.id} to={`/blog/${blog.slug}`} className="card-hover rounded-2xl overflow-hidden group block scroll-reveal" style={{transitionDelay: blog.delay}}>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="inline-block bg-blue-500/30 backdrop-blur-sm border border-blue-400/50 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">

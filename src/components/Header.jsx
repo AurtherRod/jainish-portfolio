@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
@@ -6,24 +6,45 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
   const headerRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const [activeSection, setActiveSection] = useState('hero');
 
   const handleSectionClick = (e, sectionId) => {
+    e.preventDefault();
     if (location.pathname !== '/') {
-      e.preventDefault();
       navigate('/');
       setTimeout(() => {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
+    } else {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     }
+    setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
     const handleScroll = () => {
       if (navbarRef.current) {
         if (window.scrollY > 50) {
-          navbarRef.current.style.setProperty('background', 'rgba(17, 24, 39, 0.8)', 'important');
+          navbarRef.current.style.setProperty('background', 'rgba(17, 24, 39, 0.95)', 'important');
         } else {
           navbarRef.current.style.setProperty('background', 'rgba(255, 255, 255, 0.05)', 'important');
+        }
+      }
+      
+      // Active section detection
+      if (location.pathname === '/') {
+        const sections = ['hero', 'projects', 'about', 'contact'];
+        const scrollPosition = window.scrollY + 100;
+        
+        for (const sectionId of sections) {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            const { offsetTop, offsetHeight } = section;
+            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+              setActiveSection(sectionId);
+              break;
+            }
+          }
         }
       }
     };
@@ -51,31 +72,61 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
     };
   }, [isMobileMenuOpen, setIsMobileMenuOpen]);
 
-  const handleMobileMenuClick = () => {
-    setIsMobileMenuOpen(false);
-  };
+
 
   return (
     <header ref={(el) => { navbarRef.current = el; headerRef.current = el; }} className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-effect" id="navbar">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="text-2xl font-bold tracking-wider hover:text-blue-400 transition-colors">Jainish Gupta</a>
-        <nav className="hidden md:flex space-x-8">
-          <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="text-gray-300 hover:text-blue-400 transition-colors">Home</a>
-          <Link to="/blog" className="text-blue-400 font-semibold hover:text-blue-300 transition-colors">Blog</Link>
-          <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="text-gray-300 hover:text-blue-400 transition-colors">About</a>
-          <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')} className="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+        
+        <nav className="hidden md:flex items-center space-x-6">
+          <a 
+            href="#hero" 
+            onClick={(e) => handleSectionClick(e, 'hero')} 
+            className={`text-sm font-medium transition-colors ${activeSection === 'hero' ? 'text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
+          >
+            Home
+          </a>
+          <a 
+            href="#projects" 
+            onClick={(e) => handleSectionClick(e, 'projects')} 
+            className={`text-sm font-medium transition-colors ${activeSection === 'projects' ? 'text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
+          >
+            Projects
+          </a>
+          <a 
+            href="#about" 
+            onClick={(e) => handleSectionClick(e, 'about')} 
+            className={`text-sm font-medium transition-colors ${activeSection === 'about' ? 'text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
+          >
+            Skills
+          </a>
+          <a 
+            href="#about" 
+            onClick={(e) => handleSectionClick(e, 'about')} 
+            className={`text-sm font-medium transition-colors ${activeSection === 'about' ? 'text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
+          >
+            About
+          </a>
+          <a 
+            href="#contact" 
+            onClick={(e) => handleSectionClick(e, 'contact')} 
+            className={`text-sm font-medium transition-colors ${activeSection === 'contact' ? 'text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
+          >
+            Contact
+          </a>
+          <Link to="/blog" className="text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors">
+            Blog
+          </Link>
+          <a 
+            href="/resume.pdf" 
+            download="Jainish_Gupta_Backend_Developer_Resume.pdf"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-5 py-2 rounded-full text-sm hover:from-blue-500 hover:to-purple-500 transition-all transform hover:scale-105 neon-shadow"
+            aria-label="Download Resume"
+          >
+            Resume
+          </a>
         </nav>
-        <div className="hidden md:flex space-x-3">
-          <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-3 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow text-sm">
-            LinkedIn
-          </a>
-          <a href="https://github.com/AurtherRod" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-3 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow text-sm">
-            GitHub
-          </a>
-          <a href="mailto:jainishgupta2000@gmail.com" className="border neon-border text-blue-400 px-3 py-2 rounded-lg hover:bg-blue-400 hover:text-gray-900 transition-all duration-300 hover:shadow-lg neon-shadow text-sm">
-            Email
-          </a>
-        </div>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="md:hidden text-gray-300 focus:outline-none p-2 hover:text-blue-400 transition-colors"
@@ -88,22 +139,21 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           </div>
         </button>
       </div>
-      <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden px-6 pb-6 text-center glass-effect border-t border-blue-400/20`}>
-        <Link to="/" onClick={handleMobileMenuClick} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Home</Link>
-        <Link to="/blog" onClick={handleMobileMenuClick} className="block py-3 text-blue-400 font-semibold hover:text-blue-300 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Blog</Link>
-        <a href="#about" onClick={(e) => { handleSectionClick(e, 'about'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">About</a>
-        <a href="#contact" onClick={(e) => { handleSectionClick(e, 'contact'); handleMobileMenuClick(); }} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2">Contact</a>
-        <div className="grid grid-cols-3 gap-2 mt-4">
-          <a href="https://www.linkedin.com/in/jainish-gupta/" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-3 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium text-sm">
-            LinkedIn
-          </a>
-          <a href="https://github.com/AurtherRod" target="_blank" rel="noreferrer" className="border neon-border text-blue-400 px-3 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium text-sm">
-            GitHub
-          </a>
-          <a href="mailto:jainishgupta2000@gmail.com" className="border neon-border text-blue-400 px-3 py-3 rounded-full hover:bg-blue-400 hover:text-gray-900 transition-all text-center font-medium text-sm">
-            Email
-          </a>
-        </div>
+      <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden px-6 pb-6 glass-effect border-t border-blue-400/20`}>
+        <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Home</a>
+        <a href="#projects" onClick={(e) => handleSectionClick(e, 'projects')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Projects</a>
+        <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Skills</a>
+        <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">About</a>
+        <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Contact</a>
+        <Link to="/blog" className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Blog</Link>
+        <a 
+          href="/resume.pdf" 
+          download="Jainish_Gupta_Backend_Developer_Resume.pdf"
+          className="block mt-4 mx-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-6 py-3 rounded-full text-center hover:from-blue-500 hover:to-purple-500 transition-all neon-shadow"
+          aria-label="Download Resume"
+        >
+          Download Resume
+        </a>
       </div>
     </header>
   );
