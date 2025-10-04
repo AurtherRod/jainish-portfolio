@@ -8,7 +8,7 @@ const ContactSection = () => {
           <span className="text-yellow-400 text-sm font-semibold uppercase tracking-wider">Let's Connect</span>
         </div>
         <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In <span className="neon-accent">Touch</span></h2>
-        <p className="text-lg text-gray-300 mt-4 max-w-2xl mx-auto leading-relaxed mb-8">I'm always open to discussing backend development opportunities, technical consulting, or joining ambitious teams building scalable systems.</p>
+        <p className="text-lg text-gray-300 mt-4 max-w-2xl mx-auto leading-relaxed mb-8">I'm always open to discussing software development opportunities, technical consulting, or joining ambitious teams building scalable systems.</p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a 

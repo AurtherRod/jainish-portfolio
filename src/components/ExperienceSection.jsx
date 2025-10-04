@@ -10,7 +10,7 @@ const ExperienceSection = () => {
             <span className="text-indigo-400 text-sm font-semibold uppercase tracking-wider">Career Journey</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Work <span className="neon-accent">Experience</span></h2>
-          <p className="text-lg text-gray-300 mt-2 max-w-2xl mx-auto">My professional journey as a backend developer, CTO, and technical founder.</p>
+          <p className="text-lg text-gray-300 mt-2 max-w-2xl mx-auto">My professional journey as a software developer, CTO, and technical founder.</p>
         </div>
         <div className="relative max-w-3xl mx-auto">
           <div className="absolute left-0 h-full border-l-2 border-gray-700 ml-2"></div>

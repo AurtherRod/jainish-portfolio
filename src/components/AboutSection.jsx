@@ -13,7 +13,7 @@ const AboutSection = () => {
               <span className="text-green-400 text-sm font-semibold uppercase tracking-wider">Background</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">About <span className="neon-accent">Me</span></h2>
-            <p className="text-gray-400 text-lg">Experienced Backend Developer and CTO with 3+ years specializing in secure, scalable systems using Node.js and MongoDB. Led the architecture of fintech platforms processing 1000+ daily transactions with 99.9% uptime. Proven track record as a technical leader, having scaled systems to support 500+ institutions and mentored development teams. Expert in building robust APIs, microservices, and real-time systems that power mission-critical applications.</p>
+            <p className="text-gray-400 text-lg">Experienced Software Developer and CTO with 3+ years specializing in secure, scalable systems using Node.js and MongoDB. Led the architecture of fintech platforms processing 1000+ daily transactions with 99.9% uptime. Proven track record as a technical leader, having scaled systems to support 500+ institutions and mentored development teams. Expert in building robust APIs, microservices, and real-time systems that power mission-critical applications.</p>
           </div>
           <div className="lg:w-1/2">
             <h3 className="text-3xl font-bold mb-6">Technical <span className="neon-accent">Skills</span></h3>

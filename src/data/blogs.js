@@ -1007,5 +1007,216 @@ Congratulations! You should now be able to visit your EC2 instance's public IP a
 
 You have successfully deployed a production-ready application using a modern, scalable architecture. This stack—**AWS** for infrastructure, **Nginx** for routing, and **PM2** for process management—is the industry standard and will serve you well as your application grows.
 `
+    },
+    {
+        id: 9,
+        slug: "real-time-leaderboard-nodejs-mongodb-websockets",
+        title: "Building a Real-Time Leaderboard System with Node.js, MongoDB, and WebSockets",
+        description: "Learn how to architect a cheat-resistant, scalable real-time leaderboard for games or fintech apps using Node.js, MongoDB, and WebSockets—complete with live updates and anti-fraud validation.",
+        date: "2025-10-04",
+        readTime: "18 min read",
+        category: "Backend",
+        tags: ["Node.js", "MongoDB", "WebSockets", "Leaderboard", "Game Development", "Real-Time", "Security"],
+        delay: "900ms",
+        content: `
+Leaderboards are essential for competitive games and many fintech scenarios, driving user engagement and retention. But building a leaderboard that is *both real-time* and *cheat-resistant* is a real challenge—especially at scale.
+
+## Core Concepts
+
+- **Real-Time Updates**: Players see their scores update instantly after each match, without refreshing or polling.
+- **Cheat-Resistance**: Leaderboard updates rely only on server-calculated results, not just client-supplied data.
+- **Scalability**: Must handle thousands of concurrent users without lag or downtime.
+
+## Design Choices
+
+- **Node.js** for handling fast, multiplexed connections and validating game results server-side.
+- **MongoDB** to flexibly store score histories and enable quick aggregation queries.
+- **WebSockets** to push instant updates to every connected client.
+
+### Database Schema Example
+
+\`\`\`js
+// model/LeaderboardEntry.js
+const mongoose = require('mongoose');
+const leaderboardSchema = new mongoose.Schema({
+  playerId: { type: String, required: true, index: true },
+  score: { type: Number, required: true },
+  timestamp: { type: Date, default: Date.now }
+});
+module.exports = mongoose.model('LeaderboardEntry', leaderboardSchema);
+\`\`\`
+
+### Secure Score API Endpoint
+
+\`\`\`js
+// POST /submit-score (server-side validation!)
+app.post('/submit-score', async (req, res) => {
+  const { playerId, matchEvents } = req.body;
+  const finalScore = calculateVerifiedScore(matchEvents); // Only trust server calculation
+  const entry = new LeaderboardEntry({ playerId, score: finalScore });
+  await entry.save();
+  broadcastLeaderboardUpdate(); // Push to WebSocket clients
+  res.send({ success: true, finalScore });
+});
+\`\`\`
+
+### Broadcasting with WebSockets
+
+\`\`\`js
+// Use ws or socket.io for scalable broadcasting
+wss.on('connection', socket => {
+  socket.on('subscribeLeaderboard', () => {
+    // Send the initial sorted leaderboard
+    LeaderboardEntry.find().sort({ score: -1 }).limit(100)
+      .then(entries => socket.send(JSON.stringify({ type: 'leaderboard', data: entries })));
+  });
+});
+
+// Call this after every score update
+function broadcastLeaderboardUpdate() {
+  LeaderboardEntry.find().sort({ score: -1 }).limit(100)
+    .then(entries => {
+      const message = JSON.stringify({ type: 'leaderboard', data: entries });
+      wss.clients.forEach(client => client.send(message));
+    });
+}
+\`\`\`
+
+## Frontend Integration
+
+On the React side, connect via WebSocket and dynamically render leaderboard rows as updates arrive.
+
+## Security Best Practice
+
+Never trust client-reported scores. All game logic (event validation, scoring rules) runs server-side. Log suspicious event patterns for audit.
+
+## Conclusion
+
+By combining the low-latency of WebSockets for live updates with robust server-side validation and scalable MongoDB queries, you unlock a leaderboard that’s fast, secure, and fair for every user!
+`
+    },
+    {
+        id: 10,
+        slug: "unity-2d-tilemap-pro-auto-tiling-guide",
+        title: "Ultimate Guide to Unity 2D Tilemaps & Pro-Grade Auto-Tiling",
+        description: "Deep dive into creating smart, scalable, and high-performance 2D worlds in Unity through advanced Tilemap techniques, custom auto-tiling rules, performant level editing, and dynamic runtime tile updates.",
+        date: "2025-10-04",
+        readTime: "26 min read",
+        category: "Game Development",
+        tags: ["Unity", "Tilemap", "Auto-Tiling", "2D", "Level Design", "C#", "Procedural", "Tools"],
+        delay: "1600ms",
+        content: `
+Designing vast, seamless 2D levels for platformers and roguelites no longer means endless pixel-pushing. With Unity's Tilemap system and advanced auto-tiling, you can empower your designers (or yourself!) to assemble polished worlds at lightning speed, even programmatically at runtime.
+
+## Why Tilemaps & Auto-Tiling Matter
+
+**Basic tilemaps** let you paint tiles, but **advanced auto-tiling** unlocks:
+- True “paintbrush” speed: edges, corners, and islands blend on-the-fly, no manual edits.
+- Cleaner levels: consistent tiles and fewer art mistakes.
+- Procedural worldgen: auto-tiling rules apply programmatically for infinite variety.
+- Streamlining: Separate logic for terrain, decor, and collisions.
+
+## Full Setup: Project & Asset Preparation
+
+1. **Install Unity 2022.3+ and open a 2D URP Template project.**
+2. **Import 2D Tilemap Extras**: In Package Manager, search “2D Tilemap Extras” and install.
+3. **Slice Your Tilesheet:** Open your sprite sheet, set ‘Sprite Mode: Multiple’, and slice using the Sprite Editor.
+4. **Create a Grid GameObject:** Right-click Hierarchy → 2D Object → Grid.
+5. **Add a Tilemap (child of Grid):** Right-click Grid → 2D Object → Tilemap → Rectangular/Isometric.
+
+## Creating a Rule-based Auto-Tile
+
+1. **Create a RuleTile** in your project (right-click → Create → Tiles → Rule Tile).
+2. **Assign all sub-sprites** to the RuleTile fields for center, edge, inner/outer corners, alone, etc.
+3. **Define neighbor rules** visually—click each square neighbor to specify same/different/any tile types, and drag artwork to the match slots.
+4. **Drag your RuleTile into the Tile Palette.**
+5. **Paint in the Scene:** Select your Tilemap and use the Brush tool.
+
+**Pro tip:** To support water+land transitions, use multiple RuleTiles and a “priority” system.
+
+## C# Script: Painting Tilemaps at Runtime
+
+Dynamically edit your world with code:
+
+\`\`\`csharp
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+public class DynamicLevelBuilder : MonoBehaviour
+{
+    public Tilemap tilemap;
+    public TileBase[] terrainTiles;
+
+    void Start() 
+    {
+        for (int x = 0; x < 50; x++)
+        {
+            for (int y = 0; y < 10; y++) 
+            {
+                int tileType = (x + y) % terrainTiles.Length;
+                tilemap.SetTile(new Vector3Int(x, y, 0), terrainTiles[tileType]);
+            }
+        }
     }
+}
+\`\`\`
+**Unity auto-applies tile rules** so corners, edges, and blends look right as you “stamp” tiles.
+
+## Advanced Rules: Custom RuleTile for Auto-Matching
+
+Want full control? Extend RuleTile:
+
+\`\`\`csharp
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+public class MyWaterEdgeTile : RuleTile
+{
+    public override bool RuleMatch(int neighbor, TileBase tile) 
+    {
+        if (tile != null && tile.name == "Sand")
+            return true;
+        return base.RuleMatch(neighbor, tile);
+    }
+}
+\`\`\`
+Assign your sprites for every needed mask:  
+- Center, horizontal/vertical edge, corners, T-junctions, etc.
+
+## Procedural: Wave Function Collapse & Dynamic Biomes
+
+- Use WFC or cellular automata to decide tile “types” over the grid, then assign to Tilemap.
+- To regenerate a level, simply clear all tiles and re-run your logic, relying on RuleTiles for visuals.
+
+## Layering & Collision
+
+- Separate Tilemaps for different “layers”—main terrain, foreground objects, colliders.
+- Use TilemapCollider2D and CompositeCollider2D. Bake and optimize colliders for runtime performance.
+
+## Performance Tips
+
+- Use chunking or limit active Tilemaps if your world is HUGE.
+- Batch paint changes in bursts, not per-frame, when updating large areas.
+- Turn off “Has Tilemap Collider” for purely decorative layers.
+
+## Debugging
+
+- **Tiles drawing wrong?** Re-slice the sprite sheet—uniform sizes and correct pivots are essential.
+- **Auto-tiling errors?** Neighbor rules might overlap. Test each case visually in the RuleTile editor.
+- **Runtime lag?** Cache references and minimize SetTile calls.
+
+## Real-World Use Cases
+
+- Roguelike dungeon auto-generation
+- Sidescroller shooter random maps
+- Tiled adventure RPG overlands
+- Puzzle games with destructible/collapsible terrain
+
+## Conclusion
+
+Auto-tiling in Unity is a technical superpower—design faster, code smarter, and never hand-place hundreds of edge tiles again. With project setup, rule-driven tile maps, and runtime scripts, your 2D world-building becomes both scalable and beautiful.  
+Now go build those unforgettable pixel-perfect universes!
+`
+    }
+
 ];

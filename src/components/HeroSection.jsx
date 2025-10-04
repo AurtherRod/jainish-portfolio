@@ -6,7 +6,7 @@ const HeroSection = () => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const texts = ['Backend Developer', 'Node.js & MongoDB Specialist', 'CTO & Architect'];
+    const texts = ['Software Developer', 'Node.js & MongoDB Specialist', 'CTO & Architect'];
     const timeout = setTimeout(() => {
       const current = texts[currentIndex];
 
@@ -36,18 +36,9 @@ const HeroSection = () => {
       </div>
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 bg-clip-text text-transparent mb-4 scroll-reveal">
+          <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 bg-clip-text text-transparent mb-6 scroll-reveal">
             Jainish Gupta
           </h1>
-          
-          {/* Open for Opportunities Badge */}
-          <div className="mb-6 scroll-reveal" style={{ transitionDelay: '100ms' }}>
-            <span className="inline-flex items-center bg-green-500/20 border border-green-400/50 text-green-300 px-4 py-2 rounded-full text-sm font-semibold animate-pulse">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-ping"></span>
-              Open for Backend Opportunities
-            </span>
-          </div>
-          
           <div className="mb-8 scroll-reveal" style={{ transitionDelay: '200ms' }}>
             <p className="text-2xl md:text-3xl text-gray-300 mb-2">I'm a</p>
             <p className="text-3xl md:text-4xl font-bold">
@@ -55,7 +46,7 @@ const HeroSection = () => {
             </p>
           </div>
           <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed mb-12 scroll-reveal" style={{ transitionDelay: '400ms' }}>
-            Building secure, scalable backend systems and APIs that power fintech platforms and enterprise applications. Experienced CTO with a track record of leading teams and architecting production-ready solutions.
+            Building secure, scalable software systems and APIs that power fintech platforms and enterprise applications. Experienced CTO with a track record of leading teams and architecting production-ready solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center scroll-reveal" style={{ transitionDelay: '600ms' }}>
             <a 

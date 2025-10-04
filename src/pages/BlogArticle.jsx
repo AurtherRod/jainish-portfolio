@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { blogsData } from '../data/blogs';
+import SEO from '../components/SEO';
+import StructuredData from '../components/StructuredData';
 
 const BlogArticle = () => {
   const { slug } = useParams();
@@ -217,8 +219,54 @@ const BlogArticle = () => {
     return elements;
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": blog.title,
+    "description": blog.description,
+    "image": `${window.location.origin}/Images/favicon.png`,
+    "author": {
+      "@type": "Person",
+      "name": "Jainish Gupta",
+      "url": window.location.origin,
+      "jobTitle": "Software Developer & CTO",
+      "sameAs": [
+        "https://www.linkedin.com/in/jainish-gupta/",
+        "https://github.com/AurtherRod"
+      ]
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Jainish Gupta",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${window.location.origin}/Images/favicon.png`
+      }
+    },
+    "datePublished": blog.date,
+    "dateModified": blog.date,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": window.location.href
+    },
+    "keywords": blog.tags.join(', '),
+    "articleSection": blog.category,
+    "wordCount": blog.content.split(' ').length,
+    "timeRequired": blog.readTime
+  };
+
   return (
     <div className="min-h-screen pt-20">
+      <SEO 
+        title={`${blog.title} | Jainish Gupta - Software Developer`}
+        description={blog.description}
+        keywords={blog.tags}
+        type="article"
+        publishedTime={blog.date}
+        modifiedTime={blog.date}
+        tags={blog.tags}
+      />
+      <StructuredData data={structuredData} />
       <article className="container mx-auto px-6 py-20 max-w-4xl">
         <div className="mb-8">
           <Link to="/blog" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-8 transition-colors">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { blogsData } from '../data/blogs';
+import SEO from '../components/SEO';
 
 const BlogPage = () => {
 
@@ -11,6 +12,11 @@ const BlogPage = () => {
 
   return (
     <div className="min-h-screen pt-20">
+      <SEO 
+        title="Software Development Blog | Jainish Gupta - Node.js & AWS Expert"
+        description="Backend engineering, DevOps and scaling guides written from real CTO experience. Learn Node.js, AWS, MongoDB, microservices, and system architecture from production examples."
+        keywords={['Software Development', 'Node.js', 'AWS', 'MongoDB', 'DevOps', 'Microservices', 'System Architecture', 'REST APIs', 'CTO', 'Technical Blog']}
+      />
       <div className="container mx-auto px-6 py-20">
         <div className="text-center mb-16">
           <Link to="/" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-8 transition-colors">
