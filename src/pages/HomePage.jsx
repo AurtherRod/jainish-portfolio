@@ -44,6 +44,7 @@ const HomePage = () => {
     <>
       <SEO 
         title="Jainish Gupta - Software Developer | Node.js & MongoDB Specialist"
+        description="Experienced Software Developer and CTO with 3+ years specializing in Node.js, MongoDB, and AWS. Building secure, scalable systems that power fintech, education, and gaming platforms."
         keywords={['Software Developer', 'Node.js Developer', 'MongoDB Expert', 'AWS', 'CTO', 'Microservices', 'REST APIs', 'System Architecture', 'DevOps', 'Full Stack Developer']}
       />
       <StructuredData data={structuredData} />
