@@ -3,38 +3,58 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Jainish Gupta - Software Developer & CTO specializing in Node.js, MongoDB, and AWS. Building secure, scalable systems with 3+ years of experience powering fintech, education, and gaming platforms." />
-    <meta name="keywords" content="Software Developer, Node.js, MongoDB, AWS, CTO, Microservices, REST APIs, System Architecture, DevOps, Full Stack Developer" />
+    <meta name="description" content="CTO at Trustopay | Node.js & MongoDB specialist building secure fintech systems. 3+ years architecting scalable backends processing 1000+ daily transactions." />
+    <meta name="keywords" content="Node.js developer, MongoDB specialist, CTO, fintech developer, backend architect, microservices, REST APIs, AWS, Docker, system design" />
     <meta name="author" content="Jainish Gupta" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://jainish.space/" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Jainish Gupta - Software Developer | Node.js & MongoDB Specialist" />
-    <meta property="og:description" content="Experienced Software Developer and CTO with 3+ years specializing in Node.js, MongoDB, and AWS. Building secure, scalable systems." />
-    <meta property="og:site_name" content="Jainish Gupta - Software Developer" />
+    <meta property="og:url" content="https://jainish.space/" />
+    <meta property="og:title" content="Jainish Gupta - CTO & Node.js Developer | Fintech Backend Specialist" />
+    <meta property="og:description" content="CTO at Trustopay building secure fintech systems with Node.js & MongoDB. 3+ years architecting scalable backends." />
+    <meta property="og:site_name" content="Jainish Gupta Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://jainish.space/Images/favicon.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Jainish Gupta - Software Developer Portfolio" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Jainish Gupta - Software Developer | Node.js & MongoDB Specialist" />
-    <meta name="twitter:description" content="Experienced Software Developer and CTO with 3+ years specializing in Node.js, MongoDB, and AWS." />
+    <meta name="twitter:site" content="@jainishgupta" />
     <meta name="twitter:creator" content="@jainishgupta" />
+    <meta name="twitter:title" content="Jainish Gupta - CTO & Node.js Developer | Fintech Backend Specialist" />
+    <meta name="twitter:description" content="CTO at Trustopay building secure fintech systems with Node.js & MongoDB. 3+ years architecting scalable backends." />
+    <meta name="twitter:image" content="https://jainish.space/Images/favicon.png" />
+    <meta name="twitter:image:alt" content="Jainish Gupta - Software Developer Portfolio" />
     
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     
     <title>Jainish Gupta - Software Developer | Node.js & MongoDB Specialist</title>
     <link rel="icon" type="image/png" href="/Images/favicon.png" />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" /></noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="/Images/RaceCade.jpg" as="image" />
-    <link rel="preload" href="/Images/T45.png" as="image" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" /></noscript>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preload" href="/Images/favicon.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/resume.pdf" as="document" />
 
   </head>
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

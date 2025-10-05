@@ -1,8 +1,26 @@
+# Robots.txt for jainish.space
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
+Disallow: /*.json$
+Disallow: /static/js/
+Disallow: /static/css/
 
+# Allow important resources
+Allow: /Images/
+Allow: /resume.pdf
+Allow: /sitemap.xml
+
+# Sitemap location
 Sitemap: https://jainish.space/sitemap.xml
 
-Crawl-delay: 1
+# Crawl optimization
+Crawl-delay: 0
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /Images/
