@@ -1,33 +1,33 @@
 export const targetKeywords = {
   primary: [
-    "Node.js developer",
-    "MongoDB specialist",
-    "fintech CTO",
-    "backend architect",
-    "CTO for hire"
+    "Unity developer",
+    "C# game programmer",
+    "game developer",
+    "Unity specialist",
+    "gameplay programmer"
   ],
   
   longTail: [
-    "Node.js developer for fintech",
-    "MongoDB expert India",
-    "hire Node.js CTO",
-    "fintech backend developer",
-    "escrow platform developer",
-    "Node.js microservices architect",
-    "MongoDB database consultant",
-    "startup CTO India",
-    "Node.js AWS developer",
-    "fintech API developer",
-    "Node.js payment gateway developer",
-    "MongoDB performance optimization",
-    "Node.js security expert",
-    "backend developer for startups",
-    "Node.js REST API developer"
+    "Unity game developer for hire",
+    "C# Unity programmer",
+    "Unity 3D developer",
+    "Unity 2D game developer",
+    "Unity gameplay programmer",
+    "Unity vehicle physics developer",
+    "Unity custom tools developer",
+    "Unity editor scripting expert",
+    "Unity multiplayer developer",
+    "Unity mobile game developer",
+    "Unity procedural generation developer",
+    "Unity shader programmer",
+    "Unity AI programmer",
+    "Unity physics programmer",
+    "Unity optimization expert"
   ],
   
   location: [
-    "Node.js developer India",
-    "CTO Mumbai",
-    "backend developer Bangalore"
+    "Unity developer India",
+    "game developer Mumbai",
+    "Unity programmer Bangalore"
   ]
 };

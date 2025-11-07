@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { blogsData } from '../data/blogs';
 
 const FeaturedBlogsSection = () => {
-  // Select featured backend/DevOps focused blog posts
+  // Select featured Unity/Game Dev focused blog posts
   const featuredBlogs = blogsData.filter(blog => 
-    blog.tags.some(tag => ['Node.js', 'AWS', 'MongoDB', 'Backend', 'DevOps', 'Microservices'].includes(tag))
+    blog.tags.some(tag => ['Unity', 'C#', 'Game Development', 'Vehicle Physics', 'Editor Scripting', 'Level Design'].includes(tag))
   ).slice(0, 3);
 
   return (
@@ -17,7 +17,7 @@ const FeaturedBlogsSection = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured <span className="neon-accent">Articles</span></h2>
           <p className="text-lg text-gray-300 mt-4 max-w-3xl mx-auto leading-relaxed">
-            Backend engineering, DevOps and scaling guides written from real CTO experience powering fintech, games and education.
+            Unity game development tutorials, C# programming guides, and technical insights from building games and simulators.
           </p>
         </div>
 
@@ -42,14 +42,14 @@ const FeaturedBlogsSection = () => {
                 
                 {/* Short summary for quick scanning */}
                 <p className="text-gray-400 text-xs italic mb-4 line-clamp-2">
-                  {blog.id === 8 ? "Learn production deployment with AWS EC2, PM2 process management, and Nginx reverse proxy configuration." :
-                   blog.id === 2 ? "Build cheat-resistant game backends with event-driven architecture and server-side validation." :
-                   blog.id === 3 ? "CTO insights on choosing Node.js and Flutter for scaling fintech and ed-tech startups." :
-                   "Real-world backend engineering solutions and architectural decisions."}
+                  {blog.id === 10 ? "Master Unity 2D Tilemaps with advanced auto-tiling, procedural generation, and runtime tile updates." :
+                   blog.id === 6 ? "Deep dive into custom Unity vehicle physics with ScriptableObjects and G29/G27 hardware integration." :
+                   blog.id === 5 ? "Build custom Unity editor tools and level generators to automate repetitive development tasks." :
+                   "Real-world Unity game development solutions and technical insights."}
                 </p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {blog.tags.filter(tag => ['Node.js', 'AWS', 'MongoDB', 'Backend', 'DevOps', 'Microservices', 'REST APIs'].includes(tag)).slice(0, 3).map((tag, index) => (
+                  {blog.tags.filter(tag => ['Unity', 'C#', 'Game Development', 'Vehicle Physics', 'Editor Scripting', 'Level Design', 'Tilemap', 'ScriptableObjects'].includes(tag)).slice(0, 3).map((tag, index) => (
                     <span key={index} className="tech-tag text-blue-300 text-xs font-medium px-2 py-1 rounded-full">
                       {tag}
                     </span>

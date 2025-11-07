@@ -1,6 +1,5 @@
 import React from 'react';
 import { projectsData } from '../data/projects';
-import OptimizedImage from './OptimizedImage';
 
 const ProjectsSection = () => {
   return (
@@ -10,22 +9,22 @@ const ProjectsSection = () => {
           <div className="inline-block bg-blue-500/10 px-4 py-1 rounded-full mb-4">
             <span className="text-blue-400 text-sm font-semibold uppercase tracking-wider">Featured Work</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Project <span className="neon-accent">Section</span></h2>
-          <p className="text-lg text-gray-400 mt-2 max-w-2xl mx-auto">Scalable systems and APIs powering real-world applications with measurable impact.</p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Game <span className="neon-accent">Projects</span></h2>
+          <p className="text-lg text-gray-400 mt-2 max-w-2xl mx-auto">Unity games and simulators with custom mechanics, physics systems, and innovative gameplay features.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projectsData.map((project) => (
             <div key={project.id} className="card-hover rounded-2xl overflow-hidden scroll-reveal group" style={{ transitionDelay: project.delay }}>
-              <div className="relative overflow-hidden">
-                <OptimizedImage
+              <div className="relative h-64 overflow-hidden bg-gray-800">
+                <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                  width={400}
-                  height={256}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 will-change-transform group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none will-change-opacity">
                   <div className="p-4 w-full">
                     <span className="inline-block bg-blue-500/30 backdrop-blur-sm border border-blue-400/50 text-blue-200 px-4 py-2 rounded-full text-sm font-medium">
                       {project.company}

@@ -70,7 +70,7 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [isMobileMenuOpen, setIsMobileMenuOpen]);
+  }, [isMobileMenuOpen, setIsMobileMenuOpen, location.pathname]);
 
 
 
@@ -119,8 +119,8 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
             Blog
           </Link>
           <a 
-            href="/resume.pdf" 
-            download="Jainish_Gupta_Backend_Developer_Resume.pdf"
+            href="/JainishGuptaResume.pdf" 
+            download="JainishGuptaResume.pdf"
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-5 py-2 rounded-full text-sm hover:from-blue-500 hover:to-purple-500 transition-all transform hover:scale-105 neon-shadow"
             aria-label="Download Resume"
           >
@@ -147,8 +147,8 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
         <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Contact</a>
         <Link to="/blog" className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Blog</Link>
         <a 
-          href="/resume.pdf" 
-          download="Jainish_Gupta_Backend_Developer_Resume.pdf"
+          href="/JainishGuptaResume.pdf" 
+          download="JainishGuptaResume.pdf"
           className="block mt-4 mx-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-6 py-3 rounded-full text-center hover:from-blue-500 hover:to-purple-500 transition-all neon-shadow"
           aria-label="Download Resume"
         >

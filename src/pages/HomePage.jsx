@@ -21,8 +21,8 @@ const HomePage = () => {
         "name": "Jainish Gupta",
         "givenName": "Jainish",
         "familyName": "Gupta",
-        "jobTitle": ["Chief Technology Officer", "Software Developer", "Backend Architect"],
-        "description": "CTO and Co-founder at Trustopay with 3+ years of experience building secure, scalable fintech systems using Node.js, MongoDB, and AWS.",
+        "jobTitle": ["Unity Game Developer", "C# Gameplay Programmer", "Technical Game Designer"],
+        "description": "Unity Game Developer with 3+ years creating immersive gaming experiences. Expert in C#, gameplay mechanics, vehicle physics, procedural generation, and custom Unity tools. Games with 300K+ downloads.",
         "url": "https://jainish.space/",
         "image": "https://jainish.space/Images/favicon.png",
         "sameAs": [
@@ -30,8 +30,8 @@ const HomePage = () => {
           "https://github.com/AurtherRod"
         ],
         "knowsAbout": [
-          "Node.js", "Express.js", "MongoDB", "REST APIs", "Microservices", 
-          "AWS", "Docker", "System Architecture", "Fintech", "Backend Development"
+          "Unity", "C#", "Game Development", "Game Physics", "Gameplay Programming", 
+          "Shader Programming", "AI & Pathfinding", "Level Design", "Custom Unity Tools", "Performance Optimization"
         ],
         "worksFor": {
           "@type": "Organization",
@@ -42,22 +42,22 @@ const HomePage = () => {
       {
         "@type": "Organization",
         "@id": "https://jainish.space/#trustopay",
-        "name": "Trustopay Innovations Pvt. Ltd.",
-        "description": "India's secure escrow platform for online transactions, processing 1000+ daily transactions with 99.9% uptime.",
-        "url": "https://trustopay.in",
+        "name": "Coincade Studio",
+        "description": "Game development studio specializing in blockchain gaming and innovative gameplay mechanics.",
+        "url": "https://jainish.space/",
         "founder": {
           "@type": "Person",
           "@id": "https://jainish.space/#person"
         },
-        "industry": "Fintech",
+        "industry": "Game Development",
         "numberOfEmployees": "10-50"
       },
       {
         "@type": "WebSite",
         "@id": "https://jainish.space/#website",
         "url": "https://jainish.space/",
-        "name": "Jainish Gupta - Software Developer Portfolio",
-        "description": "Portfolio showcasing Node.js, MongoDB, and AWS projects by CTO Jainish Gupta",
+        "name": "Jainish Gupta - Game Developer Portfolio",
+        "description": "Portfolio showcasing Unity games and C# projects by Game Developer Jainish Gupta",
         "publisher": {
           "@type": "Person",
           "@id": "https://jainish.space/#person"
@@ -68,7 +68,7 @@ const HomePage = () => {
         "@type": "ProfilePage",
         "@id": "https://jainish.space/#profilepage",
         "url": "https://jainish.space/",
-        "name": "Jainish Gupta - CTO & Node.js Developer",
+        "name": "Jainish Gupta - Unity Game Developer",
         "isPartOf": {
           "@type": "WebSite",
           "@id": "https://jainish.space/#website"
@@ -88,9 +88,9 @@ const HomePage = () => {
   return (
     <>
       <SEO 
-        title="Jainish Gupta - CTO & Node.js Developer | Fintech Backend Specialist"
-        description="CTO at Trustopay | Node.js & MongoDB specialist building secure fintech systems. 3+ years architecting scalable backends processing 1000+ daily transactions."
-        keywords={['Node.js developer', 'MongoDB specialist', 'CTO', 'fintech developer', 'backend architect', 'microservices expert', 'REST APIs', 'AWS developer', 'Docker', 'system design']}
+        title="Jainish Gupta - Unity Game Developer | C# Specialist"
+        description="Unity Game Developer creating immersive gaming experiences with C#. 3+ years building 2D/3D games, custom tools, and advanced gameplay mechanics."
+        keywords={['Unity developer', 'C# game programmer', 'game developer', 'Unity specialist', 'gameplay programmer', 'technical game designer', '2D games', '3D games', 'game physics', 'Unity tools']}
       />
       <StructuredData data={structuredData} />
       <HeroSection />

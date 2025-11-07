@@ -1,34 +1,34 @@
 export const faqData = [
   {
-    question: "What technologies do you specialize in as a CTO?",
-    answer: "I specialize in Node.js, Express.js, MongoDB, AWS, Docker, and microservices architecture. I have 3+ years of experience building secure, scalable fintech and EdTech platforms."
+    question: "What game development technologies do you specialize in?",
+    answer: "I specialize in Unity, C#, game physics, gameplay programming, custom editor tools, and procedural generation. I have 3+ years of experience building 2D/3D games and training simulators."
   },
   {
-    question: "Can you build a fintech platform from scratch?",
-    answer: "Yes, I've built Trustopay, a secure escrow platform processing 1000+ daily transactions with 99.9% uptime. I handle everything from architecture design to deployment and scaling."
+    question: "Can you build games from scratch in Unity?",
+    answer: "Yes, I've built multiple games including Racecade (2D blockchain racing game), Industrial Training Simulators with custom vehicle physics, and hypercasual mobile games with 300K+ downloads."
   },
   {
-    question: "Do you offer Node.js consulting services?",
-    answer: "Yes, I provide Node.js consulting for backend architecture, performance optimization, security audits, and team mentoring. Available for both short-term and long-term engagements."
+    question: "Do you have experience with Unity vehicle physics?",
+    answer: "Yes, I've developed custom vehicle physics systems using WheelColliders, integrated Logitech G29/G27 hardware, and built realistic driving mechanics for training simulators."
   },
   {
-    question: "What's your experience with MongoDB at scale?",
-    answer: "I've architected MongoDB databases handling millions of records with optimized indexing, aggregation pipelines, and replication strategies for high-availability systems."
+    question: "What's your experience with Unity custom tools?",
+    answer: "I've built custom Unity editor tools, level generators, and workflow automation systems. I'm proficient in editor scripting and ScriptableObjects for data-driven design."
   },
   {
-    question: "Can you help migrate from monolith to microservices?",
-    answer: "Yes, I have experience breaking down monolithic applications into microservices using Node.js, Docker, and Kubernetes with proper API gateway and service mesh implementation."
+    question: "Can you develop multiplayer games?",
+    answer: "Yes, I have experience with real-time multiplayer systems, WebSockets integration, and networked gameplay. I understand client-server architecture and anti-cheat mechanisms."
   },
   {
-    question: "Do you work with startups?",
-    answer: "Yes, I'm a Co-founder and CTO of two startups (Trustopay and Find and Analyze). I understand startup challenges and can build MVPs quickly while ensuring scalability."
+    question: "Do you work on mobile games?",
+    answer: "Yes, I've developed hypercasual mobile games that achieved 300K+ downloads. I'm experienced in mobile optimization, performance tuning, and platform-specific requirements."
   },
   {
-    question: "What's your approach to API security?",
-    answer: "I implement JWT authentication, rate limiting, input validation, SQL injection prevention, CORS policies, and regular security audits. All my APIs follow OWASP best practices."
+    question: "What's your approach to game optimization?",
+    answer: "I focus on profiling, object pooling, LOD systems, efficient collision detection, shader optimization, and memory management. I ensure smooth 60 FPS performance on target platforms."
   },
   {
-    question: "Are you available for full-time CTO roles?",
-    answer: "Yes, I'm open to full-time CTO positions, especially in fintech, EdTech, or SaaS companies. I can lead technical teams and drive product development."
+    question: "Are you available for Unity developer positions?",
+    answer: "Yes, I'm open to full-time Unity developer roles, especially in game studios, simulation companies, or interactive media. I can work independently or as part of a team."
   }
 ];

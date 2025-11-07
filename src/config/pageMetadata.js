@@ -1,31 +1,31 @@
 export const pageMetadata = {
   homepage: {
-    title: "Jainish Gupta - Fintech CTO | Node.js & MongoDB Expert",
-    description: "CTO at Trustopay with 3+ years building secure fintech backends. Expert in Node.js, MongoDB, AWS. Processing 1000+ daily transactions with 99.9% uptime.",
-    keywords: ["fintech CTO", "Node.js developer", "MongoDB specialist", "backend architect", "CTO for hire"]
+    title: "Jainish Gupta - Unity Game Developer | C# Specialist",
+    description: "Unity Game Developer with 3+ years creating immersive experiences. Expert in C#, gameplay mechanics, vehicle physics, and custom Unity tools. 300K+ game downloads.",
+    keywords: ["Unity developer", "C# game programmer", "game developer", "Unity specialist", "gameplay programmer"]
   },
   
   projects: {
-    title: "Fintech & Backend Projects | Node.js Portfolio - Jainish Gupta",
-    description: "Explore production fintech systems: Trustopay (1000+ daily transactions), Class & Class (500+ institutions). Node.js, MongoDB, AWS architecture.",
-    keywords: ["fintech projects", "Node.js portfolio", "escrow platform", "backend systems"]
+    title: "Unity Game Projects | C# Portfolio - Jainish Gupta",
+    description: "Explore Unity games: Racecade (blockchain racing), Industrial Training Sims (vehicle physics), Hypercasual Games (300K+ downloads). Unity, C#, custom tools.",
+    keywords: ["Unity projects", "game portfolio", "Unity games", "C# projects"]
   },
   
   about: {
-    title: "About Jainish Gupta - Fintech CTO & Node.js Architect",
-    description: "CTO & Co-founder at Trustopay. 3+ years architecting secure fintech backends with Node.js, MongoDB, AWS. Available for consulting & full-time roles.",
-    keywords: ["CTO experience", "Node.js expert", "fintech developer", "backend architect"]
+    title: "About Jainish Gupta - Unity Game Developer & C# Programmer",
+    description: "Game Developer with 3+ years in Unity and C#. Specialized in gameplay mechanics, vehicle physics, procedural generation, and custom editor tools.",
+    keywords: ["Unity developer", "C# programmer", "game developer", "gameplay programmer"]
   },
   
-  trustopay: {
-    title: "Trustopay - Secure Escrow Platform | Node.js Fintech Project",
-    description: "India's secure escrow platform processing 1000+ daily transactions. Built with Node.js, MongoDB, AWS. 99.9% uptime, microservices architecture.",
-    keywords: ["escrow platform", "fintech Node.js", "payment gateway", "secure transactions"]
+  racecade: {
+    title: "Racecade - 2D Blockchain Racing Game | Unity Project",
+    description: "2D blockchain racing game with procedural level generation and NFT inventory system. Built with Unity, C#, and blockchain integration.",
+    keywords: ["Unity racing game", "blockchain game", "procedural generation", "Unity 2D"]
   },
   
-  classAndClass: {
-    title: "Class & Class - EdTech Platform | Node.js & Flutter Project",
-    description: "Educational platform serving 500+ institutions. Built with Node.js backend, Flutter mobile app, MongoDB database. Scalable architecture.",
-    keywords: ["EdTech platform", "Node.js backend", "Flutter app", "educational software"]
+  trainingSims: {
+    title: "Industrial Training Simulators | Unity Vehicle Physics Project",
+    description: "High-fidelity training simulators with custom vehicle physics and Logitech hardware integration. Built with Unity 3D and C#.",
+    keywords: ["Unity simulator", "vehicle physics", "Unity 3D", "training simulation"]
   }
 };

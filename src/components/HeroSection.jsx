@@ -6,7 +6,7 @@ const HeroSection = () => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const texts = ['Software Developer', 'Node.js & MongoDB Specialist', 'CTO & Architect'];
+    const texts = ['Game Developer', 'Unity & C# Specialist', 'Technical Game Designer'];
     const timeout = setTimeout(() => {
       const current = texts[currentIndex];
 
@@ -46,12 +46,12 @@ const HeroSection = () => {
             </p>
           </div>
           <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed mb-12 scroll-reveal" style={{ transitionDelay: '400ms' }}>
-            Building secure, scalable software systems and APIs that power fintech platforms and enterprise applications. Experienced CTO with a track record of leading teams and architecting production-ready solutions.
+            Creating immersive gaming experiences with Unity and C#. Specialized in gameplay mechanics, physics systems, and technical game design. Experienced in building scalable game architectures and optimizing performance.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center scroll-reveal" style={{ transitionDelay: '600ms' }}>
             <a 
-              href="/resume.pdf" 
-              download="Jainish_Gupta_Backend_Developer_Resume.pdf"
+              href="/JainishGuptaResume.pdf" 
+              download="JainishGuptaResume.pdf"
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-8 py-4 rounded-full uppercase tracking-wider hover:from-blue-500 hover:to-purple-500 transition-all transform hover:scale-105 neon-shadow inline-flex items-center justify-center"
               aria-label="Download Resume"
             >

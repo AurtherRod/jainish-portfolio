@@ -13,25 +13,25 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen pt-20">
       <SEO 
-        title="Software Development Blog | Jainish Gupta - Node.js & AWS Expert"
-        description="Backend engineering, DevOps and scaling guides written from real CTO experience. Learn Node.js, AWS, MongoDB, microservices, and system architecture from production examples."
-        keywords={['Software Development', 'Node.js', 'AWS', 'MongoDB', 'DevOps', 'Microservices', 'System Architecture', 'REST APIs', 'CTO', 'Technical Blog']}
+        title="Unity Game Development Blog | Jainish Gupta - C# & Unity Expert"
+        description="Unity game development tutorials, C# programming guides, and technical insights. Learn vehicle physics, custom editor tools, procedural generation, and game optimization."
+        keywords={['Unity', 'Game Development', 'C#', 'Unity Tutorial', 'Vehicle Physics', 'Editor Scripting', 'Procedural Generation', 'Game Optimization', 'Technical Blog']}
       />
       <div className="container mx-auto px-6 py-20">
         <div className="text-center mb-16">
           <Link to="/" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-8 transition-colors">
             ← Back to Portfolio
           </Link>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Backend <span className="neon-accent">Engineering</span> Blog</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Unity Game <span className="neon-accent">Development</span> Blog</h1>
           <p className="text-xl text-gray-300 mb-6 max-w-4xl mx-auto leading-relaxed">
-            Backend engineering, DevOps and scaling guides written from real CTO experience powering fintech, games and education.
+            Unity game development tutorials, C# programming guides, and technical insights from building games and simulators.
           </p>
           
           {/* Write for Hire Callout */}
           <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-400/30 rounded-2xl p-6 max-w-3xl mx-auto mb-8">
             <h3 className="text-2xl font-bold mb-3 text-blue-300">Write for Hire</h3>
             <p className="text-gray-300 mb-4">
-              Need technical articles, tutorials, or guides for your backend team? I create in-depth content on Node.js, AWS, microservices, and system architecture.
+              Need technical articles, tutorials, or guides for your game development team? I create in-depth content on Unity, C#, game mechanics, and optimization.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href="mailto:jainishgupta2000@gmail.com?subject=Technical Writing Inquiry" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-2 rounded-full transition-colors">
@@ -64,10 +64,10 @@ const BlogPage = () => {
                 {/* Real-world problems/solutions summary */}
                 <div className="mb-4">
                   <p className="text-gray-400 text-sm italic">
-                    {blog.id === 8 ? "Learn production deployment with AWS EC2, PM2 process management, and Nginx reverse proxy configuration." :
-                     blog.id === 2 ? "Build cheat-resistant game backends with event-driven architecture and server-side validation." :
-                     blog.id === 3 ? "CTO insights on choosing Node.js and Flutter for scaling fintech and ed-tech startups." :
-                     "Real-world backend engineering solutions and architectural decisions."}
+                    {blog.id === 10 ? "Master Unity 2D Tilemaps with advanced auto-tiling, procedural generation, and runtime tile updates." :
+                     blog.id === 6 ? "Deep dive into custom Unity vehicle physics with ScriptableObjects and G29/G27 hardware integration." :
+                     blog.id === 5 ? "Build custom Unity editor tools and level generators to automate repetitive development tasks." :
+                     "Real-world Unity game development solutions and technical insights."}
                   </p>
                 </div>
                 
@@ -76,7 +76,7 @@ const BlogPage = () => {
                 </div>
                 
                 <div className="flex flex-wrap gap-2">
-                  {blog.tags.filter(tag => ['Node.js', 'MongoDB', 'AWS', 'REST APIs', 'Microservices', 'DevOps', 'Backend', 'Architecture'].includes(tag) || blog.tags.indexOf(tag) < 4).map((tag, index) => (
+                  {blog.tags.filter(tag => ['Unity', 'C#', 'Game Development', 'Vehicle Physics', 'Editor Scripting', 'Level Design', 'Tilemap', 'ScriptableObjects'].includes(tag) || blog.tags.indexOf(tag) < 4).map((tag, index) => (
                     <span key={index} className="tech-tag text-blue-300 text-sm font-medium px-3 py-1.5 rounded-full">
                       {tag}
                     </span>
