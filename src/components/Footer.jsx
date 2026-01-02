@@ -27,7 +27,7 @@ const Footer = () => {
           </a>
         </div>
         
-        <p className="text-sm text-gray-500">Software Developer | Node.js & MongoDB Specialist</p>
+        <p className="text-sm text-gray-500 dark:text-gray-500">Game Developer | Unity & C# Specialist</p>
       </div>
     </footer>
   );
