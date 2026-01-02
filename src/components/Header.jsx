@@ -118,6 +118,9 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           <Link to="/blog" className="text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors">
             Blog
           </Link>
+          <Link to="/games" className="text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors">
+            Games
+          </Link>
           <a 
             href="/JainishGuptaResume.pdf" 
             download="JainishGuptaResume.pdf"
@@ -146,6 +149,7 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
         <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">About</a>
         <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Contact</a>
         <Link to="/blog" className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Blog</Link>
+        <Link to="/games" className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Games</Link>
         <a 
           href="/JainishGuptaResume.pdf" 
           download="JainishGuptaResume.pdf"
