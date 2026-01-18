@@ -1,36 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-
-const games = [
-  {
-    id: 1,
-    title: 'Car Race',
-    description: 'An exciting racing game where you compete against time and obstacles.',
-    slug: 'car-race',
-    path: '/Games/CarRace/CarRace/index.html',
-    thumbnail: '/Images/GameImages/CarRace_Game.png',
-    color: 'from-red-600 to-orange-600'
-  },
-  {
-    id: 2,
-    title: 'Memory Game',
-    description: 'Test your memory skills by matching pairs of cards in this classic game.',
-    slug: 'memory-game',
-    path: '/Games/MemoryGame/MemoryGame/index.html',
-    thumbnail: '/Images/GameImages/MemoryGame_Game.png',
-    color: 'from-green-600 to-teal-600'
-  },
-  {
-    id: 3,
-    title: 'Space Shooter',
-    description: 'Defend the galaxy by shooting down enemy spaceships in this action-packed shooter.',
-    slug: 'space-shooter',
-    path: '/Games/SpaceShooter/SpaceShooter/index.html',
-    thumbnail: '/Images/GameImages/SpaceShooter.png',
-    color: 'from-blue-600 to-purple-600'
-  }
-];
+import { projectsData } from '../data/projects';
 
 const GamesPage = () => {
   return (
@@ -49,41 +20,69 @@ const GamesPage = () => {
           
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              My <span className="neon-accent">Games</span>
+              All <span className="neon-accent">Projects</span>
             </h1>
             <p className="text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-              Play my Unity WebGL games directly in your browser
+              Explore my complete portfolio of Unity games and development projects
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {games.map((game, index) => (
+            {projectsData.map((project, index) => (
               <div
-                key={game.id}
-                className="card-hover rounded-2xl overflow-hidden group"
+                key={project.id}
+                className="card-hover rounded-2xl overflow-hidden group flex flex-col transition-transform duration-300 hover:scale-105"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className={`h-56 bg-gradient-to-br ${game.color} flex items-center justify-center relative overflow-hidden`}>
+                <div className="relative h-56 overflow-hidden bg-gray-800 flex-shrink-0">
                   <img 
-                    src={game.thumbnail} 
-                    alt={game.title}
-                    className="w-full h-full object-cover relative z-10 group-hover:scale-110 transition-transform duration-300"
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover"
                   />
+                  {project.isPlayable && (
+                    <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 z-10">
+                      🎮 Playable
+                    </div>
+                  )}
                 </div>
                 
-                <div className="p-6 bg-white/90 dark:bg-gray-800/50 backdrop-blur-sm">
+                <div className="p-6 bg-white/90 dark:bg-gray-800/50 backdrop-blur-sm flex flex-col flex-grow">
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {game.title}
+                    {project.title}
                   </h2>
-                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                    {game.description}
+                  <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed flex-grow">
+                    {project.description}
                   </p>
-                  <Link
-                    to={`/games/${game.slug}`}
-                    className="block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg text-center hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 neon-shadow"
-                  >
-                    Play Now →
-                  </Link>
+                  
+                  {project.achievements && (
+                    <div className="mb-4">
+                      <div className="flex flex-wrap gap-2">
+                        {project.achievements.map((achievement, idx) => (
+                          <span key={idx} className="bg-green-500/20 text-green-300 text-xs font-semibold px-2 py-1 rounded-full border border-green-500/30">
+                            {achievement}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech, idx) => (
+                      <span key={idx} className="tech-tag text-blue-300 text-sm font-medium px-3 py-1.5 rounded-full">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {project.isPlayable && (
+                    <Link
+                      to={`/games/${project.id}`}
+                      className="block w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold py-3 px-6 rounded-lg text-center transition-all duration-300 transform hover:scale-105 neon-shadow mt-auto"
+                    >
+                      🎮 Play Now
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}

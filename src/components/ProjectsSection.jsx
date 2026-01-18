@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { projectsData } from '../data/projects';
 
 const ProjectsSection = () => {
+  const displayedProjects = projectsData.slice(0, 9);
+  
   return (
     <section id="projects" className="py-20 md:py-32 border-t-2 border-blue-400/20">
       <div className="container mx-auto px-6">
@@ -14,38 +17,28 @@ const ProjectsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectsData.map((project) => (
-            <div key={project.id} className="card-hover rounded-2xl overflow-hidden scroll-reveal group" style={{ transitionDelay: project.delay }}>
-              <div className="relative h-64 overflow-hidden bg-gray-800">
+          {displayedProjects.map((project, index) => (
+            <div key={project.id} className="card-hover rounded-2xl overflow-hidden scroll-reveal group flex flex-col transition-transform duration-300 hover:scale-105" style={{ animationDelay: `${index * 150}ms` }}>
+              <div className="relative h-64 overflow-hidden bg-gray-800 flex-shrink-0">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 will-change-transform group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none will-change-opacity">
-                  <div className="p-4 w-full">
-                    <span className="inline-block bg-blue-500/30 backdrop-blur-sm border border-blue-400/50 text-blue-200 px-4 py-2 rounded-full text-sm font-medium">
-                      {project.company}
-                    </span>
+                {project.isPlayable && (
+                  <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 z-10">
+                    🎮 Playable
                   </div>
-                </div>
+                )}
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                   {project.title}
                 </h3>
 
-                {/* Project Impact Statement */}
-                {project.achievements && (
-                  <div className="mb-4 p-3 bg-blue-900/30 border-l-4 border-blue-400 rounded">
-                    <p className="text-blue-200 text-sm font-semibold">Impact:</p>
-                    <p className="text-gray-300 text-sm">{project.achievements.join(' • ')}</p>
-                  </div>
-                )}
-
-                <p className="text-gray-300 mb-4 leading-relaxed">{project.description}</p>
+                <p className="text-gray-300 mb-4 leading-relaxed flex-grow">{project.description}</p>
 
                 {project.achievements && (
                   <div className="mb-4">
@@ -67,11 +60,30 @@ const ProjectsSection = () => {
                   ))}
                 </div>
 
+                {project.isPlayable && (
+                  <Link
+                    to={`/games/${project.id}`}
+                    className="block w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold py-2 px-4 rounded-lg text-center transition-all mt-auto"
+                  >
+                    🎮 Play Now
+                  </Link>
+                )}
 
               </div>
             </div>
           ))}
         </div>
+
+        {projectsData.length > 9 && (
+          <div className="text-center mt-12">
+            <Link
+              to="/projects"
+              className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold py-3 px-8 rounded-full transition-all transform hover:scale-105 neon-shadow"
+            >
+              View More Projects
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

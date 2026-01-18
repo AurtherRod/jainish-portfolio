@@ -1,40 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import SEO from '../components/SEO';
-
-const gamesData = {
-  'car-race': {
-    title: 'Car Race',
-    description: 'An exciting racing game where you compete against time and obstacles. Built with Unity and optimized for WebGL performance.',
-    path: '/Games/CarRace/CarRace/index.html',
-    color: 'from-red-600 to-orange-600',
-    tags: ['Racing', 'Action', '3D'],
-    tech: ['Unity', 'C#', 'WebGL'],
-    aspectRatio: 'landscape' // 16:9 or wider
-  },
-  'memory-game': {
-    title: 'Memory Game',
-    description: 'Test your memory skills by matching pairs of cards in this classic game. Features smooth animations and responsive design.',
-    path: '/Games/MemoryGame/MemoryGame/index.html',
-    color: 'from-green-600 to-teal-600',
-    tags: ['Puzzle', 'Casual', '2D'],
-    tech: ['Unity', 'C#', 'WebGL'],
-    aspectRatio: 'landscape'
-  },
-  'space-shooter': {
-    title: 'Space Shooter',
-    description: 'Defend the galaxy by shooting down enemy spaceships in this action-packed shooter. Fast-paced gameplay with challenging enemies.',
-    path: '/Games/SpaceShooter/SpaceShooter/index.html',
-    color: 'from-blue-600 to-purple-600',
-    tags: ['Shooter', 'Action', '2D'],
-    tech: ['Unity', 'C#', 'WebGL'],
-    aspectRatio: 'portrait' // vertical game
-  }
-};
+import { projectsData } from '../data/projects';
 
 const GamePlayerPage = () => {
   const { gameId } = useParams();
-  const game = gamesData[gameId];
+  const game = projectsData.find(p => p.id === gameId && p.isPlayable);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const containerRef = useRef(null);
@@ -94,7 +65,7 @@ const GamePlayerPage = () => {
 
       <div className="min-h-screen pt-20 pb-10">
         <div className="container mx-auto px-4 py-6">
-          <Link to="/games" className="inline-flex items-center text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white mb-6 transition-colors text-sm">
+          <Link to="/projects" className="inline-flex items-center text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white mb-6 transition-colors text-sm">
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
@@ -123,7 +94,7 @@ const GamePlayerPage = () => {
                 )}
                 <iframe
                   ref={iframeRef}
-                  src={game.path}
+                  src={game.gamePath}
                   title={game.title}
                   className="w-full"
                   style={isFullscreen ? { width: '100%', height: '100%', display: 'block' } :
@@ -148,7 +119,7 @@ const GamePlayerPage = () => {
                 <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{game.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {game.tags.map((tag, index) => (
+                  {game.tags && game.tags.map((tag, index) => (
                     <span key={index} className="bg-blue-100 dark:bg-gray-700/50 text-blue-700 dark:text-gray-300 px-3 py-1 rounded text-sm border border-blue-300 dark:border-gray-600">
                       {tag}
                     </span>
@@ -199,12 +170,12 @@ const GamePlayerPage = () => {
                   </div>
                   <div>
                     <div className="text-gray-600 dark:text-gray-400 mb-1">Genre</div>
-                    <div className="text-gray-900 dark:text-white font-medium">{game.tags[0]}</div>
+                    <div className="text-gray-900 dark:text-white font-medium">{game.tags && game.tags[0]}</div>
                   </div>
                   <div>
                     <div className="text-gray-600 dark:text-gray-400 mb-1">Made with</div>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      {game.tech.map((tech, index) => (
+                      {game.technologies && game.technologies.map((tech, index) => (
                         <span key={index} className="bg-blue-100 dark:bg-blue-500/20 border border-blue-300 dark:border-blue-400/30 text-blue-700 dark:text-blue-300 px-2 py-1 rounded text-xs font-semibold">
                           {tech}
                         </span>
@@ -214,7 +185,7 @@ const GamePlayerPage = () => {
                   <div>
                     <div className="text-gray-600 dark:text-gray-400 mb-1">Tags</div>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      {game.tags.map((tag, index) => (
+                      {game.tags && game.tags.map((tag, index) => (
                         <span key={index} className="bg-gray-200 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs border border-gray-300 dark:border-gray-600">
                           {tag}
                         </span>
@@ -226,12 +197,12 @@ const GamePlayerPage = () => {
 
               {/* More Games */}
               <div className="card-hover rounded p-6">
-                <h3 className="text-gray-900 dark:text-white font-bold mb-3 text-lg">More Games</h3>
+                <h3 className="text-gray-900 dark:text-white font-bold mb-3 text-lg">More Projects</h3>
                 <Link
-                  to="/games"
+                  to="/projects"
                   className="block w-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-center py-2 rounded transition-all font-semibold"
                 >
-                  Browse All Games
+                  Browse All Projects
                 </Link>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import { ANIMATION_DELAYS } from '../constants';
 
 export const projectsData = [{
-  id: 1,
+  id: 'racecade',
   title: "Racecade (Blockchain Game)",
   description: "Spearheaded the development of a 2D blockchain racing game, building a dynamic inventory system for player-owned assets (NFTs). Implemented a procedural level generation algorithm in C# to ensure infinite replayability and a unique gameplay experience every session.",
   image: "/Images/RaceCade.jpg",
@@ -11,7 +11,7 @@ export const projectsData = [{
   achievements: ["Procedural level generation", "NFT inventory system", "Infinite replayability"]
 },
 {
-  id: 2,
+  id: 'industrial-training-sims',
   title: "Industrial Training Sims",
   description: "Engineered high-fidelity industrial simulations in Unity, integrating physical Logitech hardware for a realistic training experience. Developed custom vehicle physics and real-time data streaming for instructor monitoring and trainee feedback.",
   image: "/Images/T45.png",
@@ -21,7 +21,7 @@ export const projectsData = [{
   achievements: ["G29/G27 hardware integration", "Custom vehicle physics", "Real-time monitoring"]
 },
 {
-  id: 3,
+  id: 'hypercasual-mobile-games',
   title: "Hypercasual Mobile Games",
   description: "Played a key role in developing 3+ games (e.g., 'Runner Pusher 3D') that collectively amassed over 300,000+ downloads. My contributions included prototyping core 3D gameplay mechanics and implementing features that directly boosted user retention.",
   image: "/Images/hyper-casual.png",
@@ -31,7 +31,49 @@ export const projectsData = [{
   achievements: ["300K+ downloads", "3+ published games", "High user retention"]
 },
 {
-  id: 4,
+  id: 'car-race',
+  title: 'Car Race',
+  description: 'An exciting racing game where you compete against time and obstacles. Built with Unity and optimized for WebGL performance.',
+  image: '/Images/GameImages/CarRace_Game.png',
+  company: 'Personal Project',
+  technologies: ['Unity', 'C#', 'WebGL'],
+  delay: ANIMATION_DELAYS.LONG,
+  achievements: ['3D Racing Mechanics', 'WebGL Optimized', 'Browser Playable'],
+  isPlayable: true,
+  gamePath: '/Games/CarRace/CarRace/index.html',
+  aspectRatio: 'landscape',
+  tags: ['Racing', 'Action', '3D']
+},
+{
+  id: 'memory-game',
+  title: 'Memory Game',
+  description: 'Test your memory skills by matching pairs of cards in this classic game. Features smooth animations and responsive design.',
+  image: '/Images/GameImages/MemoryGame_Game.png',
+  company: 'Personal Project',
+  technologies: ['Unity', 'C#', 'WebGL'],
+  delay: ANIMATION_DELAYS.XLONG,
+  achievements: ['Card Matching Logic', 'Smooth Animations', 'Responsive Design'],
+  isPlayable: true,
+  gamePath: '/Games/MemoryGame/MemoryGame/index.html',
+  aspectRatio: 'landscape',
+  tags: ['Puzzle', 'Casual', '2D']
+},
+{
+  id: 'space-shooter',
+  title: 'Space Shooter',
+  description: 'Defend the galaxy by shooting down enemy spaceships in this action-packed shooter. Fast-paced gameplay with challenging enemies.',
+  image: '/Images/GameImages/SpaceShooter.png',
+  company: 'Personal Project',
+  technologies: ['Unity', 'C#', 'WebGL'],
+  delay: ANIMATION_DELAYS.NONE,
+  achievements: ['Enemy AI', 'Shooting Mechanics', 'Score System'],
+  isPlayable: true,
+  gamePath: '/Games/SpaceShooter/SpaceShooter/index.html',
+  aspectRatio: 'portrait',
+  tags: ['Shooter', 'Action', '2D']
+},
+{
+  id: 'trustopay',
   title: "Trustopay",
   description: "Architected and developed a secure, full-stack payment processing platform handling 1000+ transactions per day with 99.9% uptime. Engineered robust backend APIs using Node.js, integrated major payment gateways, and built an interactive transaction management dashboard with React.",
   image: "/Images/Trustopay.png",
@@ -43,7 +85,7 @@ export const projectsData = [{
   achievements: ["1000+ daily transactions", "99.9% uptime", "Secure payment processing"]
 },
 {
-  id: 5,
+  id: 'class-and-class',
   title: "Class And Class",
   description: "Developed a comprehensive, full-stack class management system supporting 500+ educational institutions. Built scalable Node.js microservices architecture with MongoDB for centralized data management and real-time attendance tracking.",
   image: "/Images/ClassAndClass.jpg",
@@ -53,7 +95,6 @@ export const projectsData = [{
   github: "https://github.com/AurtherRod/class-management-system",
   liveUrl: "https://classandclass.com",
   achievements: ["500+ institutions supported", "Real-time data sync", "Scalable architecture"]
-},
-
+}
 
 ];

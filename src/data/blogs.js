@@ -1218,5 +1218,4 @@ Auto-tiling in Unity is a technical superpower—design faster, code smarter, an
 Now go build those unforgettable pixel-perfect universes!
 `
     }
-
 ];
