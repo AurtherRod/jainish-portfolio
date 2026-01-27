@@ -102,6 +102,7 @@ const GamePlayerPage = () => {
                   frameBorder="0"
                   allowFullScreen
                   scrolling="no"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                 />
               </div>
 
