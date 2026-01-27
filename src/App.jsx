@@ -6,32 +6,44 @@ import BlogPage from './pages/BlogPage';
 import BlogArticle from './pages/BlogArticle';
 import GamesPage from './pages/GamesPage';
 import GamePlayerPage from './pages/GamePlayerPage';
+import NotFoundPage from './pages/NotFoundPage';
 import Footer from './components/Footer';
+import useScrollToTop from './hooks/useScrollToTop';
 import './styles/globals.css';
+
+const AppContent = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
+  // Scroll to top on route change
+  useScrollToTop();
+
+  return (
+    <div className="antialiased">
+      <a href="#main-content" className="skip-to-main">
+        Skip to main content
+      </a>
+      <Header isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+      
+      <main id="main-content" role="main">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogArticle />} />
+          <Route path="/projects" element={<GamesPage />} />
+          <Route path="/games/:gameId" element={<GamePlayerPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+};
 
 const App = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <Router>
-      <div className="antialiased">
-        <a href="#main-content" className="skip-to-main">
-          Skip to main content
-        </a>
-        <Header isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
-        
-        <main id="main-content" role="main">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogArticle />} />
-            <Route path="/projects" element={<GamesPage />} />
-            <Route path="/games/:gameId" element={<GamePlayerPage />} />
-          </Routes>
-        </main>
-        
-        <Footer />
-      </div>
+      <AppContent isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
     </Router>
   );
 };
