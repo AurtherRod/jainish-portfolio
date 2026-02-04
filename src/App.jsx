@@ -6,6 +6,7 @@ import BlogPage from './pages/BlogPage';
 import BlogArticle from './pages/BlogArticle';
 import GamesPage from './pages/GamesPage';
 import GamePlayerPage from './pages/GamePlayerPage';
+import NotFoundPage from './pages/NotFoundPage';
 import Footer from './components/Footer';
 import './styles/globals.css';
 
@@ -27,6 +28,7 @@ const App = () => {
             <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/projects" element={<GamesPage />} />
             <Route path="/games/:gameId" element={<GamePlayerPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         
