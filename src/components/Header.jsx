@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
+const Header = () => {
   const navbarRef = useRef(null);
   const headerRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('hero');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSectionClick = (e, sectionId) => {
     e.preventDefault();
@@ -31,7 +32,6 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
         }
       }
       
-      // Active section detection
       if (location.pathname === '/') {
         const sections = ['hero', 'projects', 'about', 'contact'];
         const scrollPosition = window.scrollY + 100;
@@ -70,7 +70,7 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [isMobileMenuOpen, setIsMobileMenuOpen, location.pathname]);
+  }, [isMobileMenuOpen, location.pathname]);
 
 
 
