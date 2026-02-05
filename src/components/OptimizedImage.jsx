@@ -6,7 +6,8 @@ const OptimizedImage = ({
   className = '', 
   width, 
   height,
-  priority = false 
+  priority = false,
+  fetchpriority = 'auto'
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(priority);
@@ -22,7 +23,7 @@ const OptimizedImage = ({
           observer.disconnect();
         }
       },
-      { rootMargin: '50px' }
+      { rootMargin: '100px' }
     );
 
     if (imgRef.current) {
@@ -41,6 +42,7 @@ const OptimizedImage = ({
           width={width}
           height={height}
           loading={priority ? 'eager' : 'lazy'}
+          fetchpriority={fetchpriority}
           decoding="async"
           onLoad={() => setIsLoaded(true)}
           className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}

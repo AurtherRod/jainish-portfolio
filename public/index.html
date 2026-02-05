@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-10Q4FXY5ZZ"></script>
+    <!-- Google Analytics - Deferred -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-10Q4FXY5ZZ');
+      
+      // Load GA script after page load
+      window.addEventListener('load', function() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-10Q4FXY5ZZ';
+        document.head.appendChild(script);
+      });
     </script>
     
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- DNS Prefetch for external domains -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    
     <meta name="description" content="Unity Game Developer | C# specialist creating immersive gaming experiences. 3+ years building 2D/3D games, custom tools, and advanced gameplay mechanics." />
     <meta name="keywords" content="Unity developer, C# game programmer, game developer, Unity specialist, gameplay programmer, technical game designer, 2D games, 3D games, game physics" />
     <meta name="author" content="Jainish Gupta" />
@@ -38,6 +50,10 @@
     
     <title>Jainish Gupta - Unity Game Developer | C# Specialist</title>
     <link rel="icon" type="image/png" href="/Images/favicon.png" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" as="script" href="/static/js/main.chunk.js" />
+    <link rel="preload" as="style" href="/static/css/main.chunk.css" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

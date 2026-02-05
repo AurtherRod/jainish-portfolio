@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { blogsData } from '../data/blogs';
 import SEO from '../components/SEO';
@@ -7,6 +7,16 @@ import StructuredData from '../components/StructuredData';
 const BlogArticle = () => {
   const { slug } = useParams();
   const blog = blogsData.find(b => b.slug === slug);
+
+  useEffect(() => {
+    if (blog && window.gtag) {
+      window.gtag('event', 'view_blog', {
+        blog_title: blog.title,
+        blog_category: blog.category,
+        blog_slug: slug
+      });
+    }
+  }, [blog, slug]);
 
   if (!blog) {
     return (

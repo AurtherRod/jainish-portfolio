@@ -40,4 +40,23 @@ Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains
     AddOutputFilterByType DEFLATE application/rss+xml
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Serve pre-compressed files if available
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP:Accept-Encoding} gzip
+    RewriteCond %{REQUEST_FILENAME}\.gz -f
+    RewriteRule ^(.*)$ $1.gz [L]
+    
+    <FilesMatch "\.js\.gz$">
+        AddType "application/javascript" .gz
+        AddEncoding gzip .gz
+    </FilesMatch>
+    
+    <FilesMatch "\.css\.gz$">
+        AddType "text/css" .gz
+        AddEncoding gzip .gz
+    </FilesMatch>
 </IfModule>
