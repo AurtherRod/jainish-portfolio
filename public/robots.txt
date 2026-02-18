@@ -4,8 +4,6 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 Disallow: /*.json$
-Disallow: /static/js/
-Disallow: /static/css/
 
 # Allow important resources
 Allow: /Images/
