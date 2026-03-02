@@ -1,33 +1,33 @@
 // SEO Configuration for all pages
 export const seoConfig = {
   home: {
-    title: "Jainish Gupta - CTO & Node.js Developer | Fintech Backend Specialist",
-    description: "CTO at Trustopay | Node.js & MongoDB specialist building secure fintech systems. 3+ years architecting scalable backends processing 1000+ daily transactions.",
-    keywords: ['Node.js developer', 'MongoDB specialist', 'CTO', 'fintech developer', 'backend architect', 'microservices expert', 'REST APIs', 'AWS developer', 'Docker', 'system design']
+    title: "Jainish Gupta | Full-Stack Software Engineer & Unity Developer",
+    description: "Versatile Software Engineer specializing in Node.js/React enterprise backends (1000+ daily tx) and Unity C# game development. Available for full-time roles.",
+    keywords: ['Full-stack developer', 'Unity developer', 'Node.js expert', 'React developer', 'C# programmer', 'backend architect', 'game programmer', 'AWS developer', 'Pune software engineer']
   },
-  
+
   projects: {
-    title: "Projects - Jainish Gupta | Fintech & Backend Systems",
-    description: "Explore fintech and backend projects by Jainish Gupta: Trustopay (1000+ daily transactions), Class & Class (500+ institutions), and scalable Node.js systems.",
-    keywords: ['fintech projects', 'Node.js projects', 'escrow platform', 'backend systems', 'MongoDB applications', 'microservices architecture']
+    title: "Projects - Jainish Gupta | Web Systems & Game Development",
+    description: "Explore a dual portfolio by Jainish Gupta: Enterprise fintech backends (Trustopay) and interactive Unity 2D/3D game development projects.",
+    keywords: ['React projects', 'Unity games', 'Node.js backend', 'C# game development', 'fintech systems', 'multiplayer architecture', 'game design']
   },
-  
+
   about: {
-    title: "About Jainish Gupta - CTO & Backend Developer",
-    description: "CTO at Trustopay with 3+ years building secure fintech backends. Expert in Node.js, MongoDB, AWS, Docker, and microservices architecture.",
-    keywords: ['backend developer', 'CTO experience', 'Node.js expert', 'MongoDB developer', 'AWS architect', 'fintech CTO']
+    title: "About Jainish Gupta | Web Architect & Game Programmer",
+    description: "Software Engineer bridging enterprise web architecture (Node/React/AWS) with interactive media and game development (Unity/C#).",
+    keywords: ['Software engineer', 'backend developer', 'Unity 3D developer', 'Node.js specialist', 'React expert', 'game systems engineer', 'technical educator']
   },
-  
+
   contact: {
-    title: "Contact Jainish Gupta - Available for Backend Development",
-    description: "Get in touch with Jainish Gupta for Node.js backend development, fintech consulting, or CTO advisory. Open to freelance and full-time opportunities.",
-    keywords: ['hire Node.js developer', 'backend developer contact', 'fintech consultant', 'CTO advisory', 'MongoDB expert']
+    title: "Contact Jainish Gupta | Hire for Web or Game Development",
+    description: "Get in touch with Jainish Gupta for enterprise full-stack development (React/Node) or Unity game programming opportunities.",
+    keywords: ['hire Node.js developer', 'hire Unity developer', 'game programmer contact', 'full-stack engineer', 'backend developer available']
   },
-  
+
   blog: {
-    title: "Blog - Jainish Gupta | Node.js, MongoDB & Backend Development",
-    description: "Technical articles on Node.js, MongoDB, AWS, microservices, and backend architecture by CTO Jainish Gupta. Real-world fintech and system design insights.",
-    keywords: ['Node.js tutorials', 'MongoDB guides', 'backend development blog', 'microservices articles', 'AWS deployment', 'fintech engineering']
+    title: "Blog - Jainish Gupta | Web Architecture & Game Dev Insights",
+    description: "Technical articles on Node.js scaling, React UI, AWS deployment, and Unity C# game development tutorials by Jainish Gupta.",
+    keywords: ['Node.js tutorials', 'Unity C# guides', 'game development blog', 'backend architecture', 'full-stack insights']
   }
 };
 
@@ -39,8 +39,8 @@ export const schemaTemplates = {
     "name": "Jainish Gupta",
     "givenName": "Jainish",
     "familyName": "Gupta",
-    "jobTitle": ["Chief Technology Officer", "Software Developer", "Backend Architect"],
-    "description": "CTO and Co-founder at Trustopay with 3+ years of experience building secure, scalable fintech systems using Node.js, MongoDB, and AWS.",
+    "jobTitle": ["Software Engineer", "Lead Full-Stack Developer", "Unity Game Developer"],
+    "description": "Software Engineer with 3+ years of experience building secure fintech systems (Node.js/React) and interactive experiences (Unity/C#).",
     "url": "https://jainish.space/",
     "image": "https://jainish.space/Images/favicon.png",
     "sameAs": [
@@ -48,15 +48,15 @@ export const schemaTemplates = {
       "https://github.com/AurtherRod"
     ],
     "knowsAbout": [
-      "Node.js", "Express.js", "MongoDB", "REST APIs", "Microservices", 
-      "AWS", "Docker", "System Architecture", "Fintech", "Backend Development"
+      "React.js", "Node.js", "Express.js", "MongoDB", "AWS",
+      "Unity 2D/3D", "C#", "Game Design", "Microservices", "System Architecture"
     ],
     "worksFor": {
       "@type": "Organization",
       "@id": "https://jainish.space/#trustopay"
     }
   },
-  
+
   organization: {
     "@type": "Organization",
     "@id": "https://jainish.space/#trustopay",
@@ -70,13 +70,13 @@ export const schemaTemplates = {
     "industry": "Fintech",
     "numberOfEmployees": "10-50"
   },
-  
+
   website: {
     "@type": "WebSite",
     "@id": "https://jainish.space/#website",
     "url": "https://jainish.space/",
-    "name": "Jainish Gupta - Software Developer Portfolio",
-    "description": "Portfolio showcasing Node.js, MongoDB, and AWS projects by CTO Jainish Gupta",
+    "name": "Jainish Gupta - Software & Game Developer Portfolio",
+    "description": "Portfolio showcasing Enterprise Web Systems (Node.js/React) and Game Development (Unity/C#) by Jainish Gupta",
     "publisher": {
       "@type": "Person",
       "@id": "https://jainish.space/#person"

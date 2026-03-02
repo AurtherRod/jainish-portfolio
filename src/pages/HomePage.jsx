@@ -27,7 +27,10 @@ const HomePage = () => {
         "image": "https://jainish.space/Images/favicon.png",
         "sameAs": [
           "https://www.linkedin.com/in/jainish-gupta/",
-          "https://github.com/AurtherRod"
+          "https://github.com/AurtherRod",
+          "https://twitter.com/jainishgupta",
+          "https://www.facebook.com/jainish.gupta",
+          "https://www.instagram.com/jainish.gupta"
         ],
         "knowsAbout": [
           "Unity", "C#", "Game Development", "Game Physics", "Gameplay Programming", 

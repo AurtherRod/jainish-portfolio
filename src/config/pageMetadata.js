@@ -1,30 +1,38 @@
 export const pageMetadata = {
   homepage: {
-    title: "Jainish Gupta - Unity Game Developer | C# Specialist",
-    description: "Unity Game Developer with 3+ years creating immersive experiences. Expert in C#, gameplay mechanics, vehicle physics, and custom Unity tools. 300K+ game downloads.",
-    keywords: ["Unity developer", "C# game programmer", "game developer", "Unity specialist", "gameplay programmer"]
+    title: "Jainish Gupta - Full-Stack Engineer & Unity Game Developer",
+    description: "Software Engineer with 3+ years experience. Expert in Node.js/React enterprise backends (1000+ daily tx) and Unity C# game development (300K+ downloads).",
+    keywords: ["Full-stack developer", "Unity developer", "Node.js specialist", "C# programmer", "React developer", "AWS backend", "gameplay programmer"]
   },
-  
+
   projects: {
-    title: "Unity Game Projects | C# Portfolio - Jainish Gupta",
-    description: "Explore Unity games: Racecade (blockchain racing), Industrial Training Sims (vehicle physics), Hypercasual Games (300K+ downloads). Unity, C#, custom tools.",
-    keywords: ["Unity projects", "game portfolio", "Unity games", "C# projects"]
+    title: "Portfolio | Web Systems & Unity Projects - Jainish Gupta",
+    description: "Explore dual-track projects: Secure fintech platforms in Node.js/AWS (Trustopay) and high-performance Unity games (Racecade, Training Sims).",
+    keywords: ["Web development portfolio", "Unity projects", "Node.js systems", "C# game dev", "React applications", "backend architecture"]
   },
-  
+
   about: {
-    title: "About Jainish Gupta - Unity Game Developer & C# Programmer",
-    description: "Game Developer with 3+ years in Unity and C#. Specialized in gameplay mechanics, vehicle physics, procedural generation, and custom editor tools.",
-    keywords: ["Unity developer", "C# programmer", "game developer", "gameplay programmer"]
+    title: "About Jainish Gupta - Web Architect & Game Programmer",
+    description: "Versatile developer bridging enterprise backend architecture (Node.js, MongoDB, AWS) with interactive procedural generation and vehicle physics (Unity, C#).",
+    keywords: ["Software engineer", "Node.js developer", "Unity programmer", "backend architect", "system design", "game developer"]
   },
-  
+
+  // The Web/Backend Project
+  trustopay: {
+    title: "Trustopay - Secure Fintech Backend | Node.js & AWS",
+    description: "Enterprise escrow platform processing 1000+ daily transactions. Built with Node.js, MongoDB, React, and deployed on AWS with robust rate-limiting.",
+    keywords: ["Node.js backend", "fintech development", "AWS deployment", "React UI", "secure APIs"]
+  },
+
+  // The Game Dev Projects
   racecade: {
     title: "Racecade - 2D Blockchain Racing Game | Unity Project",
     description: "2D blockchain racing game with procedural level generation and NFT inventory system. Built with Unity, C#, and blockchain integration.",
     keywords: ["Unity racing game", "blockchain game", "procedural generation", "Unity 2D"]
   },
-  
+
   trainingSims: {
-    title: "Industrial Training Simulators | Unity Vehicle Physics Project",
+    title: "Industrial Training Simulators | Unity Vehicle Physics",
     description: "High-fidelity training simulators with custom vehicle physics and Logitech hardware integration. Built with Unity 3D and C#.",
     keywords: ["Unity simulator", "vehicle physics", "Unity 3D", "training simulation"]
   }

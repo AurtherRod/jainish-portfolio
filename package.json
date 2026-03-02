@@ -13,8 +13,10 @@
     "build": "react-scripts build",
     "build:compress": "react-scripts build && gzip -k -f build/static/js/*.js build/static/css/*.css 2>/dev/null || true",
     "build:analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",
+    "optimize": "./scripts/optimize.sh",
     "optimize:images": "node scripts/convertToWebP.js",
     "optimize:critical": "node scripts/extractCritical.js",
+    "seo:test": "echo 'Test your site at: https://pagespeed.web.dev/ and https://developers.facebook.com/tools/debug/'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import FacebookPixel from './components/FacebookPixel';
 import './styles/globals.css';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -13,6 +14,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 const App = () => (
   <Router>
+    <FacebookPixel pixelId="YOUR_PIXEL_ID" />
     <div className="antialiased">
       <a href="#main-content" className="skip-to-main">Skip to main content</a>
       <Header />
