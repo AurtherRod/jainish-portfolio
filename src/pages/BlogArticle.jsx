@@ -1,12 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { blogsData } from '../data/blogs';
+import { fetchBlogBySlug } from '../services/api';
 import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
+import CommentSection from '../components/CommentSection';
 
 const BlogArticle = () => {
   const { slug } = useParams();
-  const blog = blogsData.find(b => b.slug === slug);
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    loadBlog();
+  }, [slug]);
+
+  const loadBlog = async () => {
+    try {
+      const result = await fetchBlogBySlug(slug);
+      setBlog(result.data.blog);
+    } catch (err) {
+      console.error('Failed to load blog:', err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (blog && window.gtag) {
@@ -18,11 +37,20 @@ const BlogArticle = () => {
     }
   }, [blog, slug]);
 
-  if (!blog) {
+  if (loading) {
+    return (
+      <div className="min-h-screen pt-20 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
+      </div>
+    );
+  }
+
+  if (error || !blog) {
     return (
       <div className="min-h-screen pt-20 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-300 mb-4">Blog Not Found</h1>
+          <p className="text-gray-400 mb-4">{error || 'The blog post you\'re looking for doesn\'t exist.'}</p>
           <Link to="/blog" className="text-blue-400 hover:text-blue-300 transition-colors">
             ← Back to Blog
           </Link>
@@ -96,7 +124,7 @@ const BlogArticle = () => {
         }
 
         const getLanguageColor = (lang) => {
-          switch(lang.toLowerCase()) {
+          switch (lang.toLowerCase()) {
             case 'bash': return 'text-yellow-400';
             case 'nginx': return 'text-purple-400';
             case 'javascript': case 'js': return 'text-yellow-300';
@@ -107,14 +135,14 @@ const BlogArticle = () => {
 
         const isExecutable = ['bash', 'nginx'].includes(language.toLowerCase());
         const codeContent = codeLines.join('\n');
-        
+
         elements.push(
           <div key={i} className="my-6">
             <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden">
               <div className="bg-gray-800 px-4 py-2 text-sm text-gray-400 border-b border-gray-700 flex justify-between items-center">
                 <span>{language || 'code'}</span>
                 {isExecutable && (
-                  <button 
+                  <button
                     onClick={() => navigator.clipboard.writeText(codeContent)}
                     className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
                   >
@@ -253,8 +281,8 @@ const BlogArticle = () => {
         "url": `${window.location.origin}/Images/favicon.png`
       }
     },
-    "datePublished": blog.date,
-    "dateModified": blog.date,
+    "datePublished": blog.publishedAt || blog.createdAt,
+    "dateModified": blog.updatedAt || blog.createdAt,
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": window.location.href
@@ -267,7 +295,7 @@ const BlogArticle = () => {
 
   return (
     <div className="min-h-screen pt-20">
-      <SEO 
+      <SEO
         title={`${blog.title} | Jainish Gupta - Software Developer`}
         description={blog.description}
         keywords={blog.tags}
@@ -287,15 +315,15 @@ const BlogArticle = () => {
             <span className="bg-blue-500/30 backdrop-blur-sm border border-blue-400/50 text-blue-200 px-4 py-2 rounded-full text-sm font-medium">
               {blog.category}
             </span>
-            <span className="text-gray-500 text-sm">{blog.readTime}</span>
-            <time className="text-gray-500 text-sm">{formatDate(blog.date)}</time>
+            <span className="text-gray-500 text-sm">{blog.readTime} min read</span>
+            <time className="text-gray-500 text-sm">{formatDate(blog.publishedAt || blog.createdAt)}</time>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             {blog.title}
           </h1>
 
-          <p className="text-xl text-gray-400 mb-8 leading-relaxed">{blog.description}</p>
+          <p className="text-xl text-gray-400 mb-8 leading-relaxed">{blog.excerpt}</p>
 
           <div className="flex flex-wrap gap-2 mb-8">
             {blog.tags.map((tag, index) => (
@@ -317,6 +345,9 @@ const BlogArticle = () => {
             ← Back to All Articles
           </Link>
         </div>
+
+        {/* Comment Section */}
+        <CommentSection blogSlug={slug} />
       </article>
     </div>
   );

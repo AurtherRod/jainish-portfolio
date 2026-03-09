@@ -1,215 +1,117 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { fetchGameBySlug } from '../services/api';
 import SEO from '../components/SEO';
-import { projectsData } from '../data/projects';
+import CommentSection from '../components/CommentSection';
 
 const GamePlayerPage = () => {
-  const { gameId } = useParams();
-  const game = projectsData.find(p => p.id === gameId && p.isPlayable);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const containerRef = useRef(null);
-  const iframeRef = useRef(null);
+  const { slug } = useParams();
+  const [game, setGame] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      containerRef.current?.requestFullscreen();
-      setIsFullscreen(true);
-    } else {
-      document.exitFullscreen();
-      setIsFullscreen(false);
+  useEffect(() => {
+    loadGame();
+  }, [slug]);
+
+  const loadGame = async () => {
+    try {
+      const result = await fetchGameBySlug(slug);
+      setGame(result.data.game);
+    } catch (err) {
+      console.error('Failed to load game:', err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
+  if (loading) {
+    return (
+      <div className="min-h-screen pt-20 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
+      </div>
+    );
+  }
 
-    const handleIframeLoad = () => {
-      setTimeout(() => setIsLoading(false), 1000);
-    };
-
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    const iframe = iframeRef.current;
-    if (iframe) {
-      iframe.addEventListener('load', handleIframeLoad);
-    }
-
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      if (iframe) {
-        iframe.removeEventListener('load', handleIframeLoad);
-      }
-    };
-  }, []);
-
-  if (!game) {
+  if (error || !game) {
     return (
       <div className="min-h-screen pt-20 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Game Not Found</h1>
-          <Link to="/games" className="text-blue-400 hover:text-blue-300">← Back to Games</Link>
+          <h1 className="text-4xl font-bold text-gray-300 mb-4">Game Not Found</h1>
+          <p className="text-gray-400 mb-4">{error || 'The game you\'re looking for doesn\'t exist.'}</p>
+          <Link to="/games" className="text-blue-400 hover:text-blue-300 transition-colors">
+            ← Back to Games
+          </Link>
         </div>
       </div>
     );
   }
 
   return (
-    <>
+    <div className="min-h-screen pt-20">
       <SEO
-        title={`${game.title} by Jainish Gupta`}
+        title={`${game.title} - Play Now | Jainish Portfolio`}
         description={game.description}
-        keywords={['Unity game', 'WebGL game', game.title, 'Jainish Gupta']}
+        keywords={game.tags}
       />
 
-      <div className="min-h-screen pt-20 pb-10">
-        <div className="container mx-auto px-4 py-6">
-          <Link to="/projects" className="inline-flex items-center text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white mb-6 transition-colors text-sm">
-            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            View all by Jainish Gupta
-          </Link>
+      <div className="container mx-auto px-6 py-8">
+        {/* Back Button */}
+        <Link to="/games" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6 transition-colors">
+          ← Back to Games
+        </Link>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {/* Main Game Area - 2/3 width */}
-            <div className="lg:col-span-2">
-              {/* Game Player */}
-              <div
-                ref={containerRef}
-                className="relative bg-black rounded overflow-hidden mb-3 mx-auto"
-                style={isFullscreen ? { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 9999, borderRadius: 0 } :
-                  game.aspectRatio === 'portrait' ? { maxWidth: '500px' } : {}}
-              >
-                {isLoading && (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 z-20">
-                    <div className="relative w-24 h-24 mb-4">
-                      <div className="absolute inset-0 border-4 border-blue-200 dark:border-blue-900 rounded-full"></div>
-                      <div className="absolute inset-0 border-4 border-transparent border-t-blue-600 rounded-full animate-spin"></div>
-                    </div>
-                    <p className="text-white text-lg font-semibold mb-2">Loading {game.title}...</p>
-                    <p className="text-gray-400 text-sm">Please wait while the game loads</p>
-                  </div>
-                )}
-                <iframe
-                  ref={iframeRef}
-                  src={game.gamePath}
-                  title={game.title}
-                  className="w-full"
-                  style={isFullscreen ? { width: '100%', height: '100%', display: 'block' } :
-                    game.aspectRatio === 'portrait' ? { height: '700px', display: 'block' } : { height: '550px', display: 'block' }}
-                  frameBorder="0"
-                  allowFullScreen
-                  scrolling="no"
-                />
-              </div>
-
-              {/* Fullscreen Button */}
-              <button
-                onClick={toggleFullscreen}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3 px-6 rounded transition-all mb-6 neon-shadow"
-              >
-                {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
-              </button>
-
-              {/* Game Description */}
-              <div className="card-hover rounded p-6">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{game.title}</h1>
-                <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">{game.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {game.tags && game.tags.map((tag, index) => (
-                    <span key={index} className="bg-blue-100 dark:bg-gray-700/50 text-blue-700 dark:text-gray-300 px-3 py-1 rounded text-sm border border-blue-300 dark:border-gray-600">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="border-t border-gray-300 dark:border-gray-700 pt-4">
-                  <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
-                    <span>Made with Unity</span>
-                    <span>HTML5 • WebGL</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Sidebar - 1/3 width */}
-            <div className="lg:col-span-1">
-              {/* Author Card */}
-              <div className="card-hover rounded p-6 mb-4">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                    JG
-                  </div>
-                  <div>
-                    <div className="text-xs text-gray-600 dark:text-gray-400">Created by</div>
-                    <div className="text-gray-900 dark:text-white font-semibold">Jainish Gupta</div>
-                  </div>
-                </div>
-                <Link
-                  to="/"
-                  className="block w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white text-center py-2 rounded transition-all font-semibold neon-shadow"
-                >
-                  View Portfolio
-                </Link>
-              </div>
-
-              {/* Game Info */}
-              <div className="card-hover rounded p-6 mb-4">
-                <h3 className="text-gray-900 dark:text-white font-bold mb-4 text-lg">Game Details</h3>
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <div className="text-gray-600 dark:text-gray-400 mb-1">Status</div>
-                    <div className="text-gray-900 dark:text-white font-medium">Released</div>
-                  </div>
-                  <div>
-                    <div className="text-gray-600 dark:text-gray-400 mb-1">Platform</div>
-                    <div className="text-gray-900 dark:text-white font-medium">HTML5 (WebGL)</div>
-                  </div>
-                  <div>
-                    <div className="text-gray-600 dark:text-gray-400 mb-1">Genre</div>
-                    <div className="text-gray-900 dark:text-white font-medium">{game.tags && game.tags[0]}</div>
-                  </div>
-                  <div>
-                    <div className="text-gray-600 dark:text-gray-400 mb-1">Made with</div>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {game.technologies && game.technologies.map((tech, index) => (
-                        <span key={index} className="bg-blue-100 dark:bg-blue-500/20 border border-blue-300 dark:border-blue-400/30 text-blue-700 dark:text-blue-300 px-2 py-1 rounded text-xs font-semibold">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-gray-600 dark:text-gray-400 mb-1">Tags</div>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {game.tags && game.tags.map((tag, index) => (
-                        <span key={index} className="bg-gray-200 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs border border-gray-300 dark:border-gray-600">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* More Games */}
-              <div className="card-hover rounded p-6">
-                <h3 className="text-gray-900 dark:text-white font-bold mb-3 text-lg">More Projects</h3>
-                <Link
-                  to="/projects"
-                  className="block w-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-center py-2 rounded transition-all font-semibold"
-                >
-                  Browse All Projects
-                </Link>
-              </div>
-            </div>
+        {/* Game Info */}
+        <div className="mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{game.title}</h1>
+          <p className="text-xl text-gray-300 mb-4">{game.description}</p>
+          <div className="flex gap-4 text-sm text-gray-400">
+            <span className="bg-game-purple/20 text-game-purple px-3 py-1 rounded-full">{game.category}</span>
+            <span>{game.plays} plays</span>
+            {game.rating.count > 0 && (
+              <span>⭐ {game.rating.average.toFixed(1)} ({game.rating.count} ratings)</span>
+            )}
           </div>
         </div>
+
+        {/* Game Player */}
+        <div className="bg-black rounded-lg overflow-hidden mb-6" style={{ aspectRatio: '16/9' }}>
+          <iframe
+            src={game.gamePath}
+            title={game.title}
+            className="w-full h-full"
+            frameBorder="0"
+            allowFullScreen
+          />
+        </div>
+
+        {/* Controls */}
+        {game.controls && (
+          <div className="bg-game-darker/50 border border-game-purple/30 rounded-lg p-6 mb-6">
+            <h2 className="text-2xl font-bold text-white mb-3">🎮 Controls</h2>
+            <p className="text-gray-300 whitespace-pre-line">{game.controls}</p>
+          </div>
+        )}
+
+        {/* Tags */}
+        {game.tags && game.tags.length > 0 && (
+          <div className="mb-6">
+            <h3 className="text-xl font-bold text-white mb-3">Tags</h3>
+            <div className="flex flex-wrap gap-2">
+              {game.tags.map((tag, idx) => (
+                <span key={idx} className="bg-game-purple/10 text-game-purple px-3 py-1 rounded-full text-sm">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Comments Section with Rating */}
+        <CommentSection contentSlug={slug} contentType="game" />
       </div>
-    </>
+    </div>
   );
 };
 

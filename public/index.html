@@ -1,71 +1,82 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <!-- Google Analytics - Deferred -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-10Q4FXY5ZZ');
-      
-      // Load GA script after page load
-      window.addEventListener('load', function() {
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-10Q4FXY5ZZ';
-        document.head.appendChild(script);
+
+<head>
+  <!-- Google Analytics - Deferred -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-10Q4FXY5ZZ');
+
+    // Load GA script after page load
+    window.addEventListener('load', function () {
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-10Q4FXY5ZZ';
+      document.head.appendChild(script);
+    });
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- DNS Prefetch for external domains -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+  <meta name="description"
+    content="Unity Game Developer | C# specialist creating immersive gaming experiences. 3+ years building 2D/3D games, custom tools, and advanced gameplay mechanics." />
+  <meta name="keywords"
+    content="Unity developer, C# game programmer, game developer, Unity specialist, gameplay programmer, technical game designer, 2D games, 3D games, game physics" />
+  <meta name="author" content="Jainish Gupta" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <link rel="canonical" href="https://jainish.space/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jainish.space/" />
+  <meta property="og:title" content="Jainish Gupta - Unity Game Developer | C# Specialist" />
+  <meta property="og:description"
+    content="Unity Game Developer creating immersive experiences with C#. 3+ years building games and custom tools." />
+  <meta property="og:site_name" content="Jainish Gupta Portfolio" />
+  <meta property="og:image" content="https://jainish.space/Images/favicon.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jainish Gupta - Unity Game Developer | C# Specialist" />
+  <meta name="twitter:description"
+    content="Unity Game Developer creating immersive experiences with C#. 3+ years building games and custom tools." />
+  <meta name="twitter:image" content="https://jainish.space/Images/favicon.png" />
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' http://localhost:5001 https://www.google-analytics.com https://analytics.google.com;" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
+  <title>Jainish Gupta - Unity Game Developer | C# Specialist</title>
+  <link rel="icon" type="image/png" href="/Images/favicon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" />
+  </noscript>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => { });
       });
-    </script>
-    
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <!-- DNS Prefetch for external domains -->
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-    
-    <meta name="description" content="Unity Game Developer | C# specialist creating immersive gaming experiences. 3+ years building 2D/3D games, custom tools, and advanced gameplay mechanics." />
-    <meta name="keywords" content="Unity developer, C# game programmer, game developer, Unity specialist, gameplay programmer, technical game designer, 2D games, 3D games, game physics" />
-    <meta name="author" content="Jainish Gupta" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <link rel="canonical" href="https://jainish.space/" />
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jainish.space/" />
-    <meta property="og:title" content="Jainish Gupta - Unity Game Developer | C# Specialist" />
-    <meta property="og:description" content="Unity Game Developer creating immersive experiences with C#. 3+ years building games and custom tools." />
-    <meta property="og:site_name" content="Jainish Gupta Portfolio" />
-    <meta property="og:image" content="https://jainish.space/Images/favicon.png" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Jainish Gupta - Unity Game Developer | C# Specialist" />
-    <meta name="twitter:description" content="Unity Game Developer creating immersive experiences with C#. 3+ years building games and custom tools." />
-    <meta name="twitter:image" content="https://jainish.space/Images/favicon.png" />
-    
-    <!-- Security -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com;" />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    
-    <title>Jainish Gupta - Unity Game Developer | C# Specialist</title>
-    <link rel="icon" type="image/png" href="/Images/favicon.png" />
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" /></noscript>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(() => {});
-        });
-      }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>

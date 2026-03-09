@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
+import ErrorBoundary from './components/ErrorBoundary';
 import './styles/globals.css';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -11,35 +12,59 @@ const BlogArticle = lazy(() => import('./pages/BlogArticle'));
 const GamesPage = lazy(() => import('./pages/GamesPage'));
 const GamePlayerPage = lazy(() => import('./pages/GamePlayerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const BlogListPage = lazy(() => import('./pages/BlogListPage'));
+const BlogEditorPage = lazy(() => import('./pages/BlogEditorPage'));
+const GameListPage = lazy(() => import('./pages/GameListPage'));
+const GameEditorPage = lazy(() => import('./pages/GameEditorPage'));
+const CommentModerationPage = lazy(() => import('./pages/CommentModerationPage'));
+const ProtectedRoute = lazy(() => import('./components/ProtectedRoute'));
+
+const LoadingFallback = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="relative">
+      <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
+      <div className="absolute inset-0 animate-ping rounded-full h-16 w-16 border-4 border-game-pink opacity-20"></div>
+    </div>
+  </div>
+);
 
 const App = () => (
-  <Router>
-    <div className="antialiased relative">
-      <ParticleBackground />
-      <a href="#main-content" className="skip-to-main">Skip to main content</a>
-      <Header />
-      <main id="main-content" role="main" className="relative z-10">
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="relative">
-              <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
-              <div className="absolute inset-0 animate-ping rounded-full h-16 w-16 border-4 border-game-pink opacity-20"></div>
-            </div>
-          </div>
-        }>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogArticle />} />
-            <Route path="/projects" element={<GamesPage />} />
-            <Route path="/games/:gameId" element={<GamePlayerPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      </main>
-      <Footer />
-    </div>
-  </Router>
+  <ErrorBoundary>
+    <Router>
+      <div className="antialiased relative">
+        <ParticleBackground />
+        <a href="#main-content" className="skip-to-main">Skip to main content</a>
+        <Header />
+        <main id="main-content" role="main" className="relative z-10">
+          <Suspense fallback={<LoadingFallback />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogArticle />} />
+              <Route path="/projects" element={<GamesPage />} />
+              <Route path="/games/:slug" element={<GamePlayerPage />} />
+
+              {/* Admin Routes */}
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/dashboard" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><DashboardPage /></ProtectedRoute></Suspense>} />
+              <Route path="/dashboard/blogs" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><BlogListPage /></ProtectedRoute></Suspense>} />
+              <Route path="/dashboard/blogs/new" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><BlogEditorPage /></ProtectedRoute></Suspense>} />
+              <Route path="/dashboard/blogs/edit/:id" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><BlogEditorPage /></ProtectedRoute></Suspense>} />
+              <Route path="/dashboard/games" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><GameListPage /></ProtectedRoute></Suspense>} />
+              <Route path="/dashboard/games/new" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><GameEditorPage /></ProtectedRoute></Suspense>} />
+              <Route path="/dashboard/games/edit/:id" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><GameEditorPage /></ProtectedRoute></Suspense>} />
+              <Route path="/dashboard/comments" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><CommentModerationPage /></ProtectedRoute></Suspense>} />
+
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  </ErrorBoundary>
 );
 
 export default App;
