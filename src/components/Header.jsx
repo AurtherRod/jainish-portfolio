@@ -31,11 +31,11 @@ const Header = () => {
           navbarRef.current.style.setProperty('background', 'rgba(255, 255, 255, 0.05)', 'important');
         }
       }
-      
+
       if (location.pathname === '/') {
         const sections = ['hero', 'projects', 'about', 'contact'];
         const scrollPosition = window.scrollY + 100;
-        
+
         for (const sectionId of sections) {
           const section = document.getElementById(sectionId);
           if (section) {
@@ -75,53 +75,48 @@ const Header = () => {
 
 
   return (
-    <header ref={(el) => { navbarRef.current = el; headerRef.current = el; }} className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-effect" id="navbar">
+    <header ref={(el) => { navbarRef.current = el; headerRef.current = el; }} className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-effect border-b border-game-purple/20" id="navbar">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="text-2xl font-bold tracking-wider hover:text-blue-400 transition-colors">Jainish Gupta</a>
-        
-        <nav className="hidden md:flex items-center space-x-6">
-          <a 
-            href="#hero" 
-            onClick={(e) => handleSectionClick(e, 'hero')} 
-            className={`text-sm font-medium transition-colors ${activeSection === 'hero' ? 'text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
+        <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="text-2xl md:text-3xl font-black tracking-wider hover:text-game-purple transition-colors bg-gradient-to-r from-game-purple to-game-pink bg-clip-text text-transparent hover:scale-105 transform duration-300">
+          JG<span className="text-game-cyan">.</span>
+        </a>
+
+        <nav className="hidden md:flex items-center space-x-8">
+          <a
+            href="#hero"
+            onClick={(e) => handleSectionClick(e, 'hero')}
+            className={`text-sm font-bold uppercase tracking-wider transition-all ${activeSection === 'hero' ? 'text-game-purple scale-110' : 'text-gray-300 hover:text-game-purple hover:scale-105'}`}
           >
             Home
           </a>
-          <a 
-            href="#projects" 
-            onClick={(e) => handleSectionClick(e, 'projects')} 
-            className={`text-sm font-medium transition-colors ${activeSection === 'projects' ? 'text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
+          <a
+            href="#projects"
+            onClick={(e) => handleSectionClick(e, 'projects')}
+            className={`text-sm font-bold uppercase tracking-wider transition-all ${activeSection === 'projects' ? 'text-game-purple scale-110' : 'text-gray-300 hover:text-game-purple hover:scale-105'}`}
           >
             Projects
           </a>
-          <a 
-            href="#about" 
-            onClick={(e) => handleSectionClick(e, 'about')} 
-            className={`text-sm font-medium transition-colors ${activeSection === 'about' ? 'text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
-          >
-            Skills
-          </a>
-          <a 
-            href="#about" 
-            onClick={(e) => handleSectionClick(e, 'about')} 
-            className={`text-sm font-medium transition-colors ${activeSection === 'about' ? 'text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
+          <a
+            href="#about"
+            onClick={(e) => handleSectionClick(e, 'about')}
+            className={`text-sm font-bold uppercase tracking-wider transition-all ${activeSection === 'about' ? 'text-game-purple scale-110' : 'text-gray-300 hover:text-game-purple hover:scale-105'}`}
           >
             About
           </a>
-          <a 
-            href="#contact" 
-            onClick={(e) => handleSectionClick(e, 'contact')} 
-            className={`text-sm font-medium transition-colors ${activeSection === 'contact' ? 'text-blue-400' : 'text-gray-300 hover:text-blue-400'}`}
+          <a
+            href="#contact"
+            onClick={(e) => handleSectionClick(e, 'contact')}
+            className={`text-sm font-bold uppercase tracking-wider transition-all ${activeSection === 'contact' ? 'text-game-purple scale-110' : 'text-gray-300 hover:text-game-purple hover:scale-105'}`}
           >
             Contact
           </a>
-          <Link to="/blog" className="text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors">
+          <Link to="/blog" className="text-sm font-bold uppercase tracking-wider text-gray-300 hover:text-game-cyan hover:scale-105 transition-all">
             Blog
           </Link>
-          <a 
-            href="/JainishGuptaResume.pdf" 
+          <a
+            href="/JainishGuptaResume.pdf"
             download="JainishGuptaResume.pdf"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-5 py-2 rounded-full text-sm hover:from-blue-500 hover:to-purple-500 transition-all transform hover:scale-105 neon-shadow"
+            className="bg-gradient-to-r from-game-purple to-game-pink text-white font-bold px-6 py-3 rounded-xl text-sm hover:from-game-pink hover:to-game-purple transition-all transform hover:scale-105 neon-shadow uppercase tracking-wider"
             aria-label="Download Resume"
           >
             Resume
@@ -129,7 +124,7 @@ const Header = () => {
         </nav>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-gray-300 focus:outline-none p-2 hover:text-blue-400 transition-colors"
+          className="md:hidden text-gray-300 focus:outline-none p-2 hover:text-game-purple transition-colors"
           aria-label="Toggle mobile menu"
         >
           <div className="w-6 h-6 flex flex-col justify-center items-center">
@@ -139,17 +134,16 @@ const Header = () => {
           </div>
         </button>
       </div>
-      <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden px-6 pb-6 glass-effect border-t border-blue-400/20`}>
-        <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Home</a>
-        <a href="#projects" onClick={(e) => handleSectionClick(e, 'projects')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Projects</a>
-        <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Skills</a>
-        <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">About</a>
-        <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')} className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Contact</a>
-        <Link to="/blog" className="block py-3 text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-400/10 mx-2 text-center">Blog</Link>
-        <a 
-          href="/JainishGuptaResume.pdf" 
+      <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden px-6 pb-6 glass-effect border-t border-game-purple/20`}>
+        <a href="#hero" onClick={(e) => handleSectionClick(e, 'hero')} className="block py-3 text-gray-300 hover:text-game-purple transition-colors rounded-lg hover:bg-game-purple/10 mx-2 text-center font-bold uppercase tracking-wider">Home</a>
+        <a href="#projects" onClick={(e) => handleSectionClick(e, 'projects')} className="block py-3 text-gray-300 hover:text-game-purple transition-colors rounded-lg hover:bg-game-purple/10 mx-2 text-center font-bold uppercase tracking-wider">Projects</a>
+        <a href="#about" onClick={(e) => handleSectionClick(e, 'about')} className="block py-3 text-gray-300 hover:text-game-purple transition-colors rounded-lg hover:bg-game-purple/10 mx-2 text-center font-bold uppercase tracking-wider">About</a>
+        <a href="#contact" onClick={(e) => handleSectionClick(e, 'contact')} className="block py-3 text-gray-300 hover:text-game-purple transition-colors rounded-lg hover:bg-game-purple/10 mx-2 text-center font-bold uppercase tracking-wider">Contact</a>
+        <Link to="/blog" className="block py-3 text-gray-300 hover:text-game-cyan transition-colors rounded-lg hover:bg-game-cyan/10 mx-2 text-center font-bold uppercase tracking-wider">Blog</Link>
+        <a
+          href="/JainishGuptaResume.pdf"
           download="JainishGuptaResume.pdf"
-          className="block mt-4 mx-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-6 py-3 rounded-full text-center hover:from-blue-500 hover:to-purple-500 transition-all neon-shadow"
+          className="block mt-4 mx-2 bg-gradient-to-r from-game-purple to-game-pink text-white font-bold px-6 py-3 rounded-xl text-center hover:from-game-pink hover:to-game-purple transition-all neon-shadow uppercase tracking-wider"
           aria-label="Download Resume"
         >
           Download Resume

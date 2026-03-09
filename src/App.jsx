@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ParticleBackground from './components/ParticleBackground';
 import './styles/globals.css';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -13,11 +14,19 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 const App = () => (
   <Router>
-    <div className="antialiased">
+    <div className="antialiased relative">
+      <ParticleBackground />
       <a href="#main-content" className="skip-to-main">Skip to main content</a>
       <Header />
-      <main id="main-content" role="main">
-        <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div></div>}>
+      <main id="main-content" role="main" className="relative z-10">
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="relative">
+              <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
+              <div className="absolute inset-0 animate-ping rounded-full h-16 w-16 border-4 border-game-pink opacity-20"></div>
+            </div>
+          </div>
+        }>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/blog" element={<BlogPage />} />
