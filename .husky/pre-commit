@@ -1,0 +1,22 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "Running pre-commit tests..."
+
+# Run frontend tests
+npm test -- --run --bail 2>/dev/null
+if [ $? -ne 0 ]; then
+  echo "Frontend tests failed. Commit aborted."
+  exit 1
+fi
+
+# Run backend tests
+cd Backend
+npm test -- --bail 2>/dev/null
+if [ $? -ne 0 ]; then
+  echo "Backend tests failed. Commit aborted."
+  exit 1
+fi
+cd ..
+
+echo "All tests passed. Proceeding with commit."
