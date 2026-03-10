@@ -51,7 +51,7 @@ By understanding the strengths of each tool, you can build more responsive, effi
         title: "Building a Scalable Game Backend with Node.js and MongoDB",
         excerpt: "Building secure backends that prevent cheating requires more than just validation. Learn how to architect event-driven systems with Node.js and MongoDB that scale to thousands of concurrent users while maintaining data integrity.",
         publishedAt: "2025-06-12",
-        category: "Backend",
+        category: "Game Development",
         tags: ["Node.js", "MongoDB", "Security", "Game Development", "Scalability", "Architecture"],
         featured: false,
         content: `A modern game's success often hinges on its backend—the invisible engine that drives leaderboards, manages player data, and ensures a fair playing field. But a common vulnerability lies in how games handle scoring.
@@ -79,7 +79,7 @@ By shifting from a trust-based model to an event-driven, verifiable one, you cre
         title: "Why I Chose Flutter and Node.js for My Startups",
         excerpt: "As CTO of two startups, I made critical technology decisions that determined our success. Here's why I chose Node.js for fintech backends processing 1000+ daily transactions and Flutter for mobile apps serving 500+ institutions.",
         publishedAt: "2025-07-12",
-        category: "Architecture",
+        category: "Career",
         tags: ["Flutter", "Node.js", "Startup", "CTO", "Ed-Tech", "Fintech"],
         featured: false,
         content: `As a Co-Founder and CTO, one of the most impactful decisions you'll make is choosing the technology stack. This choice dictates your development speed, scalability, and ability to hire.
@@ -222,7 +222,7 @@ Creating a high-fidelity vehicle simulation is a journey of layering interconnec
         title: "A Step-by-Step Guide to Deploying a Node.js App on AWS with Nginx",
         excerpt: "Deploy production-ready Node.js applications on AWS with confidence. This step-by-step guide covers EC2 setup, PM2 process management, Nginx configuration, and security best practices for scalable backends.",
         publishedAt: "2025-09-16",
-        category: "DevOps",
+        category: "Tutorial",
         tags: ["Node.js", "AWS", "Nginx", "MongoDB", "DevOps", "Deployment", "Tutorial", "EC2"],
         featured: false,
         content: `Building a powerful application with Node.js and MongoDB is a great accomplishment, but the real test is deploying it for the world to see.
@@ -254,7 +254,7 @@ Congratulations! You should now be able to visit your EC2 instance's public IP a
         title: "Building a Real-Time Leaderboard System with Node.js, MongoDB, and WebSockets",
         excerpt: "Learn how to architect a cheat-resistant, scalable real-time leaderboard for games or fintech apps using Node.js, MongoDB, and WebSockets—complete with live updates and anti-fraud validation.",
         publishedAt: "2025-10-04",
-        category: "Backend",
+        category: "Game Development",
         tags: ["Node.js", "MongoDB", "WebSockets", "Leaderboard", "Game Development", "Real-Time", "Security"],
         featured: false,
         content: `Leaderboards are essential for competitive games and many fintech scenarios, driving user engagement and retention. But building a leaderboard that is both real-time and cheat-resistant is a real challenge—especially at scale.

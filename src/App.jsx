@@ -44,6 +44,7 @@ const App = () => (
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogArticle />} />
               <Route path="/projects" element={<GamesPage />} />
+              <Route path="/games" element={<GamesPage />} />
               <Route path="/games/:slug" element={<GamePlayerPage />} />
 
               {/* Admin Routes */}

@@ -1,0 +1,221 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [20.x]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Run frontend tests
+      run: npm test -- --watchAll=false --coverage
+    
+    - name: Install backend dependencies
+      run: cd Backend && npm install
+    
+    - name: Run backend tests
+      run: cd Backend && npm test
+      env:
+        MONGODB_URI: mongodb://localhost:27017/portfolio-test
+        JWT_SECRET: test-secret
+        NODE_ENV: test
+
+  build-frontend:
+    needs: test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Build frontend
+      run: npm run build
+      env:
+        REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: frontend-build
+        path: build/
+        retention-days: 1
+
+  build-backend:
+    needs: test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    
+    - name: Install backend dependencies
+      run: cd Backend && npm install
+    
+    - name: Create backend artifact
+      run: |
+        cd Backend
+        tar -czf ../backend-build.tar.gz .
+    
+    - name: Upload backend artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: backend-build
+        path: backend-build.tar.gz
+        retention-days: 1
+
+  deploy-frontend:
+    needs: build-frontend
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: frontend-build
+        path: build/
+    
+    - name: Deploy Frontend to Hostinger via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+        username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+        password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        local-dir: ./build/
+        server-dir: ./public_html/
+        state-name: .ftp-deploy-sync-state.json
+        dangerous-clean-slate: false
+      if: secrets.HOSTINGER_FTP_SERVER != ''
+    
+    - name: Deploy Frontend via SSH (Alternative)
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOSTINGER_SSH_HOST }}
+        username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
+        key: ${{ secrets.HOSTINGER_SSH_KEY }}
+        source: "build/*"
+        target: "~/public_html/"
+        strip_components: 1
+      if: secrets.HOSTINGER_SSH_HOST != ''
+    
+    - name: Notify Frontend Deployment
+      run: |
+        echo "Frontend deployed to Hostinger"
+        echo "URL: https://${{ secrets.HOSTINGER_DOMAIN }}"
+
+  deploy-backend:
+    needs: build-backend
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download backend artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: backend-build
+    
+    - name: Extract backend
+      run: tar -xzf backend-build.tar.gz -C Backend/
+    
+    - name: Deploy Backend via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOSTINGER_SSH_HOST }}
+        username: ${{ secrets.HOSTINGER_SSH_USERNAME }}
+        key: ${{ secrets.HOSTINGER_SSH_KEY }}
+        script: |
+          cd ~/nodejs_apps/portfolio-backend
+          git pull origin main
+          npm install --production
+          npm run seed || true
+          pm2 restart portfolio-backend || pm2 start npm --name "portfolio-backend" -- start
+          pm2 save
+      if: secrets.HOSTINGER_SSH_HOST != ''
+    
+    - name: Deploy Backend via FTP (Alternative)
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+        username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+        password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        local-dir: ./Backend/
+        server-dir: ./nodejs_apps/portfolio-backend/
+        state-name: .ftp-deploy-sync-state.json
+        dangerous-clean-slate: false
+      if: secrets.HOSTINGER_FTP_SERVER != '' && secrets.HOSTINGER_SSH_HOST == ''
+    
+    - name: Notify Backend Deployment
+      run: |
+        echo "Backend deployed to Hostinger"
+        echo "API URL: https://api.${{ secrets.HOSTINGER_DOMAIN }}"
+
+  verify-deployment:
+    needs: [deploy-frontend, deploy-backend]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Check Frontend Health
+      run: |
+        echo "Checking frontend..."
+        curl -f https://${{ secrets.HOSTINGER_DOMAIN }} || echo "Frontend check failed"
+      continue-on-error: true
+    
+    - name: Check Backend Health
+      run: |
+        echo "Checking backend..."
+        curl -f https://api.${{ secrets.HOSTINGER_DOMAIN }}/api/health || echo "Backend check failed"
+      continue-on-error: true
+    
+    - name: Send Slack Notification
+      uses: slackapi/slack-github-action@v1.24.0
+      with:
+        payload: |
+          {
+            "text": "Hostinger Deployment Status",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Hostinger Deployment*\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref }}\nCommit: ${{ github.sha }}\nStatus: ${{ job.status }}\n\nFrontend: https://${{ secrets.HOSTINGER_DOMAIN }}\nBackend: https://api.${{ secrets.HOSTINGER_DOMAIN }}"
+                }
+              }
+            ]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      if: secrets.SLACK_WEBHOOK_URL != ''
