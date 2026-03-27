@@ -37,7 +37,8 @@ const DashboardLayout = ({ children }) => {
         {
             title: 'Engagement',
             items: [
-                { path: '/dashboard/comments', label: 'Comments', icon: '💬' }
+                { path: '/dashboard/comments', label: 'Comments', icon: '💬' },
+                { path: '/dashboard/leads', label: 'Leads', icon: '👥' }
             ]
         }
     ];

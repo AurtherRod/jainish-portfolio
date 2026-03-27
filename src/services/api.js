@@ -270,6 +270,51 @@ export const deleteGame = async (id) => {
     return handleResponse(response);
 };
 
+// ============ LEADS API ============
+export const createLead = async (leadData) => {
+    const response = await fetch(`${API_URL}/leads`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(leadData)
+    });
+    return handleResponse(response);
+};
+
+export const fetchAllLeads = async (params = {}) => {
+    const timestamp = new Date().getTime(); // Cache buster
+    params._t = timestamp;
+    const queryString = new URLSearchParams(params).toString();
+    const response = await fetch(`${API_URL}/leads/admin/all${queryString ? `?${queryString}` : ''}`, {
+        headers: getAuthHeaders(true)
+    });
+    return handleResponse(response);
+};
+
+export const fetchLeadStats = async () => {
+    const timestamp = new Date().getTime(); // Cache buster
+    const response = await fetch(`${API_URL}/leads/admin/stats?_t=${timestamp}`, {
+        headers: getAuthHeaders(true)
+    });
+    return handleResponse(response);
+};
+
+export const updateLeadStatus = async (id, data) => {
+    const response = await fetch(`${API_URL}/leads/${id}/status`, {
+        method: 'PUT',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(data)
+    });
+    return handleResponse(response);
+};
+
+export const deleteLead = async (id) => {
+    const response = await fetch(`${API_URL}/leads/${id}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders()
+    });
+    return handleResponse(response);
+};
+
 // ============ AUTH HELPERS ============
 export const isAuthenticated = () => {
     return !!localStorage.getItem('token');

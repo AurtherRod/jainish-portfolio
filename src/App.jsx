@@ -19,6 +19,7 @@ const BlogEditorPage = lazy(() => import('./pages/BlogEditorPage'));
 const GameListPage = lazy(() => import('./pages/GameListPage'));
 const GameEditorPage = lazy(() => import('./pages/GameEditorPage'));
 const CommentModerationPage = lazy(() => import('./pages/CommentModerationPage'));
+const LeadsPage = lazy(() => import('./pages/LeadsPage'));
 const ProtectedRoute = lazy(() => import('./components/ProtectedRoute'));
 
 const LoadingFallback = () => (
@@ -57,6 +58,7 @@ const App = () => (
               <Route path="/dashboard/games/new" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><GameEditorPage /></ProtectedRoute></Suspense>} />
               <Route path="/dashboard/games/edit/:id" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><GameEditorPage /></ProtectedRoute></Suspense>} />
               <Route path="/dashboard/comments" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><CommentModerationPage /></ProtectedRoute></Suspense>} />
+              <Route path="/dashboard/leads" element={<Suspense fallback={<LoadingFallback />}><ProtectedRoute><LeadsPage /></ProtectedRoute></Suspense>} />
 
               <Route path="*" element={<NotFoundPage />} />
             </Routes>

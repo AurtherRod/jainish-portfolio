@@ -17,6 +17,7 @@ const blogRoutes = require('./routes/blogs');
 const analyticsRoutes = require('./routes/analytics');
 const commentRoutes = require('./routes/comments');
 const gameRoutes = require('./routes/games');
+const leadRoutes = require('./routes/leads');
 
 // Security middleware
 app.use(helmet());
@@ -38,8 +39,10 @@ const corsOptions = {
         const allowedOrigins = [
             'http://localhost:3000',
             'http://localhost:5001',
+            'http://localhost:5173',
             'https://jainish.space',
             'https://app.jainish.space',
+            'https://course.jainish.space',
             process.env.FRONTEND_URL
         ].filter(Boolean);
 
@@ -99,6 +102,7 @@ app.use('/api/blogs', blogRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/games', gameRoutes);
+app.use('/api/leads', leadRoutes);
 
 // 404 handler
 app.use((req, res) => {
