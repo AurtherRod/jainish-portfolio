@@ -28,7 +28,7 @@ const LeadsPage = () => {
     useEffect(() => {
         loadLeads();
         loadStats();
-    }, [filter]);
+    }, [filter]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         const handleFocus = () => {
@@ -37,7 +37,7 @@ const LeadsPage = () => {
         };
         window.addEventListener('focus', handleFocus);
         return () => window.removeEventListener('focus', handleFocus);
-    }, [filter]);
+    }); // Re-register on every render to avoid stale closure over `filter`
 
     const loadLeads = async () => {
         setLoading(true);
@@ -58,7 +58,7 @@ const LeadsPage = () => {
     const loadStats = async () => {
         try {
             const result = await fetchLeadStats();
-            setStats(result.data);
+            setStats(result.data.stats);
         } catch (error) {
             console.error('Failed to load lead stats:', error);
         }

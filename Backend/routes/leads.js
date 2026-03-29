@@ -4,6 +4,7 @@ const { body, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const Lead = require('../models/Lead');
 const { protect } = require('../middleware/auth');
+const { sendSyllabusEmail } = require('../services/emailService');
 
 /**
  * @route   POST /api/leads
@@ -24,7 +25,7 @@ router.post('/', [
     }
 
     try {
-        const { name, email, phone } = req.body;
+        const { name, email, phone, syllabusRequested } = req.body;
 
         // Normalize for duplicate check
         const normalizedEmail = email.toLowerCase().trim();
@@ -84,8 +85,13 @@ router.post('/', [
             email,
             phone,
             source,
-            status: 'new'
+            status: 'new',
+            syllabusRequested: syllabusRequested === true
         });
+
+        if (syllabusRequested === true) {
+            sendSyllabusEmail(lead);
+        }
 
         return res.status(201).json({
             status: 'success',

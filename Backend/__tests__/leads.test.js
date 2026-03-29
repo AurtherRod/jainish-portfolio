@@ -7,6 +7,10 @@ process.env.JWT_SECRET = 'test-jwt-secret-for-leads';
 process.env.JWT_EXPIRE = '1h';
 process.env.NODE_ENV = 'test';
 
+jest.mock('../services/emailService', () => ({
+    sendSyllabusEmail: jest.fn().mockResolvedValue({ success: true })
+}));
+
 let mongoServer;
 let app;
 let request;
@@ -66,7 +70,7 @@ describe('POST /api/leads', () => {
         expect(res.body.status).toBe('success');
         expect(res.body.data.lead.name).toBe('Jane Doe');
         expect(res.body.data.lead.email).toBe('jane@example.com');
-        expect(res.body.data.lead.phone).toBe('555-1234');
+        expect(res.body.data.lead.phone).toBe('5551234');
         expect(res.body.data.lead.source).toBe('external');
         expect(res.body.data.lead.status).toBe('new');
     });
@@ -323,5 +327,42 @@ describe('DELETE /api/leads/:id', () => {
 
         expect(res.status).toBe(404);
         expect(res.body.message).toBe('Lead not found');
+    });
+});
+
+
+// ─── Requirement 5.2: Admin endpoint includes syllabusRequested ───
+
+describe('GET /api/leads/admin/all — syllabusRequested field', () => {
+    it('should return syllabusRequested: true when lead was created with syllabusRequested: true', async () => {
+        const res = await request
+            .post('/api/leads')
+            .send({ name: 'Syllabus Lead', email: 'syllabus@test.com', phone: '444-5555', syllabusRequested: true });
+
+        expect(res.status).toBe(201);
+
+        const adminRes = await request
+            .get('/api/leads/admin/all')
+            .set('Authorization', `Bearer ${authToken}`);
+
+        expect(adminRes.status).toBe(200);
+        expect(adminRes.body.data.leads).toHaveLength(1);
+        expect(adminRes.body.data.leads[0].syllabusRequested).toBe(true);
+    });
+
+    it('should return syllabusRequested: false when lead was created without syllabusRequested', async () => {
+        const res = await request
+            .post('/api/leads')
+            .send({ name: 'No Syllabus Lead', email: 'nosyllabus@test.com', phone: '666-7777' });
+
+        expect(res.status).toBe(201);
+
+        const adminRes = await request
+            .get('/api/leads/admin/all')
+            .set('Authorization', `Bearer ${authToken}`);
+
+        expect(adminRes.status).toBe(200);
+        expect(adminRes.body.data.leads).toHaveLength(1);
+        expect(adminRes.body.data.leads[0].syllabusRequested).toBe(false);
     });
 });

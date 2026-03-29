@@ -19,8 +19,44 @@ const commentRoutes = require('./routes/comments');
 const gameRoutes = require('./routes/games');
 const leadRoutes = require('./routes/leads');
 
-// Security middleware
-app.use(helmet());
+// CORS configuration — must be before helmet and rate limiting
+const allowedOrigins = [
+    // 'http://localhost:3000',
+    'http://localhost:5001',
+    // 'http://localhost:5173',
+    'https://jainish.space',
+    'https://www.jainish.space',
+    'https://app.jainish.space',
+    'https://learn.jainish.space',
+    process.env.FRONTEND_URL
+].filter(Boolean);
+
+const corsOptions = {
+    origin: function (origin, callback) {
+        // Allow requests with no origin (Postman, server-to-server, etc.)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        // Don't throw — just return false so the request completes without CORS headers
+        // Throwing causes a 500 which hides the real issue from the browser
+        return callback(null, false);
+    },
+    credentials: true,
+    optionsSuccessStatus: 200,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control', 'Pragma', 'Expires']
+};
+
+// Handle preflight OPTIONS requests first — before anything else
+app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
+
+// Security middleware — configure helmet to not conflict with CORS
+app.use(helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+    crossOriginOpenerPolicy: { policy: 'unsafe-none' }
+}));
 
 // Rate limiting
 const limiter = rateLimit({
@@ -32,32 +68,6 @@ const limiter = rateLimit({
     skip: (req) => process.env.NODE_ENV === 'development' // Skip rate limiting in development
 });
 app.use('/api/', limiter);
-
-// CORS configuration
-const corsOptions = {
-    origin: function (origin, callback) {
-        const allowedOrigins = [
-            'http://localhost:3000',
-            'http://localhost:5001',
-            'http://localhost:5173',
-            'https://jainish.space',
-            'https://app.jainish.space',
-            'https://course.jainish.space',
-            process.env.FRONTEND_URL
-        ].filter(Boolean);
-
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-    optionsSuccessStatus: 200,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control', 'Pragma', 'Expires']
-};
-app.use(cors(corsOptions));
 
 // Body parser middleware
 app.use(express.json());
@@ -115,6 +125,13 @@ app.use((req, res) => {
 // Global error handler
 app.use((err, req, res, next) => {
     console.error('Error:', err.stack);
+
+    // Ensure CORS headers are present even on error responses
+    const origin = req.headers.origin;
+    if (origin && allowedOrigins.includes(origin)) {
+        res.set('Access-Control-Allow-Origin', origin);
+        res.set('Access-Control-Allow-Credentials', 'true');
+    }
 
     res.status(err.statusCode || 500).json({
         status: 'error',
