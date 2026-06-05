@@ -27,6 +27,5 @@ export const internalLinks = {
   projects: { path: '/#projects', title: 'Projects - Fintech & Backend Systems' },
   about: { path: '/#about', title: 'About - CTO & Backend Developer' },
   contact: { path: '/#contact', title: 'Contact - Hire Node.js Developer' },
-  blog: { path: '/blog', title: 'Blog - Node.js & MongoDB Tutorials' },
-  resume: { path: '/resume.pdf', title: 'Resume - Jainish Gupta' }
+  blog: { path: '/blog', title: 'Blog - Node.js & MongoDB Tutorials' }
 };

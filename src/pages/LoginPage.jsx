@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login, isAuthenticated } from '../services/api';
-import { Button } from '../components/ui';
 import SEO from '../components/SEO';
 
 const LoginPage = () => {
@@ -49,22 +48,22 @@ const LoginPage = () => {
                 noindex={true}
             />
 
-            <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-game-dark via-game-darker to-black">
+            <div className="min-h-screen flex items-center justify-center px-4 py-12">
                 <div className="max-w-md w-full">
                     {/* Header */}
                     <div className="text-center mb-8">
-                        <h1 className="text-4xl font-bold text-white mb-2">
-                            Admin <span className="text-game-purple">Login</span>
+                        <h1 className="font-display text-4xl text-ink mb-2">
+                            Admin <span className="text-meadow-deep">Login</span>
                         </h1>
-                        <p className="text-gray-400">Access your dashboard</p>
+                        <p className="text-ink/60 font-semibold">Access your dashboard</p>
                     </div>
 
                     {/* Login Form */}
-                    <div className="bg-game-darker/50 backdrop-blur-sm border border-game-purple/20 rounded-xl p-8 shadow-2xl">
+                    <div className="slab p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             {/* Email Field */}
                             <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                                <label htmlFor="email" className="block text-sm font-bold text-ink mb-2">
                                     Email Address
                                 </label>
                                 <input
@@ -73,7 +72,7 @@ const LoginPage = () => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
-                                    className="w-full px-4 py-3 bg-game-dark border border-game-purple/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                    className="w-full px-4 py-3 bg-paper border-[2.5px] border-ink rounded-xl text-ink placeholder-ink/40 focus:outline-none focus:border-meadow focus:ring-2 focus:ring-meadow/20 transition-all font-semibold"
                                     placeholder="admin@jainish.space"
                                     disabled={loading}
                                 />
@@ -81,7 +80,7 @@ const LoginPage = () => {
 
                             {/* Password Field */}
                             <div>
-                                <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
+                                <label htmlFor="password" className="block text-sm font-bold text-ink mb-2">
                                     Password
                                 </label>
                                 <input
@@ -90,7 +89,7 @@ const LoginPage = () => {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
-                                    className="w-full px-4 py-3 bg-game-dark border border-game-purple/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                    className="w-full px-4 py-3 bg-paper border-[2.5px] border-ink rounded-xl text-ink placeholder-ink/40 focus:outline-none focus:border-meadow focus:ring-2 focus:ring-meadow/20 transition-all font-semibold"
                                     placeholder="••••••••"
                                     disabled={loading}
                                 />
@@ -98,16 +97,15 @@ const LoginPage = () => {
 
                             {/* Error Message */}
                             {error && (
-                                <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-3 text-red-400 text-sm">
+                                <div className="bg-coral/15 border-[2px] border-coral rounded-xl p-3 text-coral text-sm font-semibold">
                                     {error}
                                 </div>
                             )}
 
                             {/* Submit Button */}
-                            <Button
+                            <button
                                 type="submit"
-                                variant="primary"
-                                className="w-full"
+                                className="toon-btn w-full"
                                 disabled={loading}
                             >
                                 {loading ? (
@@ -121,13 +119,13 @@ const LoginPage = () => {
                                 ) : (
                                     'Login'
                                 )}
-                            </Button>
+                            </button>
                         </form>
                     </div>
 
                     {/* Back to Home */}
                     <div className="text-center mt-6">
-                        <a href="/" className="text-game-purple hover:text-game-pink transition-colors text-sm">
+                        <a href="/" className="text-meadow-deep hover:text-meadow transition-colors text-sm font-semibold">
                             ← Back to Home
                         </a>
                     </div>

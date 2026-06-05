@@ -59,7 +59,7 @@ const BlogListPage = () => {
         return (
             <DashboardLayout>
                 <div className="flex items-center justify-center h-96">
-                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
+                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-ink border-t-transparent"></div>
                 </div>
             </DashboardLayout>
         );
@@ -71,8 +71,8 @@ const BlogListPage = () => {
 
             <DashboardLayout>
                 <div className="max-w-7xl mx-auto">
-                    <div className="flex justify-between items-center mb-8">
-                        <h1 className="text-4xl font-bold text-white">Manage Blogs</h1>
+                    <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
+                        <h1 className="text-2xl md:text-4xl font-bold text-ink">Manage Blogs</h1>
                         <div className="flex gap-3">
                             <Button
                                 variant="outline"
@@ -88,7 +88,7 @@ const BlogListPage = () => {
                     </div>
 
                     {/* Filter Tabs */}
-                    <div className="flex gap-4 mb-6">
+                    <div className="flex flex-wrap gap-2 mb-6">
                         <Button
                             variant={filter === 'all' ? 'primary' : 'outline'}
                             onClick={() => setFilter('all')}
@@ -111,8 +111,8 @@ const BlogListPage = () => {
 
                     {/* Blog List */}
                     {filteredBlogs.length === 0 ? (
-                        <Card className="bg-game-darker/50 border-game-purple/30 p-12 text-center">
-                            <p className="text-gray-400 text-lg">No blogs found</p>
+                        <Card className="bg-cream border-ink/15 p-12 text-center">
+                            <p className="text-ink/60 text-lg">No blogs found</p>
                             <Link to="/dashboard/blogs/new" className="mt-4 inline-block">
                                 <Button variant="primary">Create Your First Blog</Button>
                             </Link>
@@ -120,11 +120,11 @@ const BlogListPage = () => {
                     ) : (
                         <div className="space-y-4">
                             {filteredBlogs.map(blog => (
-                                <Card key={blog._id} className="bg-game-darker/50 border-game-purple/30 hover:border-game-purple/50 transition-all">
+                                <Card key={blog._id} className="bg-cream border-ink/15 hover:border-ink/50 transition-all">
                                     <div className="p-6 flex justify-between items-start gap-6">
                                         <div className="flex-1">
                                             <div className="flex items-center gap-3 mb-2 flex-wrap">
-                                                <h3 className="text-xl font-bold text-white">{blog.title}</h3>
+                                                <h3 className="text-xl font-bold text-ink">{blog.title}</h3>
                                                 {blog.published ? (
                                                     <Badge variant="success">Published</Badge>
                                                 ) : (
@@ -132,9 +132,9 @@ const BlogListPage = () => {
                                                 )}
                                                 {blog.featured && <Badge variant="achievement">⭐ Featured</Badge>}
                                             </div>
-                                            <p className="text-gray-400 mb-3 line-clamp-2">{blog.excerpt}</p>
-                                            <div className="flex gap-4 text-sm text-gray-500 flex-wrap">
-                                                <span className="text-game-purple">{blog.category}</span>
+                                            <p className="text-ink/60 mb-3 line-clamp-2">{blog.excerpt}</p>
+                                            <div className="flex gap-4 text-sm text-ink/50 flex-wrap">
+                                                <span className="text-meadow-deep">{blog.category}</span>
                                                 <span>•</span>
                                                 <span>{blog.views} views</span>
                                                 <span>•</span>
@@ -145,7 +145,7 @@ const BlogListPage = () => {
                                             {blog.tags && blog.tags.length > 0 && (
                                                 <div className="flex gap-2 mt-3 flex-wrap">
                                                     {blog.tags.slice(0, 5).map((tag, idx) => (
-                                                        <span key={idx} className="text-xs bg-game-purple/20 text-game-purple px-2 py-1 rounded">
+                                                        <span key={idx} className="text-xs bg-game-purple/20 text-meadow-deep px-2 py-1 rounded">
                                                             {tag}
                                                         </span>
                                                     ))}

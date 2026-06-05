@@ -22,6 +22,7 @@ const leadRoutes = require('./routes/leads');
 // CORS configuration — must be before helmet and rate limiting
 const allowedOrigins = [
     // 'http://localhost:3000',
+    'http://localhost:3000',
     'http://localhost:5001',
     // 'http://localhost:5173',
     'https://jainish.space',

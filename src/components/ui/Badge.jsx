@@ -11,10 +11,12 @@ const Badge = ({
     const baseStyles = 'inline-flex items-center font-bold rounded-full transition-all';
 
     const variants = {
-        default: 'bg-gradient-to-r from-game-purple/20 to-game-pink/20 text-game-purple border border-game-purple/30',
-        success: 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 border border-green-500/40',
-        tech: 'tech-tag text-game-cyan',
-        playable: 'bg-gradient-to-r from-game-purple to-game-pink text-white shadow-lg animate-pulse'
+        default: 'bg-sky/20 text-ink border-[2px] border-ink/20',
+        success: 'bg-teal text-white border-[2px] border-ink shadow-[2px_2px_0_0_var(--ink)]',
+        tech: 'tech-tag',
+        playable: 'bg-meadow text-white border-[2px] border-ink shadow-[2px_2px_0_0_var(--ink)]',
+        achievement: 'bg-sun text-ink border-[2px] border-ink shadow-[2px_2px_0_0_var(--ink)]',
+        draft: 'bg-ink/10 text-ink/70 border-[2px] border-ink/20'
     };
 
     const sizes = {
@@ -33,7 +35,7 @@ const Badge = ({
 
 Badge.propTypes = {
     children: PropTypes.node.isRequired,
-    variant: PropTypes.oneOf(['default', 'success', 'tech', 'playable']),
+    variant: PropTypes.oneOf(['default', 'success', 'tech', 'playable', 'achievement', 'draft']),
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
     className: PropTypes.string,
     icon: PropTypes.node

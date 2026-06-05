@@ -14,19 +14,19 @@ const Button = ({
     icon: Icon,
     ...props
 }) => {
-    const baseStyles = 'font-bold uppercase tracking-wider transition-all transform hover:scale-105 inline-flex items-center justify-center';
+    const baseStyles = 'font-display inline-flex items-center justify-center transition-all';
 
     const variants = {
-        primary: 'bg-gradient-to-r from-game-purple to-game-pink hover:from-game-pink hover:to-game-purple text-white neon-shadow',
-        secondary: 'border-3 border-game-cyan text-game-cyan hover:bg-game-cyan hover:text-game-dark pixel-corners',
-        outline: 'border-3 border-game-purple text-game-purple hover:bg-game-purple hover:text-white pixel-corners',
-        ghost: 'text-gray-300 hover:text-game-purple hover:bg-game-purple/10'
+        primary: 'toon-btn',
+        secondary: 'toon-btn toon-btn--sun',
+        outline: 'toon-btn toon-btn--ghost',
+        ghost: 'text-ink/70 hover:text-meadow-deep'
     };
 
     const sizes = {
-        sm: 'px-6 py-2 text-sm rounded-lg',
-        md: 'px-10 py-4 text-base rounded-xl',
-        lg: 'px-12 py-5 text-lg rounded-xl'
+        sm: 'text-sm py-2 px-4',
+        md: 'text-base',
+        lg: 'text-lg py-3.5 px-8'
     };
 
     const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`;

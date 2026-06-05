@@ -62,19 +62,19 @@ const CommentSection = ({ blogSlug, contentSlug, contentType = 'blog' }) => {
     };
 
     return (
-        <div className="mt-16 pt-12 border-t border-gray-700">
-            <h2 className="text-3xl font-bold text-white mb-8">Comments ({comments.length})</h2>
+        <div className="mt-16 pt-12 border-t-[2px] border-ink/15">
+            <h2 className="font-display text-3xl text-ink mb-8">Comments ({comments.length})</h2>
 
             {/* Comment Form */}
-            <Card className="bg-game-darker/50 border-game-purple/30 mb-8">
+            <Card className="mb-8">
                 <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-4">Leave a Comment</h3>
-                    <p className="text-gray-400 text-sm mb-4">
+                    <h3 className="font-display text-xl text-ink mb-2">Leave a Comment</h3>
+                    <p className="text-ink/60 text-sm mb-4 font-semibold">
                         Your comment will be reviewed by an admin before appearing on the site.
                     </p>
 
                     {success && (
-                        <div className="bg-green-500/10 border border-green-500/50 rounded-lg p-4 text-green-400 text-sm mb-4">
+                        <div className="bg-meadow/15 border-[2px] border-meadow rounded-xl p-4 text-meadow-deep text-sm mb-4 font-semibold">
                             ✓ Comment submitted successfully! It will appear after admin approval.
                         </div>
                     )}
@@ -82,24 +82,24 @@ const CommentSection = ({ blogSlug, contentSlug, contentType = 'blog' }) => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-gray-300 text-sm mb-2">Name *</label>
+                                <label className="block text-ink text-sm mb-2 font-bold">Name *</label>
                                 <input
                                     type="text"
                                     placeholder="Your Name"
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    className="w-full px-4 py-3 bg-game-dark border border-game-purple/30 rounded-lg text-white placeholder-gray-500 focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                    className="w-full px-4 py-3 bg-paper border-[2.5px] border-ink rounded-xl text-ink placeholder-ink/40 focus:border-meadow focus:ring-2 focus:ring-meadow/20 transition-all font-semibold"
                                     required
                                 />
                             </div>
                             <div>
-                                <label className="block text-gray-300 text-sm mb-2">Email *</label>
+                                <label className="block text-ink text-sm mb-2 font-bold">Email *</label>
                                 <input
                                     type="email"
                                     placeholder="your@email.com"
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    className="w-full px-4 py-3 bg-game-dark border border-game-purple/30 rounded-lg text-white placeholder-gray-500 focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                    className="w-full px-4 py-3 bg-paper border-[2.5px] border-ink rounded-xl text-ink placeholder-ink/40 focus:border-meadow focus:ring-2 focus:ring-meadow/20 transition-all font-semibold"
                                     required
                                 />
                             </div>
@@ -108,14 +108,14 @@ const CommentSection = ({ blogSlug, contentSlug, contentType = 'blog' }) => {
                         {/* Rating (for games only) */}
                         {contentType === 'game' && (
                             <div>
-                                <label className="block text-gray-300 text-sm mb-2">Rating (Optional)</label>
+                                <label className="block text-ink text-sm mb-2 font-bold">Rating (Optional)</label>
                                 <div className="flex gap-2">
                                     {[1, 2, 3, 4, 5].map(star => (
                                         <button
                                             key={star}
                                             type="button"
                                             onClick={() => setRating(star)}
-                                            className={`text-3xl transition-colors ${star <= rating ? 'text-yellow-400' : 'text-gray-600 hover:text-gray-500'
+                                            className={`text-3xl transition-colors ${star <= rating ? 'text-sun' : 'text-ink/25 hover:text-ink/40'
                                                 }`}
                                         >
                                             ★
@@ -123,23 +123,23 @@ const CommentSection = ({ blogSlug, contentSlug, contentType = 'blog' }) => {
                                     ))}
                                 </div>
                                 {rating > 0 && (
-                                    <p className="text-sm text-gray-400 mt-1">You rated this game {rating} out of 5 stars</p>
+                                    <p className="text-sm text-ink/60 mt-1 font-semibold">You rated this game {rating} out of 5 stars</p>
                                 )}
                             </div>
                         )}
 
                         <div>
-                            <label className="block text-gray-300 text-sm mb-2">Comment *</label>
+                            <label className="block text-ink text-sm mb-2 font-bold">Comment *</label>
                             <textarea
                                 placeholder="Share your thoughts..."
                                 value={formData.content}
                                 onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                                className="w-full px-4 py-3 bg-game-dark border border-game-purple/30 rounded-lg text-white placeholder-gray-500 focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                className="w-full px-4 py-3 bg-paper border-[2.5px] border-ink rounded-xl text-ink placeholder-ink/40 focus:border-meadow focus:ring-2 focus:ring-meadow/20 transition-all font-semibold"
                                 rows="4"
                                 maxLength="1000"
                                 required
                             />
-                            <div className="text-sm text-gray-500 mt-1">{formData.content.length}/1000</div>
+                            <div className="text-sm text-ink/45 mt-1 font-mono">{formData.content.length}/1000</div>
                         </div>
                         <Button type="submit" variant="primary" disabled={submitting}>
                             {submitting ? 'Submitting...' : 'Submit Comment'}
@@ -151,21 +151,21 @@ const CommentSection = ({ blogSlug, contentSlug, contentType = 'blog' }) => {
             {/* Comments List */}
             {loading ? (
                 <div className="text-center py-8">
-                    <div className="animate-spin rounded-full h-12 w-12 border-4 border-game-purple border-t-transparent mx-auto"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-4 border-meadow border-t-transparent mx-auto"></div>
                 </div>
             ) : comments.length === 0 ? (
-                <Card className="bg-game-darker/50 border-game-purple/30 p-8 text-center">
-                    <p className="text-gray-400">No comments yet. Be the first to comment!</p>
+                <Card className="p-8 text-center">
+                    <p className="text-ink/60 font-semibold">No comments yet. Be the first to comment!</p>
                 </Card>
             ) : (
                 <div className="space-y-4">
                     {comments.map(comment => (
-                        <Card key={comment._id} className="bg-game-darker/50 border-game-purple/30">
+                        <Card key={comment._id}>
                             <div className="p-6">
                                 <div className="flex justify-between items-start mb-3">
                                     <div>
-                                        <div className="text-white font-bold">{comment.author.name}</div>
-                                        <div className="text-sm text-gray-500">
+                                        <div className="text-ink font-bold font-display">{comment.author.name}</div>
+                                        <div className="text-sm text-ink/45 font-mono">
                                             {new Date(comment.createdAt).toLocaleDateString('en-US', {
                                                 year: 'numeric',
                                                 month: 'long',
@@ -174,12 +174,12 @@ const CommentSection = ({ blogSlug, contentSlug, contentType = 'blog' }) => {
                                         </div>
                                     </div>
                                     {comment.rating && (
-                                        <div className="text-yellow-400 text-lg">
+                                        <div className="text-sun text-lg">
                                             {'★'.repeat(comment.rating)}{'☆'.repeat(5 - comment.rating)}
                                         </div>
                                     )}
                                 </div>
-                                <p className="text-gray-300 leading-relaxed">{comment.content}</p>
+                                <p className="text-ink/75 leading-relaxed font-medium">{comment.content}</p>
                             </div>
                         </Card>
                     ))}

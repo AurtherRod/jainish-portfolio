@@ -8,16 +8,16 @@ const Card = ({
     hover = true,
     onClick
 }) => {
-    const baseStyles = 'rounded-2xl overflow-hidden transition-all duration-400 backdrop-filter backdrop-blur-15';
+    const baseStyles = 'rounded-2xl overflow-hidden transition-all duration-300';
 
     const variants = {
-        default: 'bg-gradient-to-br from-game-dark/70 to-game-darker/80 border-2 border-game-purple/15',
+        default: 'slab',
         game: 'game-card',
         blog: 'blog-card',
         glass: 'glass-effect'
     };
 
-    const hoverStyles = hover ? 'hover:transform hover:-translate-y-2 hover:scale-102 hover:border-game-purple/50 hover:shadow-game-glow' : '';
+    const hoverStyles = '';
 
     return (
         <div

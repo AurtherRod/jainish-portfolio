@@ -56,7 +56,7 @@ const GameListPage = () => {
         return (
             <DashboardLayout>
                 <div className="flex items-center justify-center h-96">
-                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
+                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-ink border-t-transparent"></div>
                 </div>
             </DashboardLayout>
         );
@@ -68,8 +68,8 @@ const GameListPage = () => {
 
             <DashboardLayout>
                 <div className="max-w-7xl mx-auto">
-                    <div className="flex justify-between items-center mb-8">
-                        <h1 className="text-4xl font-bold text-white">Manage Games</h1>
+                    <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
+                        <h1 className="text-2xl md:text-4xl font-bold text-ink">Manage Games</h1>
                         <div className="flex gap-3">
                             <Button
                                 variant="outline"
@@ -85,7 +85,7 @@ const GameListPage = () => {
                     </div>
 
                     {/* Filter Tabs */}
-                    <div className="flex gap-4 mb-6">
+                    <div className="flex flex-wrap gap-2 mb-6">
                         <Button
                             variant={filter === 'all' ? 'primary' : 'outline'}
                             onClick={() => setFilter('all')}
@@ -108,8 +108,8 @@ const GameListPage = () => {
 
                     {/* Game List */}
                     {filteredGames.length === 0 ? (
-                        <Card className="bg-game-darker/50 border-game-purple/30 p-12 text-center">
-                            <p className="text-gray-400 text-lg">No games found</p>
+                        <Card className="bg-cream border-ink/15 p-12 text-center">
+                            <p className="text-ink/60 text-lg">No games found</p>
                             <Link to="/dashboard/games/new" className="mt-4 inline-block">
                                 <Button variant="primary">Add Your First Game</Button>
                             </Link>
@@ -117,7 +117,7 @@ const GameListPage = () => {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredGames.map(game => (
-                                <Card key={game._id} className="bg-game-darker/50 border-game-purple/30 hover:border-game-purple/50 transition-all">
+                                <Card key={game._id} className="bg-cream border-ink/15 hover:border-ink/50 transition-all">
                                     <div className="relative">
                                         <img
                                             src={game.thumbnail}
@@ -135,16 +135,16 @@ const GameListPage = () => {
                                     </div>
                                     <div className="p-6">
                                         <div className="flex items-center gap-3 mb-2 flex-wrap">
-                                            <h3 className="text-xl font-bold text-white">{game.title}</h3>
+                                            <h3 className="text-xl font-bold text-ink">{game.title}</h3>
                                             {game.published ? (
                                                 <Badge variant="success">Published</Badge>
                                             ) : (
                                                 <Badge variant="tech">Draft</Badge>
                                             )}
                                         </div>
-                                        <p className="text-gray-400 mb-3 line-clamp-2">{game.description}</p>
-                                        <div className="flex gap-4 text-sm text-gray-500 mb-3">
-                                            <span className="text-game-purple">{game.category}</span>
+                                        <p className="text-ink/60 mb-3 line-clamp-2">{game.description}</p>
+                                        <div className="flex gap-4 text-sm text-ink/50 mb-3">
+                                            <span className="text-meadow-deep">{game.category}</span>
                                             <span>•</span>
                                             <span>{game.plays} plays</span>
                                         </div>

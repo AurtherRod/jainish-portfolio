@@ -40,7 +40,7 @@ const BlogArticle = () => {
   if (loading) {
     return (
       <div className="min-h-screen pt-20 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
+        <div className="animate-spin rounded-full h-16 w-16 border-4 border-meadow border-t-transparent"></div>
       </div>
     );
   }
@@ -48,10 +48,10 @@ const BlogArticle = () => {
   if (error || !blog) {
     return (
       <div className="min-h-screen pt-20 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-300 mb-4">Blog Not Found</h1>
-          <p className="text-gray-400 mb-4">{error || 'The blog post you\'re looking for doesn\'t exist.'}</p>
-          <Link to="/blog" className="text-blue-400 hover:text-blue-300 transition-colors">
+        <div className="slab text-center p-10">
+          <h1 className="font-display text-4xl text-ink mb-4">Blog Not Found</h1>
+          <p className="text-ink/60 mb-4 font-semibold">{error || 'The blog post you\'re looking for doesn\'t exist.'}</p>
+          <Link to="/blog" className="text-meadow-deep hover:text-meadow font-semibold transition-colors">
             ← Back to Blog
           </Link>
         </div>
@@ -87,10 +87,10 @@ const BlogArticle = () => {
       // Check if it's bold (**text**) or italic (*text*)
       if (match[1]) {
         // Bold text
-        parts.push(<strong key={keyCounter++} className="font-bold text-blue-300">{match[2]}</strong>);
+        parts.push(<strong key={keyCounter++} className="font-bold text-ink">{match[2]}</strong>);
       } else if (match[3]) {
         // Italic text
-        parts.push(<em key={keyCounter++} className="italic text-gray-400">{match[4]}</em>);
+        parts.push(<em key={keyCounter++} className="italic text-ink/60">{match[4]}</em>);
       }
 
       currentIndex = match.index + match[0].length;
@@ -125,11 +125,11 @@ const BlogArticle = () => {
 
         const getLanguageColor = (lang) => {
           switch (lang.toLowerCase()) {
-            case 'bash': return 'text-yellow-400';
-            case 'nginx': return 'text-purple-400';
-            case 'javascript': case 'js': return 'text-yellow-300';
-            case 'csharp': case 'c#': return 'text-green-400';
-            default: return 'text-green-400';
+            case 'bash': return 'text-sun';
+            case 'nginx': return 'text-sky';
+            case 'javascript': case 'js': return 'text-sun';
+            case 'csharp': case 'c#': return 'text-meadow';
+            default: return 'text-meadow';
           }
         };
 
@@ -138,32 +138,32 @@ const BlogArticle = () => {
 
         elements.push(
           <div key={i} className="my-6">
-            <div className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden">
-              <div className="bg-gray-800 px-4 py-2 text-sm text-gray-400 border-b border-gray-700 flex justify-between items-center">
+            <div className="bg-[#2a2030] border-[3px] border-ink rounded-2xl overflow-hidden shadow-[4px_4px_0_0_var(--ink)]">
+              <div className="bg-[#3b2b3a] px-4 py-2 text-sm text-paper/70 border-b-[3px] border-ink flex justify-between items-center font-mono">
                 <span>{language || 'code'}</span>
                 {isExecutable && (
                   <button
                     onClick={() => navigator.clipboard.writeText(codeContent)}
-                    className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded transition-colors"
+                    className="text-xs bg-meadow hover:bg-meadow-deep text-white px-3 py-1 rounded-full transition-colors font-semibold"
                   >
                     Copy
                   </button>
                 )}
               </div>
               <pre className="p-4 overflow-x-auto">
-                <code className={`${getLanguageColor(language)} text-sm ${isExecutable ? 'font-mono' : ''}`}>{codeContent}</code>
+                <code className={`${getLanguageColor(language)} text-sm font-mono`}>{codeContent}</code>
               </pre>
             </div>
           </div>
         );
       } else if (line.startsWith('# ')) {
-        elements.push(<h1 key={i} className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">{line.substring(2)}</h1>);
+        elements.push(<h1 key={i} className="font-display text-4xl text-meadow-deep mb-6">{line.substring(2)}</h1>);
       } else if (line.startsWith('## ')) {
-        elements.push(<h2 key={i} className="text-3xl font-bold mb-4 text-blue-400 mt-8">{line.substring(3)}</h2>);
+        elements.push(<h2 key={i} className="font-display text-3xl text-ink mb-4 mt-8">{line.substring(3)}</h2>);
       } else if (line.startsWith('### ')) {
-        elements.push(<h3 key={i} className="text-2xl font-bold mb-3 text-gray-300 mt-6">{line.substring(4)}</h3>);
+        elements.push(<h3 key={i} className="font-display text-2xl text-ink/90 mb-3 mt-6">{line.substring(4)}</h3>);
       } else if (line.startsWith('#### ')) {
-        elements.push(<h4 key={i} className="text-xl font-bold mb-2 text-gray-400 mt-4">{line.substring(5)}</h4>);
+        elements.push(<h4 key={i} className="font-display text-xl text-ink/80 mb-2 mt-4">{line.substring(5)}</h4>);
       } else if (line.includes('|') && !line.startsWith('|---')) {
         // Handle markdown tables
         const tableLines = [];
@@ -181,11 +181,11 @@ const BlogArticle = () => {
 
           elements.push(
             <div key={i} className="my-6 overflow-x-auto">
-              <table className="w-full border-collapse border border-gray-600">
+              <table className="w-full border-collapse border-[2px] border-ink rounded-lg overflow-hidden">
                 <thead>
-                  <tr className="bg-gray-800">
+                  <tr className="bg-sky/30">
                     {headerRow.map((header, idx) => (
-                      <th key={idx} className="border border-gray-600 px-4 py-2 text-left text-blue-300 font-bold">
+                      <th key={idx} className="border-[2px] border-ink px-4 py-2 text-left text-ink font-bold">
                         {renderInlineFormatting(header)}
                       </th>
                     ))}
@@ -193,9 +193,9 @@ const BlogArticle = () => {
                 </thead>
                 <tbody>
                   {rows.map((row, rowIdx) => (
-                    <tr key={rowIdx} className="hover:bg-gray-800/50">
+                    <tr key={rowIdx} className="hover:bg-sun/10">
                       {row.map((cell, cellIdx) => (
-                        <td key={cellIdx} className="border border-gray-600 px-4 py-2 text-gray-300">
+                        <td key={cellIdx} className="border-[2px] border-ink px-4 py-2 text-ink">
                           {renderInlineFormatting(cell)}
                         </td>
                       ))}
@@ -213,11 +213,11 @@ const BlogArticle = () => {
         let j = i;
         while (j < lines.length && ((lines[j].startsWith('- ') && lines[j].length > 2) || (lines[j].startsWith('* ') && lines[j].length > 2))) {
           const content = renderInlineFormatting(lines[j].substring(2));
-          listItems.push(<li key={j} className="text-gray-300 mb-1">{content}</li>);
+          listItems.push(<li key={j} className="text-ink mb-1 font-medium">{content}</li>);
           j++;
         }
         elements.push(
-          <ul key={i} className="list-disc list-inside mb-4 ml-4">
+          <ul key={i} className="list-disc list-inside mb-4 ml-4 marker:text-meadow">
             {listItems}
           </ul>
         );
@@ -230,12 +230,12 @@ const BlogArticle = () => {
           const match = lines[j].match(/^(\d+)\. (.*)/);
           if (match) {
             const content = renderInlineFormatting(match[2]);
-            listItems.push(<li key={j} className="text-gray-300 mb-1">{content}</li>);
+            listItems.push(<li key={j} className="text-ink mb-1 font-medium">{content}</li>);
           }
           j++;
         }
         elements.push(
-          <ol key={i} className="list-decimal list-inside mb-4 ml-4">
+          <ol key={i} className="list-decimal list-inside mb-4 ml-4 marker:text-meadow marker:font-bold">
             {listItems}
           </ol>
         );
@@ -243,12 +243,12 @@ const BlogArticle = () => {
       } else if (line.trim() === '') {
         elements.push(<div key={i} className="mb-4"></div>);
       } else if (line.startsWith('**') && line.endsWith('**')) {
-        elements.push(<p key={i} className="text-gray-300 mb-4 leading-relaxed font-bold">{line.substring(2, line.length - 2)}</p>);
+        elements.push(<p key={i} className="text-ink mb-4 leading-relaxed font-bold">{line.substring(2, line.length - 2)}</p>);
       } else if (line === '***') {
         elements.push(<div key={i} className="mb-12"></div>);
       } else if (line.trim() && line.trim() !== '*' && line.trim() !== '***') {
         const content = renderInlineFormatting(line);
-        elements.push(<p key={i} className="text-gray-300 mb-4 leading-relaxed">{content}</p>);
+        elements.push(<p key={i} className="text-ink mb-4 leading-relaxed font-medium">{content}</p>);
       }
 
       i++;
@@ -305,43 +305,45 @@ const BlogArticle = () => {
         tags={blog.tags}
       />
       <StructuredData data={structuredData} />
-      <article className="container mx-auto px-6 py-20 max-w-4xl">
-        <div className="mb-8">
-          <Link to="/blog" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-8 transition-colors">
+      <article className="container mx-auto px-6 py-16 max-w-4xl">
+        {/* Article header on a solid card */}
+        <div className="slab p-8 md:p-10 mb-8">
+          <Link to="/blog" className="inline-flex items-center text-meadow-deep hover:text-meadow font-semibold mb-6 transition-colors">
             ← Back to Blog
           </Link>
 
-          <div className="flex items-center gap-4 mb-6">
-            <span className="bg-blue-500/30 backdrop-blur-sm border border-blue-400/50 text-blue-200 px-4 py-2 rounded-full text-sm font-medium">
+          <div className="flex flex-wrap items-center gap-3 mb-5">
+            <span className="toon-pill bg-meadow text-white">
               {blog.category}
             </span>
-            <span className="text-gray-500 text-sm">{blog.readTime} min read</span>
-            <time className="text-gray-500 text-sm">{formatDate(blog.publishedAt || blog.createdAt)}</time>
+            <span className="text-ink/45 text-xs font-mono">{blog.readTime} min read</span>
+            <time className="text-ink/45 text-xs font-mono">{formatDate(blog.publishedAt || blog.createdAt)}</time>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="font-display text-3xl md:text-5xl text-ink mb-5 leading-tight">
             {blog.title}
           </h1>
 
-          <p className="text-xl text-gray-400 mb-8 leading-relaxed">{blog.excerpt}</p>
+          <p className="text-lg text-ink/65 mb-6 leading-relaxed font-semibold">{blog.excerpt}</p>
 
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-1.5">
             {blog.tags.map((tag, index) => (
-              <span key={index} className="tech-tag text-blue-300 text-sm font-medium px-3 py-1.5 rounded-full">
+              <span key={index} className="tech-tag px-2.5 py-0.5 rounded-full text-[0.68rem]">
                 {tag}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="prose prose-invert max-w-none">
-          <div className="text-gray-300 leading-relaxed space-y-4">
+        {/* Article body on a solid cream card for readability */}
+        <div className="slab p-8 md:p-12">
+          <div className="leading-relaxed space-y-4">
             {renderContent(blog.content)}
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-gray-700">
-          <Link to="/blog" className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors font-medium">
+        <div className="mt-12 pt-8 border-t-[2px] border-ink/15">
+          <Link to="/blog" className="inline-flex items-center text-meadow-deep hover:text-meadow transition-colors font-semibold">
             ← Back to All Articles
           </Link>
         </div>

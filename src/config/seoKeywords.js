@@ -1,33 +1,31 @@
 export const targetKeywords = {
   primary: [
-    "Unity developer",
-    "C# game programmer",
-    "game developer",
-    "Unity specialist",
-    "gameplay programmer"
+    "software engineer",
+    "full-stack developer",
+    "backend developer",
+    "Node.js developer",
+    "React developer"
   ],
   
   longTail: [
-    "Unity game developer for hire",
-    "C# Unity programmer",
-    "Unity 3D developer",
-    "Unity 2D game developer",
-    "Unity gameplay programmer",
-    "Unity vehicle physics developer",
-    "Unity custom tools developer",
-    "Unity editor scripting expert",
-    "Unity multiplayer developer",
-    "Unity mobile game developer",
-    "Unity procedural generation developer",
-    "Unity shader programmer",
-    "Unity AI programmer",
-    "Unity physics programmer",
-    "Unity optimization expert"
+    "software engineer for hire",
+    "full-stack JavaScript developer",
+    "Node.js backend engineer",
+    "React frontend developer",
+    "MongoDB developer",
+    "REST API developer",
+    "system design engineer",
+    "scalable web applications",
+    "cloud infrastructure developer",
+    "TypeScript developer",
+    "microservices architect",
+    "DevOps engineer",
+    "performance optimization expert"
   ],
   
   location: [
-    "Unity developer India",
-    "game developer Mumbai",
-    "Unity programmer Bangalore"
+    "software engineer India",
+    "full-stack developer Mumbai",
+    "backend developer Bangalore"
   ]
 };

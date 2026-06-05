@@ -2,7 +2,6 @@ import React from 'react';
 import HeroSection from '../components/HeroSection';
 import FeaturedBlogsSection from '../components/FeaturedBlogsSection';
 import ProjectsSection from '../components/ProjectsSection';
-import ExperienceSection from '../components/ExperienceSection';
 import AboutSection from '../components/AboutSection';
 import ContactSection from '../components/ContactSection';
 import SEO from '../components/SEO';
@@ -21,8 +20,8 @@ const HomePage = () => {
         "name": "Jainish Gupta",
         "givenName": "Jainish",
         "familyName": "Gupta",
-        "jobTitle": ["Unity Game Developer", "C# Gameplay Programmer", "Technical Game Designer"],
-        "description": "Unity Game Developer with 3+ years creating immersive gaming experiences. Expert in C#, gameplay mechanics, vehicle physics, procedural generation, and custom Unity tools. Games with 300K+ downloads.",
+        "jobTitle": ["Software Engineer", "Full-Stack Developer", "Backend Engineer"],
+        "description": "Software Engineer with 3+ years building scalable web applications, backend systems, and full-stack solutions. Expert in Node.js, React, MongoDB, and cloud technologies.",
         "url": "https://jainish.space/",
         "image": "https://jainish.space/Images/favicon.png",
         "sameAs": [
@@ -30,8 +29,8 @@ const HomePage = () => {
           "https://github.com/AurtherRod"
         ],
         "knowsAbout": [
-          "Unity", "C#", "Game Development", "Game Physics", "Gameplay Programming", 
-          "Shader Programming", "AI & Pathfinding", "Level Design", "Custom Unity Tools", "Performance Optimization"
+          "JavaScript", "TypeScript", "Node.js", "React", "MongoDB", "PostgreSQL",
+          "System Design", "REST APIs", "Docker", "AWS", "Performance Optimization"
         ],
         "worksFor": {
           "@type": "Organization",
@@ -43,21 +42,21 @@ const HomePage = () => {
         "@type": "Organization",
         "@id": "https://jainish.space/#trustopay",
         "name": "Coincade Studio",
-        "description": "Game development studio specializing in blockchain gaming and innovative gameplay mechanics.",
+        "description": "Technology company specializing in software development and scalable web solutions.",
         "url": "https://jainish.space/",
         "founder": {
           "@type": "Person",
           "@id": "https://jainish.space/#person"
         },
-        "industry": "Game Development",
+        "industry": "Software Development",
         "numberOfEmployees": "10-50"
       },
       {
         "@type": "WebSite",
         "@id": "https://jainish.space/#website",
         "url": "https://jainish.space/",
-        "name": "Jainish Gupta - Game Developer Portfolio",
-        "description": "Portfolio showcasing Unity games and C# projects by Game Developer Jainish Gupta",
+        "name": "Jainish Gupta - Software Engineer Portfolio",
+        "description": "Portfolio showcasing software engineering projects and technical expertise by Jainish Gupta",
         "publisher": {
           "@type": "Person",
           "@id": "https://jainish.space/#person"
@@ -68,7 +67,7 @@ const HomePage = () => {
         "@type": "ProfilePage",
         "@id": "https://jainish.space/#profilepage",
         "url": "https://jainish.space/",
-        "name": "Jainish Gupta - Unity Game Developer",
+        "name": "Jainish Gupta - Software Engineer",
         "isPartOf": {
           "@type": "WebSite",
           "@id": "https://jainish.space/#website"
@@ -88,16 +87,15 @@ const HomePage = () => {
   return (
     <>
       <SEO 
-        title="Jainish Gupta - Unity Game Developer | C# Specialist"
-        description="Unity Game Developer creating immersive gaming experiences with C#. 3+ years building 2D/3D games, custom tools, and advanced gameplay mechanics."
-        keywords={['Unity developer', 'C# game programmer', 'game developer', 'Unity specialist', 'gameplay programmer', 'technical game designer', '2D games', '3D games', 'game physics', 'Unity tools']}
+        title="Jainish Gupta - Software Engineer | Full-Stack Developer"
+        description="Software Engineer building scalable web applications and backend systems. 3+ years of experience with Node.js, React, MongoDB, and cloud technologies."
+        keywords={['software engineer', 'full-stack developer', 'backend engineer', 'Node.js developer', 'React developer', 'web developer', 'system design', 'MongoDB', 'JavaScript', 'TypeScript']}
       />
       <StructuredData data={structuredData} />
       <HeroSection />
-      <FeaturedBlogsSection />
       <ProjectsSection />
-      <ExperienceSection />
       <AboutSection />
+      <FeaturedBlogsSection />
       <ContactSection />
     </>
   );

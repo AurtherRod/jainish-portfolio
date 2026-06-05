@@ -47,8 +47,8 @@ const DashboardPage = () => {
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
             return (
-                <div className="bg-game-darker border border-game-purple/50 p-3 rounded-lg shadow-lg">
-                    <p className="text-white font-semibold">{label}</p>
+                <div className="bg-cream border border-ink/50 p-3 rounded-lg shadow-lg">
+                    <p className="text-ink font-semibold">{label}</p>
                     {payload.map((entry, index) => (
                         <p key={index} className="text-sm" style={{ color: entry.color }}>
                             {entry.name}: {typeof entry.value === 'number' ? entry.value.toLocaleString() : entry.value}
@@ -64,7 +64,7 @@ const DashboardPage = () => {
         return (
             <DashboardLayout>
                 <div className="flex items-center justify-center h-96">
-                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
+                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-ink border-t-transparent"></div>
                 </div>
             </DashboardLayout>
         );
@@ -81,12 +81,12 @@ const DashboardPage = () => {
             <DashboardLayout>
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}
-                    <div className="mb-8 flex justify-between items-center">
+                    <div className="mb-8 flex flex-wrap justify-between items-center gap-4">
                         <div>
-                            <h1 className="text-4xl font-bold text-white mb-2">
-                                Admin <span className="text-game-purple">Dashboard</span>
+                            <h1 className="text-2xl md:text-4xl font-bold text-ink mb-2">
+                                Admin <span className="text-meadow-deep">Dashboard</span>
                             </h1>
-                            <p className="text-gray-400">Overview of your portfolio content</p>
+                            <p className="text-ink/60">Overview of your portfolio content</p>
                         </div>
                         <Button
                             variant="outline"
@@ -98,7 +98,7 @@ const DashboardPage = () => {
                     </div>
 
                     {error && (
-                        <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-4 text-red-400 mb-6">
+                        <div className="bg-coral/15 border border-coral rounded-lg p-4 text-coral mb-6">
                             {error}
                         </div>
                     )}
@@ -107,49 +107,49 @@ const DashboardPage = () => {
                         <>
                             {/* Blog Stats Grid */}
                             <div className="mb-8">
-                                <h2 className="text-2xl font-bold text-white mb-4">📝 Blog Statistics</h2>
+                                <h2 className="text-2xl font-bold text-ink mb-4">📝 Blog Statistics</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    <Card className="bg-gradient-to-br from-game-purple/20 to-game-purple/5 border-game-purple/30">
+                                    <Card className="bg-gradient-to-br from-meadow/15 to-meadow/5 border-ink/15">
                                         <div className="p-6">
-                                            <div className="text-gray-400 text-sm mb-2">Total Blogs</div>
-                                            <div className="text-4xl font-bold text-white mb-1">
+                                            <div className="text-ink/60 text-sm mb-2">Total Blogs</div>
+                                            <div className="text-2xl md:text-4xl font-bold text-ink mb-1">
                                                 {analytics.blogs.overview.totalBlogs}
                                             </div>
-                                            <div className="text-sm text-gray-500">
+                                            <div className="text-sm text-ink/50">
                                                 {analytics.blogs.overview.publishedBlogs} published
                                             </div>
                                         </div>
                                     </Card>
 
-                                    <Card className="bg-gradient-to-br from-game-pink/20 to-game-pink/5 border-game-pink/30">
+                                    <Card className="bg-gradient-to-br from-coral/15 to-coral/5 border-game-pink/30">
                                         <div className="p-6">
-                                            <div className="text-gray-400 text-sm mb-2">Total Views</div>
-                                            <div className="text-4xl font-bold text-white mb-1">
+                                            <div className="text-ink/60 text-sm mb-2">Total Views</div>
+                                            <div className="text-2xl md:text-4xl font-bold text-ink mb-1">
                                                 {analytics.blogs.overview.totalViews.toLocaleString()}
                                             </div>
-                                            <div className="text-sm text-gray-500">
+                                            <div className="text-sm text-ink/50">
                                                 {analytics.blogs.overview.recentViews} recent
                                             </div>
                                         </div>
                                     </Card>
 
-                                    <Card className="bg-gradient-to-br from-blue-500/20 to-blue-500/5 border-blue-500/30">
+                                    <Card className="bg-gradient-to-br from-sky/20 to-sky/5 border-sky/30">
                                         <div className="p-6">
-                                            <div className="text-gray-400 text-sm mb-2">Published</div>
-                                            <div className="text-4xl font-bold text-white mb-1">
+                                            <div className="text-ink/60 text-sm mb-2">Published</div>
+                                            <div className="text-2xl md:text-4xl font-bold text-ink mb-1">
                                                 {analytics.blogs.overview.publishedBlogs}
                                             </div>
-                                            <div className="text-sm text-gray-500">Live articles</div>
+                                            <div className="text-sm text-ink/50">Live articles</div>
                                         </div>
                                     </Card>
 
-                                    <Card className="bg-gradient-to-br from-green-500/20 to-green-500/5 border-green-500/30">
+                                    <Card className="bg-gradient-to-br from-teal/20 to-teal/5 border-teal/30">
                                         <div className="p-6">
-                                            <div className="text-gray-400 text-sm mb-2">Drafts</div>
-                                            <div className="text-4xl font-bold text-white mb-1">
+                                            <div className="text-ink/60 text-sm mb-2">Drafts</div>
+                                            <div className="text-2xl md:text-4xl font-bold text-ink mb-1">
                                                 {analytics.blogs.overview.draftBlogs}
                                             </div>
-                                            <div className="text-sm text-gray-500">Unpublished</div>
+                                            <div className="text-sm text-ink/50">Unpublished</div>
                                         </div>
                                     </Card>
                                 </div>
@@ -157,27 +157,27 @@ const DashboardPage = () => {
 
                             {/* Game Stats Grid */}
                             <div className="mb-8">
-                                <h2 className="text-2xl font-bold text-white mb-4">🎮 Game Statistics</h2>
+                                <h2 className="text-2xl font-bold text-ink mb-4">🎮 Game Statistics</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    <Card className="bg-gradient-to-br from-purple-500/20 to-purple-500/5 border-purple-500/30">
+                                    <Card className="bg-gradient-to-br from-sky/20 to-sky/5 border-sky/30">
                                         <div className="p-6">
-                                            <div className="text-gray-400 text-sm mb-2">Total Games</div>
-                                            <div className="text-4xl font-bold text-white mb-1">
+                                            <div className="text-ink/60 text-sm mb-2">Total Games</div>
+                                            <div className="text-2xl md:text-4xl font-bold text-ink mb-1">
                                                 {analytics.games.overview.totalGames}
                                             </div>
-                                            <div className="text-sm text-gray-500">
+                                            <div className="text-sm text-ink/50">
                                                 {analytics.games.overview.featuredGames} featured
                                             </div>
                                         </div>
                                     </Card>
 
-                                    <Card className="bg-gradient-to-br from-pink-500/20 to-pink-500/5 border-pink-500/30">
+                                    <Card className="bg-gradient-to-br from-coral/20 to-coral/5 border-coral/30">
                                         <div className="p-6">
-                                            <div className="text-gray-400 text-sm mb-2">Total Plays</div>
-                                            <div className="text-4xl font-bold text-white mb-1">
+                                            <div className="text-ink/60 text-sm mb-2">Total Plays</div>
+                                            <div className="text-2xl md:text-4xl font-bold text-ink mb-1">
                                                 {analytics.games.overview.totalPlays.toLocaleString()}
                                             </div>
-                                            <div className="text-sm text-gray-500">
+                                            <div className="text-sm text-ink/50">
                                                 {analytics.games.overview.totalGames > 0
                                                     ? Math.round(analytics.games.overview.totalPlays / analytics.games.overview.totalGames)
                                                     : 0} avg/game
@@ -185,28 +185,28 @@ const DashboardPage = () => {
                                         </div>
                                     </Card>
 
-                                    <Card className="bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 border-yellow-500/30">
+                                    <Card className="bg-gradient-to-br from-sun/20 to-sun/5 border-sun/30">
                                         <div className="p-6">
-                                            <div className="text-gray-400 text-sm mb-2">Avg Rating</div>
-                                            <div className="text-4xl font-bold text-white mb-1">
+                                            <div className="text-ink/60 text-sm mb-2">Avg Rating</div>
+                                            <div className="text-2xl md:text-4xl font-bold text-ink mb-1">
                                                 {analytics.games.overview.avgRating > 0
                                                     ? analytics.games.overview.avgRating.toFixed(1)
                                                     : 'N/A'}
                                                 {analytics.games.overview.avgRating > 0 && <span className="text-2xl ml-1">⭐</span>}
                                             </div>
-                                            <div className="text-sm text-gray-500">
+                                            <div className="text-sm text-ink/50">
                                                 {analytics.games.overview.totalRatings} ratings
                                             </div>
                                         </div>
                                     </Card>
 
-                                    <Card className="bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 border-cyan-500/30">
+                                    <Card className="bg-gradient-to-br from-teal/20 to-teal/5 border-teal/30">
                                         <div className="p-6">
-                                            <div className="text-gray-400 text-sm mb-2">Published</div>
-                                            <div className="text-4xl font-bold text-white mb-1">
+                                            <div className="text-ink/60 text-sm mb-2">Published</div>
+                                            <div className="text-2xl md:text-4xl font-bold text-ink mb-1">
                                                 {analytics.games.overview.publishedGames}
                                             </div>
-                                            <div className="text-sm text-gray-500">Live games</div>
+                                            <div className="text-sm text-ink/50">Live games</div>
                                         </div>
                                     </Card>
                                 </div>
@@ -216,9 +216,9 @@ const DashboardPage = () => {
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                                 {/* Top Blogs by Views */}
                                 {analytics.blogs.mostViewedBlogs.length > 0 && (
-                                    <Card className="bg-game-darker/50 border-game-purple/30">
+                                    <Card className="bg-cream border-ink/15">
                                         <div className="p-6">
-                                            <h2 className="text-xl font-bold text-white mb-4">📝 Top Blogs by Views</h2>
+                                            <h2 className="text-xl font-bold text-ink mb-4">📝 Top Blogs by Views</h2>
                                             <ResponsiveContainer width="100%" height={300}>
                                                 <BarChart data={analytics.blogs.mostViewedBlogs.map(blog => ({
                                                     name: blog.title.length > 20 ? blog.title.substring(0, 20) + '...' : blog.title,
@@ -244,9 +244,9 @@ const DashboardPage = () => {
 
                                 {/* Most Played Games */}
                                 {analytics.games.mostPlayedGames.length > 0 && (
-                                    <Card className="bg-game-darker/50 border-game-purple/30">
+                                    <Card className="bg-cream border-ink/15">
                                         <div className="p-6">
-                                            <h2 className="text-xl font-bold text-white mb-4">🎮 Most Played Games</h2>
+                                            <h2 className="text-xl font-bold text-ink mb-4">🎮 Most Played Games</h2>
                                             <ResponsiveContainer width="100%" height={300}>
                                                 <BarChart data={analytics.games.mostPlayedGames.map(game => ({
                                                     name: game.title.length > 15 ? game.title.substring(0, 15) + '...' : game.title,
@@ -272,9 +272,9 @@ const DashboardPage = () => {
 
                                 {/* Blog Categories */}
                                 {analytics.blogs.viewsByCategory.length > 0 && (
-                                    <Card className="bg-game-darker/50 border-game-purple/30">
+                                    <Card className="bg-cream border-ink/15">
                                         <div className="p-6">
-                                            <h2 className="text-xl font-bold text-white mb-4">📂 Blog Categories</h2>
+                                            <h2 className="text-xl font-bold text-ink mb-4">📂 Blog Categories</h2>
                                             <ResponsiveContainer width="100%" height={300}>
                                                 <PieChart>
                                                     <Pie
@@ -304,9 +304,9 @@ const DashboardPage = () => {
 
                                 {/* Game Categories */}
                                 {analytics.games.gamesByCategory.length > 0 && (
-                                    <Card className="bg-game-darker/50 border-game-purple/30">
+                                    <Card className="bg-cream border-ink/15">
                                         <div className="p-6">
-                                            <h2 className="text-xl font-bold text-white mb-4">🎯 Game Categories</h2>
+                                            <h2 className="text-xl font-bold text-ink mb-4">🎯 Game Categories</h2>
                                             <ResponsiveContainer width="100%" height={300}>
                                                 <PieChart>
                                                     <Pie
@@ -338,17 +338,17 @@ const DashboardPage = () => {
                             {/* Recent Activity */}
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                                 {/* Recent Blogs */}
-                                <Card className="bg-game-darker/50 border-game-purple/30">
+                                <Card className="bg-cream border-ink/15">
                                     <div className="p-6">
-                                        <h2 className="text-2xl font-bold text-white mb-4">📝 Recent Blogs</h2>
+                                        <h2 className="text-2xl font-bold text-ink mb-4">📝 Recent Blogs</h2>
                                         <div className="space-y-3">
                                             {analytics.blogs.recentBlogs.map((blog) => (
-                                                <div key={blog._id} className="flex items-center justify-between p-4 bg-game-dark/50 rounded-lg">
+                                                <div key={blog._id} className="flex items-center justify-between p-4 bg-paper rounded-lg">
                                                     <div className="flex-1">
-                                                        <Link to={`/blog/${blog.slug}`} className="text-white hover:text-game-purple transition-colors line-clamp-1">
+                                                        <Link to={`/blog/${blog.slug}`} className="text-ink hover:text-meadow-deep transition-colors line-clamp-1">
                                                             {blog.title}
                                                         </Link>
-                                                        <div className="text-sm text-gray-500 mt-1">
+                                                        <div className="text-sm text-ink/50 mt-1">
                                                             {new Date(blog.createdAt).toLocaleDateString()} •
                                                             {blog.published ? (
                                                                 <Badge variant="success" className="ml-2">Published</Badge>
@@ -368,21 +368,21 @@ const DashboardPage = () => {
 
                                 {/* Recent Comments */}
                                 {analytics.comments && analytics.comments.recentComments.length > 0 && (
-                                    <Card className="bg-game-darker/50 border-game-purple/30">
+                                    <Card className="bg-cream border-ink/15">
                                         <div className="p-6">
-                                            <div className="flex justify-between items-center mb-4">
-                                                <h2 className="text-2xl font-bold text-white">💬 Recent Comments</h2>
+                                            <div className="flex flex-wrap justify-between items-center gap-4 mb-4">
+                                                <h2 className="text-2xl font-bold text-ink">💬 Recent Comments</h2>
                                                 {analytics.comments.overview.pendingComments > 0 && (
                                                     <Badge variant="tech">{analytics.comments.overview.pendingComments} Pending</Badge>
                                                 )}
                                             </div>
                                             <div className="space-y-3">
                                                 {analytics.comments.recentComments.map((comment) => (
-                                                    <div key={comment._id} className="p-4 bg-game-dark/50 rounded-lg">
+                                                    <div key={comment._id} className="p-4 bg-paper rounded-lg">
                                                         <div className="flex items-start justify-between mb-2">
                                                             <div className="flex-1">
-                                                                <div className="text-white font-semibold">{comment.author.name}</div>
-                                                                <div className="text-xs text-gray-500">
+                                                                <div className="text-ink font-semibold">{comment.author.name}</div>
+                                                                <div className="text-xs text-ink/50">
                                                                     {comment.contentType === 'game' ? '🎮' : '📝'} {comment.contentSlug}
                                                                     {comment.rating && <span className="ml-2">⭐ {comment.rating}</span>}
                                                                 </div>
@@ -398,8 +398,8 @@ const DashboardPage = () => {
                                                                 {comment.status}
                                                             </Badge>
                                                         </div>
-                                                        <p className="text-gray-300 text-sm line-clamp-2">{comment.content}</p>
-                                                        <div className="text-xs text-gray-500 mt-2">
+                                                        <p className="text-ink/75 text-sm line-clamp-2">{comment.content}</p>
+                                                        <div className="text-xs text-ink/50 mt-2">
                                                             {new Date(comment.createdAt).toLocaleDateString()}
                                                         </div>
                                                     </div>
@@ -414,19 +414,19 @@ const DashboardPage = () => {
 
                                 {/* Top Rated Games */}
                                 {analytics.games.topRatedGames.length > 0 && (
-                                    <Card className="bg-game-darker/50 border-game-purple/30">
+                                    <Card className="bg-cream border-ink/15">
                                         <div className="p-6">
-                                            <h2 className="text-2xl font-bold text-white mb-4">⭐ Top Rated Games</h2>
+                                            <h2 className="text-2xl font-bold text-ink mb-4">⭐ Top Rated Games</h2>
                                             <div className="space-y-3">
                                                 {analytics.games.topRatedGames.map((game, index) => (
-                                                    <div key={game._id} className="flex items-center justify-between p-4 bg-game-dark/50 rounded-lg">
+                                                    <div key={game._id} className="flex items-center justify-between p-4 bg-paper rounded-lg">
                                                         <div className="flex items-center gap-4 flex-1">
-                                                            <div className="text-2xl font-bold text-game-purple">#{index + 1}</div>
+                                                            <div className="text-2xl font-bold text-meadow-deep">#{index + 1}</div>
                                                             <div className="flex-1">
-                                                                <Link to={`/games/${game.slug}`} className="text-white hover:text-game-purple transition-colors line-clamp-1">
+                                                                <Link to={`/games/${game.slug}`} className="text-ink hover:text-meadow-deep transition-colors line-clamp-1">
                                                                     {game.title}
                                                                 </Link>
-                                                                <div className="text-sm text-gray-500 mt-1">
+                                                                <div className="text-sm text-ink/50 mt-1">
                                                                     ⭐ {game.rating.average.toFixed(1)} ({game.rating.count}) • {game.plays} plays
                                                                 </div>
                                                             </div>

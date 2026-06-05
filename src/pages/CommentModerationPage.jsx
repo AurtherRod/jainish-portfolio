@@ -79,7 +79,7 @@ const CommentModerationPage = () => {
         return (
             <DashboardLayout>
                 <div className="flex items-center justify-center h-96">
-                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
+                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-ink border-t-transparent"></div>
                 </div>
             </DashboardLayout>
         );
@@ -91,8 +91,8 @@ const CommentModerationPage = () => {
 
             <DashboardLayout>
                 <div className="max-w-5xl mx-auto">
-                    <div className="flex justify-between items-center mb-8">
-                        <h1 className="text-4xl font-bold text-white">
+                    <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
+                        <h1 className="text-2xl md:text-4xl font-bold text-ink">
                             Moderate Comments
                             {filter === 'pending' && comments.length > 0 && (
                                 <Badge variant="tech" className="ml-4">{comments.length} Pending</Badge>
@@ -108,7 +108,7 @@ const CommentModerationPage = () => {
                     </div>
 
                     {/* Filter Tabs */}
-                    <div className="flex gap-4 mb-6">
+                    <div className="flex flex-wrap gap-2 mb-6">
                         <Button
                             variant={filter === 'pending' ? 'primary' : 'outline'}
                             onClick={() => setFilter('pending')}
@@ -137,38 +137,38 @@ const CommentModerationPage = () => {
 
                     {/* Comments List */}
                     {comments.length === 0 ? (
-                        <Card className="bg-game-darker/50 border-game-purple/30 p-12 text-center">
-                            <p className="text-gray-400 text-lg">
+                        <Card className="bg-cream border-ink/15 p-12 text-center">
+                            <p className="text-ink/60 text-lg">
                                 {filter === 'pending' ? 'No pending comments' : `No ${filter} comments`}
                             </p>
                         </Card>
                     ) : (
                         <div className="space-y-4">
                             {comments.map(comment => (
-                                <Card key={comment._id} className="bg-game-darker/50 border-game-purple/30">
+                                <Card key={comment._id} className="bg-cream border-ink/15">
                                     <div className="p-6">
                                         <div className="flex justify-between items-start mb-4">
                                             <div className="flex-1">
                                                 <div className="flex items-center gap-3 mb-2">
-                                                    <div className="text-white font-bold">{comment.author.name}</div>
+                                                    <div className="text-ink font-bold">{comment.author.name}</div>
                                                     {comment.status === 'approved' && <Badge variant="success">Approved</Badge>}
                                                     {comment.status === 'rejected' && <Badge variant="secondary">Rejected</Badge>}
                                                     {comment.status === 'pending' && <Badge variant="tech">Pending</Badge>}
                                                 </div>
-                                                <div className="text-sm text-gray-500 mb-1">{comment.author.email}</div>
-                                                <div className="text-sm text-gray-500">
-                                                    On: <Link to={`/blog/${comment.blogSlug}`} className="text-game-purple hover:text-game-pink">
+                                                <div className="text-sm text-ink/50 mb-1">{comment.author.email}</div>
+                                                <div className="text-sm text-ink/50">
+                                                    On: <Link to={`/blog/${comment.blogSlug}`} className="text-meadow-deep hover:text-game-pink">
                                                         {comment.blogSlug}
                                                     </Link>
                                                 </div>
                                             </div>
-                                            <div className="text-sm text-gray-500">
+                                            <div className="text-sm text-ink/50">
                                                 {new Date(comment.createdAt).toLocaleString()}
                                             </div>
                                         </div>
 
-                                        <div className="bg-game-dark/50 rounded-lg p-4 mb-4">
-                                            <p className="text-gray-300">{comment.content}</p>
+                                        <div className="bg-paper rounded-lg p-4 mb-4">
+                                            <p className="text-ink/75">{comment.content}</p>
                                         </div>
 
                                         <div className="flex gap-3">

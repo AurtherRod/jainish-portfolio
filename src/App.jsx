@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
+import ScrollProgress from './components/ScrollProgress';
 import ErrorBoundary from './components/ErrorBoundary';
 import './styles/globals.css';
 
@@ -25,22 +26,25 @@ const ProtectedRoute = lazy(() => import('./components/ProtectedRoute'));
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center">
     <div className="relative">
-      <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
-      <div className="absolute inset-0 animate-ping rounded-full h-16 w-16 border-4 border-game-pink opacity-20"></div>
+      <div className="animate-spin rounded-full h-16 w-16 border-4 border-meadow border-t-transparent"></div>
+      <div className="absolute inset-0 animate-ping rounded-full h-16 w-16 border-4 border-sun opacity-20"></div>
     </div>
   </div>
 );
 
-const App = () => (
-  <ErrorBoundary>
-    <Router>
-      <div className="antialiased relative">
-        <ParticleBackground />
-        <a href="#main-content" className="skip-to-main">Skip to main content</a>
-        <Header />
-        <main id="main-content" role="main" className="relative z-10">
-          <Suspense fallback={<LoadingFallback />}>
-            <Routes>
+const AppContent = () => {
+  const location = useLocation();
+  const isDashboard = location.pathname.startsWith('/dashboard') || location.pathname === '/login';
+
+  return (
+    <div className="antialiased relative">
+      {!isDashboard && <ParticleBackground />}
+      {!isDashboard && <ScrollProgress />}
+      <a href="#main-content" className="skip-to-main">Skip to main content</a>
+      {!isDashboard && <Header />}
+      <main id="main-content" role="main" className="relative z-10">
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogArticle />} />
@@ -64,8 +68,15 @@ const App = () => (
             </Routes>
           </Suspense>
         </main>
-        <Footer />
+        {!isDashboard && <Footer />}
       </div>
+  );
+};
+
+const App = () => (
+  <ErrorBoundary>
+    <Router>
+      <AppContent />
     </Router>
   </ErrorBoundary>
 );

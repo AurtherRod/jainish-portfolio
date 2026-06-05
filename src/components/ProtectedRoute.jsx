@@ -32,8 +32,8 @@ const ProtectedRoute = ({ children }) => {
         return (
             <div className="min-h-screen flex items-center justify-center bg-game-dark">
                 <div className="relative">
-                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
-                    <div className="absolute inset-0 animate-ping rounded-full h-16 w-16 border-4 border-game-pink opacity-20"></div>
+                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-meadow border-t-transparent"></div>
+                    <div className="absolute inset-0 animate-ping rounded-full h-16 w-16 border-4 border-sun opacity-20"></div>
                 </div>
             </div>
         );

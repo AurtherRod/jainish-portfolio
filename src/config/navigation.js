@@ -7,11 +7,6 @@ export const navigationLinks = [
 
 export const externalLinks = {
     blog: { label: 'Blog', href: '/blog' },
-    resume: {
-        label: 'Resume',
-        href: '/JainishGuptaResume.pdf',
-        download: 'JainishGuptaResume.pdf'
-    },
 };
 
 export const socialLinks = [

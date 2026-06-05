@@ -165,8 +165,8 @@ const GameAnalyticsPage = () => {
     const CustomTooltip = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
             return (
-                <div className="bg-game-darker border border-game-purple/50 p-3 rounded-lg shadow-lg">
-                    <p className="text-white font-semibold">{label}</p>
+                <div className="bg-cream border border-ink/50 p-3 rounded-lg shadow-lg">
+                    <p className="text-ink font-semibold">{label}</p>
                     {payload.map((entry, index) => (
                         <p key={index} className="text-sm" style={{ color: entry.color }}>
                             {entry.name}: {typeof entry.value === 'number' ? entry.value.toFixed(2) : entry.value}
@@ -191,7 +191,7 @@ const GameAnalyticsPage = () => {
         return (
             <DashboardLayout>
                 <div className="flex items-center justify-center h-96">
-                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-game-purple border-t-transparent"></div>
+                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-ink border-t-transparent"></div>
                 </div>
             </DashboardLayout>
         );
@@ -206,10 +206,10 @@ const GameAnalyticsPage = () => {
                     {/* Header with Date Filter */}
                     <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div>
-                            <h1 className="text-4xl font-bold text-white mb-2">
-                                Game <span className="text-game-purple">Analytics</span>
+                            <h1 className="text-4xl font-bold text-ink mb-2">
+                                Game <span className="text-meadow-deep">Analytics</span>
                             </h1>
-                            <p className="text-gray-400">Track game performance and user engagement</p>
+                            <p className="text-ink/60">Track game performance and user engagement</p>
                         </div>
 
                         {/* Date Filter */}
@@ -221,7 +221,7 @@ const GameAnalyticsPage = () => {
                                     loadGames();
                                 }}
                                 disabled={loading}
-                                className="px-4 py-2 rounded-lg font-medium bg-game-darker text-gray-400 hover:bg-game-purple/20 hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                className="px-4 py-2 rounded-lg font-medium bg-cream text-ink/60 hover:bg-game-purple/20 hover:text-ink transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                             >
                                 <span className={loading ? 'animate-spin' : ''}>🔄</span>
                                 Refresh
@@ -234,8 +234,8 @@ const GameAnalyticsPage = () => {
                                         key={option.value}
                                         onClick={() => setDateFilter(option.value)}
                                         className={`px-4 py-2 rounded-lg font-medium transition-all ${dateFilter === option.value
-                                            ? 'bg-game-purple text-white'
-                                            : 'bg-game-darker text-gray-400 hover:bg-game-purple/20 hover:text-white'
+                                            ? 'bg-game-purple text-ink'
+                                            : 'bg-cream text-ink/60 hover:bg-game-purple/20 hover:text-ink'
                                             }`}
                                     >
                                         {option.label}
@@ -247,46 +247,46 @@ const GameAnalyticsPage = () => {
 
                     {/* Stats Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        <Card className="bg-gradient-to-br from-game-purple/20 to-game-purple/5 border-game-purple/30">
+                        <Card className="bg-gradient-to-br from-meadow/15 to-meadow/5 border-ink/15">
                             <div className="p-6">
-                                <div className="text-gray-400 text-sm mb-2">Total Games</div>
-                                <div className="text-4xl font-bold text-white mb-1">{stats.totalGames}</div>
-                                <div className="text-sm text-gray-500">
+                                <div className="text-ink/60 text-sm mb-2">Total Games</div>
+                                <div className="text-4xl font-bold text-ink mb-1">{stats.totalGames}</div>
+                                <div className="text-sm text-ink/50">
                                     {stats.publishedGames} published, {stats.featuredGames} featured
                                 </div>
                             </div>
                         </Card>
 
-                        <Card className="bg-gradient-to-br from-game-pink/20 to-game-pink/5 border-game-pink/30">
+                        <Card className="bg-gradient-to-br from-coral/15 to-coral/5 border-game-pink/30">
                             <div className="p-6">
-                                <div className="text-gray-400 text-sm mb-2">Total Plays</div>
-                                <div className="text-4xl font-bold text-white mb-1">
+                                <div className="text-ink/60 text-sm mb-2">Total Plays</div>
+                                <div className="text-4xl font-bold text-ink mb-1">
                                     {stats.totalPlays.toLocaleString()}
                                 </div>
-                                <div className="text-sm text-gray-500">
+                                <div className="text-sm text-ink/50">
                                     {stats.totalGames > 0 ? Math.round(stats.totalPlays / stats.totalGames) : 0} avg per game
                                 </div>
                             </div>
                         </Card>
 
-                        <Card className="bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 border-yellow-500/30">
+                        <Card className="bg-gradient-to-br from-sun/20 to-sun/5 border-sun/30">
                             <div className="p-6">
-                                <div className="text-gray-400 text-sm mb-2">Average Rating</div>
-                                <div className="text-4xl font-bold text-white mb-1">
+                                <div className="text-ink/60 text-sm mb-2">Average Rating</div>
+                                <div className="text-4xl font-bold text-ink mb-1">
                                     {stats.avgRating > 0 ? stats.avgRating.toFixed(1) : 'N/A'}
                                     {stats.avgRating > 0 && <span className="text-2xl ml-1">⭐</span>}
                                 </div>
-                                <div className="text-sm text-gray-500">
+                                <div className="text-sm text-ink/50">
                                     {stats.totalRatings} total ratings
                                 </div>
                             </div>
                         </Card>
 
-                        <Card className="bg-gradient-to-br from-green-500/20 to-green-500/5 border-green-500/30">
+                        <Card className="bg-gradient-to-br from-teal/20 to-teal/5 border-teal/30">
                             <div className="p-6">
-                                <div className="text-gray-400 text-sm mb-2">Published</div>
-                                <div className="text-4xl font-bold text-white mb-1">{stats.publishedGames}</div>
-                                <div className="text-sm text-gray-500">
+                                <div className="text-ink/60 text-sm mb-2">Published</div>
+                                <div className="text-4xl font-bold text-ink mb-1">{stats.publishedGames}</div>
+                                <div className="text-sm text-ink/50">
                                     {stats.totalGames > 0 ? Math.round((stats.publishedGames / stats.totalGames) * 100) : 0}% of total
                                 </div>
                             </div>
@@ -297,9 +297,9 @@ const GameAnalyticsPage = () => {
                     {chartData && (
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                             {/* Chart 1: Game Status Distribution */}
-                            <Card className="bg-game-darker/50 border-game-purple/30">
+                            <Card className="bg-cream border-ink/15">
                                 <div className="p-6">
-                                    <h2 className="text-xl font-bold text-white mb-4">📊 Game Status</h2>
+                                    <h2 className="text-xl font-bold text-ink mb-4">📊 Game Status</h2>
                                     <ResponsiveContainer width="100%" height={300}>
                                         <PieChart>
                                             <Pie
@@ -323,9 +323,9 @@ const GameAnalyticsPage = () => {
                             </Card>
 
                             {/* Chart 2: Top Games by Plays */}
-                            <Card className="bg-game-darker/50 border-game-purple/30">
+                            <Card className="bg-cream border-ink/15">
                                 <div className="p-6">
-                                    <h2 className="text-xl font-bold text-white mb-4">🎮 Most Played Games</h2>
+                                    <h2 className="text-xl font-bold text-ink mb-4">🎮 Most Played Games</h2>
                                     <ResponsiveContainer width="100%" height={300}>
                                         <BarChart data={chartData.topGamesData}>
                                             <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -346,9 +346,9 @@ const GameAnalyticsPage = () => {
                             </Card>
 
                             {/* Chart 3: Category Distribution */}
-                            <Card className="bg-game-darker/50 border-game-purple/30">
+                            <Card className="bg-cream border-ink/15">
                                 <div className="p-6">
-                                    <h2 className="text-xl font-bold text-white mb-4">📂 Categories</h2>
+                                    <h2 className="text-xl font-bold text-ink mb-4">📂 Categories</h2>
                                     <ResponsiveContainer width="100%" height={300}>
                                         <PieChart>
                                             <Pie
@@ -374,9 +374,9 @@ const GameAnalyticsPage = () => {
 
                             {/* Chart 4: Top Rated Games */}
                             {chartData.ratingData.length > 0 && (
-                                <Card className="bg-game-darker/50 border-game-purple/30">
+                                <Card className="bg-cream border-ink/15">
                                     <div className="p-6">
-                                        <h2 className="text-xl font-bold text-white mb-4">⭐ Top Rated Games</h2>
+                                        <h2 className="text-xl font-bold text-ink mb-4">⭐ Top Rated Games</h2>
                                         <ResponsiveContainer width="100%" height={300}>
                                             <BarChart data={chartData.ratingData}>
                                                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -399,9 +399,9 @@ const GameAnalyticsPage = () => {
 
                             {/* Chart 5: Activity Timeline */}
                             {chartData.activityData.length > 0 && (
-                                <Card className="bg-game-darker/50 border-game-purple/30 lg:col-span-2">
+                                <Card className="bg-cream border-ink/15 lg:col-span-2">
                                     <div className="p-6">
-                                        <h2 className="text-xl font-bold text-white mb-4">📈 Activity Timeline</h2>
+                                        <h2 className="text-xl font-bold text-ink mb-4">📈 Activity Timeline</h2>
                                         <ResponsiveContainer width="100%" height={300}>
                                             <AreaChart data={chartData.activityData}>
                                                 <defs>
@@ -442,17 +442,17 @@ const GameAnalyticsPage = () => {
                     )}
 
                     {/* Game List */}
-                    <Card className="bg-game-darker/50 border-game-purple/30">
+                    <Card className="bg-cream border-ink/15">
                         <div className="p-6">
-                            <h2 className="text-2xl font-bold text-white mb-4">All Games</h2>
+                            <h2 className="text-2xl font-bold text-ink mb-4">All Games</h2>
                             {filteredGames.length === 0 ? (
-                                <p className="text-gray-400 text-center py-8">No games found for this time period</p>
+                                <p className="text-ink/60 text-center py-8">No games found for this time period</p>
                             ) : (
                                 <div className="space-y-3">
                                     {filteredGames.map((game, index) => (
-                                        <div key={game._id} className="flex items-center justify-between p-4 bg-game-dark/50 rounded-lg">
+                                        <div key={game._id} className="flex items-center justify-between p-4 bg-paper rounded-lg">
                                             <div className="flex items-center gap-4 flex-1">
-                                                <div className="text-2xl font-bold text-game-purple">#{index + 1}</div>
+                                                <div className="text-2xl font-bold text-meadow-deep">#{index + 1}</div>
                                                 <img
                                                     src={game.thumbnail}
                                                     alt={game.title}
@@ -460,10 +460,10 @@ const GameAnalyticsPage = () => {
                                                     onError={(e) => { e.target.style.display = 'none'; }}
                                                 />
                                                 <div className="flex-1">
-                                                    <Link to={`/games/${game.slug}`} className="text-white hover:text-game-purple transition-colors font-semibold">
+                                                    <Link to={`/games/${game.slug}`} className="text-ink hover:text-meadow-deep transition-colors font-semibold">
                                                         {game.title}
                                                     </Link>
-                                                    <div className="text-sm text-gray-500 mt-1">
+                                                    <div className="text-sm text-ink/50 mt-1">
                                                         {game.plays.toLocaleString()} plays •
                                                         {game.rating.count > 0 ? (
                                                             <span> ⭐ {game.rating.average.toFixed(1)} ({game.rating.count} ratings)</span>
@@ -471,11 +471,11 @@ const GameAnalyticsPage = () => {
                                                             <span> No ratings yet</span>
                                                         )}
                                                         {game.published ? (
-                                                            <span className="ml-2 text-green-400">• Published</span>
+                                                            <span className="ml-2 text-teal">• Published</span>
                                                         ) : (
-                                                            <span className="ml-2 text-gray-500">• Draft</span>
+                                                            <span className="ml-2 text-ink/50">• Draft</span>
                                                         )}
-                                                        {game.featured && <span className="ml-2 text-yellow-400">• Featured</span>}
+                                                        {game.featured && <span className="ml-2 text-sun">• Featured</span>}
                                                     </div>
                                                 </div>
                                             </div>

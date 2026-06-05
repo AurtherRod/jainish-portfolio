@@ -117,7 +117,7 @@ const GameEditorPage = () => {
             <DashboardLayout>
                 <div className="max-w-4xl mx-auto">
                     <div className="mb-8">
-                        <h1 className="text-4xl font-bold text-white">
+                        <h1 className="text-4xl font-bold text-ink">
                             {id ? 'Edit Game' : 'Add New Game'}
                         </h1>
                     </div>
@@ -125,12 +125,12 @@ const GameEditorPage = () => {
                     <form onSubmit={(e) => handleSubmit(e, formData.published)} className="space-y-6">
                         {/* Title */}
                         <div>
-                            <label className="block text-white font-medium mb-2">Game Title *</label>
+                            <label className="block text-ink font-medium mb-2">Game Title *</label>
                             <input
                                 type="text"
                                 value={formData.title}
                                 onChange={(e) => handleTitleChange(e.target.value)}
-                                className="w-full px-4 py-3 bg-game-darker border border-game-purple/30 rounded-lg text-white focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                className="w-full px-4 py-3 bg-cream border border-ink/15 rounded-lg text-ink focus:border-ink focus:ring-2 focus:ring-meadow/20 transition-all"
                                 placeholder="Enter game title"
                                 required
                             />
@@ -138,27 +138,27 @@ const GameEditorPage = () => {
 
                         {/* Slug */}
                         <div>
-                            <label className="block text-white font-medium mb-2">Slug *</label>
+                            <label className="block text-ink font-medium mb-2">Slug *</label>
                             <input
                                 type="text"
                                 value={formData.slug}
                                 onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                                className="w-full px-4 py-3 bg-game-darker border border-game-purple/30 rounded-lg text-white focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                className="w-full px-4 py-3 bg-cream border border-ink/15 rounded-lg text-ink focus:border-ink focus:ring-2 focus:ring-meadow/20 transition-all"
                                 placeholder="game-slug"
                                 required
                             />
-                            <div className="text-sm text-gray-500 mt-1">
+                            <div className="text-sm text-ink/50 mt-1">
                                 URL: /games/{formData.slug}
                             </div>
                         </div>
 
                         {/* Description */}
                         <div>
-                            <label className="block text-white font-medium mb-2">Description *</label>
+                            <label className="block text-ink font-medium mb-2">Description *</label>
                             <textarea
                                 value={formData.description}
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                                className="w-full px-4 py-3 bg-game-darker border border-game-purple/30 rounded-lg text-white focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                className="w-full px-4 py-3 bg-cream border border-ink/15 rounded-lg text-ink focus:border-ink focus:ring-2 focus:ring-meadow/20 transition-all"
                                 rows="4"
                                 placeholder="Describe your game"
                                 required
@@ -168,12 +168,12 @@ const GameEditorPage = () => {
                         {/* Thumbnail and Game Path */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label className="block text-white font-medium mb-2">Thumbnail Path/URL *</label>
+                                <label className="block text-ink font-medium mb-2">Thumbnail Path/URL *</label>
                                 <input
                                     type="text"
                                     value={formData.thumbnail}
                                     onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
-                                    className="w-full px-4 py-3 bg-game-darker border border-game-purple/30 rounded-lg text-white focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                    className="w-full px-4 py-3 bg-cream border border-ink/15 rounded-lg text-ink focus:border-ink focus:ring-2 focus:ring-meadow/20 transition-all"
                                     placeholder="/Images/GameImages/game.png or https://example.com/image.jpg"
                                     required
                                 />
@@ -188,16 +188,16 @@ const GameEditorPage = () => {
                             </div>
 
                             <div>
-                                <label className="block text-white font-medium mb-2">Game Path *</label>
+                                <label className="block text-ink font-medium mb-2">Game Path *</label>
                                 <input
                                     type="text"
                                     value={formData.gamePath}
                                     onChange={(e) => setFormData({ ...formData, gamePath: e.target.value })}
-                                    className="w-full px-4 py-3 bg-game-darker border border-game-purple/30 rounded-lg text-white focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                    className="w-full px-4 py-3 bg-cream border border-ink/15 rounded-lg text-ink focus:border-ink focus:ring-2 focus:ring-meadow/20 transition-all"
                                     placeholder="/games/my-game/index.html"
                                     required
                                 />
-                                <div className="text-xs text-gray-500 mt-1">
+                                <div className="text-xs text-ink/50 mt-1">
                                     Path to your game's HTML file
                                 </div>
                             </div>
@@ -205,11 +205,11 @@ const GameEditorPage = () => {
 
                         {/* Category */}
                         <div>
-                            <label className="block text-white font-medium mb-2">Category *</label>
+                            <label className="block text-ink font-medium mb-2">Category *</label>
                             <select
                                 value={formData.category}
                                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                className="w-full px-4 py-3 bg-game-darker border border-game-purple/30 rounded-lg text-white focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                className="w-full px-4 py-3 bg-cream border border-ink/15 rounded-lg text-ink focus:border-ink focus:ring-2 focus:ring-meadow/20 transition-all"
                                 required
                             >
                                 {categories.map(cat => (
@@ -220,11 +220,11 @@ const GameEditorPage = () => {
 
                         {/* Controls */}
                         <div>
-                            <label className="block text-white font-medium mb-2">Controls (Optional)</label>
+                            <label className="block text-ink font-medium mb-2">Controls (Optional)</label>
                             <textarea
                                 value={formData.controls}
                                 onChange={(e) => setFormData({ ...formData, controls: e.target.value })}
-                                className="w-full px-4 py-3 bg-game-darker border border-game-purple/30 rounded-lg text-white focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                className="w-full px-4 py-3 bg-cream border border-ink/15 rounded-lg text-ink focus:border-ink focus:ring-2 focus:ring-meadow/20 transition-all"
                                 rows="3"
                                 placeholder="Arrow keys to move, Space to jump..."
                             />
@@ -232,14 +232,14 @@ const GameEditorPage = () => {
 
                         {/* Tags */}
                         <div>
-                            <label className="block text-white font-medium mb-2">Tags</label>
+                            <label className="block text-ink font-medium mb-2">Tags</label>
                             <div className="flex gap-2 mb-2">
                                 <input
                                     type="text"
                                     value={tagInput}
                                     onChange={(e) => setTagInput(e.target.value)}
                                     onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
-                                    className="flex-1 px-4 py-2 bg-game-darker border border-game-purple/30 rounded-lg text-white focus:border-game-purple focus:ring-2 focus:ring-game-purple/20 transition-all"
+                                    className="flex-1 px-4 py-2 bg-cream border border-ink/15 rounded-lg text-ink focus:border-ink focus:ring-2 focus:ring-meadow/20 transition-all"
                                     placeholder="Add a tag and press Enter"
                                 />
                                 <Button type="button" variant="outline" onClick={handleAddTag}>
@@ -248,7 +248,7 @@ const GameEditorPage = () => {
                             </div>
                             <div className="flex flex-wrap gap-2">
                                 {formData.tags.map((tag, idx) => (
-                                    <span key={idx} className="bg-game-purple/20 text-game-purple px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                                    <span key={idx} className="bg-game-purple/20 text-meadow-deep px-3 py-1 rounded-full text-sm flex items-center gap-2">
                                         {tag}
                                         <button
                                             type="button"
@@ -269,23 +269,23 @@ const GameEditorPage = () => {
                                     type="checkbox"
                                     checked={formData.published}
                                     onChange={(e) => setFormData({ ...formData, published: e.target.checked })}
-                                    className="w-5 h-5 rounded border-game-purple/30 bg-game-darker text-game-purple focus:ring-game-purple"
+                                    className="w-5 h-5 rounded border-ink/15 bg-cream text-meadow-deep focus:ring-game-purple"
                                 />
-                                <span className="text-white">Published</span>
+                                <span className="text-ink">Published</span>
                             </label>
                             <label className="flex items-center gap-2 cursor-pointer">
                                 <input
                                     type="checkbox"
                                     checked={formData.featured}
                                     onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
-                                    className="w-5 h-5 rounded border-game-purple/30 bg-game-darker text-game-purple focus:ring-game-purple"
+                                    className="w-5 h-5 rounded border-ink/15 bg-cream text-meadow-deep focus:ring-game-purple"
                                 />
-                                <span className="text-white">Featured</span>
+                                <span className="text-ink">Featured</span>
                             </label>
                         </div>
 
                         {/* Submit Buttons */}
-                        <div className="flex gap-4 pt-6 border-t border-game-purple/20">
+                        <div className="flex gap-4 pt-6 border-t border-ink/10">
                             <Button
                                 type="submit"
                                 variant="primary"

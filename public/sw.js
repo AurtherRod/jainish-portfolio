@@ -2,10 +2,7 @@ const CACHE_NAME = 'jainish-portfolio-v2';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/resume.pdf',
   '/Images/favicon.png',
-  '/Images/Trustopay.png',
-  '/Images/ClassAndClass.jpg'
 ];
 
 self.addEventListener('install', (event) => {
@@ -17,11 +14,26 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  // Skip cross-origin requests (API calls, etc.)
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
+  // Skip non-GET requests
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
+  // Skip API paths that might be proxied
+  if (event.request.url.includes('/api/')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => response || fetch(event.request)
         .then((fetchResponse) => {
-          if (fetchResponse.ok && event.request.method === 'GET') {
+          if (fetchResponse.ok) {
             const responseClone = fetchResponse.clone();
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, responseClone);
@@ -30,6 +42,12 @@ self.addEventListener('fetch', (event) => {
           return fetchResponse;
         })
       )
+      .catch(() => {
+        // Fallback to index.html for navigation requests (SPA routing)
+        if (event.request.mode === 'navigate') {
+          return caches.match('/index.html');
+        }
+      })
   );
 });
 
